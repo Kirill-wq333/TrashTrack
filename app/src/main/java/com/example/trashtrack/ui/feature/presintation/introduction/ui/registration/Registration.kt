@@ -39,6 +39,7 @@ import com.example.trashtrack.R
 import com.example.trashtrack.ui.feature.presintation.introduction.ui.components.OutlinedTextFieldComponent
 import com.example.trashtrack.ui.feature.presintation.introduction.ui.components.PhoneTextField
 import com.example.trashtrack.ui.feature.presintation.shared.checkbox.Checkbox
+import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.spacers
 
 @Preview
@@ -54,7 +55,6 @@ private fun RegistrationPreview() {
 
 @Composable
 fun RegistrationContent(
-    modifier: Modifier = Modifier,
     openEntranceScreen: () -> Unit,
     openRegisterEmployeeScreen: () -> Unit
 ) {
@@ -123,9 +123,7 @@ fun RegistrationContent(
                     text = "Зарегистрироваться",
                     textDecoration = TextDecoration.Underline,
                     color = Color.Black,
-                    fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.ExtraBold,
+                    style = TTTypography.titleLarge,
                     modifier = Modifier
                         .clickable(onClick = openRegisterEmployeeScreen)
                 )
@@ -133,9 +131,7 @@ fun RegistrationContent(
                 Text(
                     text = "как сотрудник",
                     color = Color.Black,
-                    fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.ExtraBold,
+                    style = TTTypography.titleLarge,
                 )
             }
         }
@@ -165,9 +161,7 @@ fun NextOrEntrance(
             Text(
                 text = "Далее",
                 color = Color.White,
-                fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-                fontSize = 24.sp,
-                fontWeight = FontWeight.ExtraBold,
+                style = TTTypography.headlineLarge,
                 modifier = Modifier
                     .padding(vertical = 13.dp)
             )
@@ -179,18 +173,14 @@ fun NextOrEntrance(
             Text(
                 text = "Или",
                 color = Color.Black,
-                fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-                fontSize = 16.sp,
-                fontWeight = FontWeight.ExtraBold,
+                style = TTTypography.titleLarge,
             )
             Spacer(Modifier.width(3.dp))
             Text(
                 text = "войти",
                 color = Color.Black,
                 textDecoration = TextDecoration.Underline,
-                fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-                fontSize = 16.sp,
-                fontWeight = FontWeight.ExtraBold,
+                style = TTTypography.titleLarge,
                 modifier = Modifier.clickable(onClick = openEntranceScreen)
             )
         }
@@ -240,18 +230,14 @@ fun HeadingAndUnderHeadingText(
             text = "Создать учетную запись",
             color = Color.Black,
             textAlign = TextAlign.Center,
-            fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-            fontWeight = FontWeight.ExtraBold,
-            fontSize = 24.sp,
+            style = TTTypography.headlineLarge,
         )
         Spacer(modifier = Modifier.height(MaterialTheme.spacers.small))
         Text(
             text = " Добро пожаловать! Пожалуйста, заполните форму ниже, чтобы создать новую учетную запись. Это займет всего несколько минут.",
             color = Color(0xFF737373),
             textAlign = TextAlign.Center,
-            fontFamily = FontFamily(listOf(Font(R.font.manrope_bold))),
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold,
+            style = TTTypography.titleSmall,
         )
     }
 }

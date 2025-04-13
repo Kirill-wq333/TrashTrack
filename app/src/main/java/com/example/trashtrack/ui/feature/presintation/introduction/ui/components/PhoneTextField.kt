@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.trashtrack.R
 import com.example.trashtrack.ui.feature.presintation.shared.text.transform.rememberMaskVisualTransformation
+import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
 @Preview
@@ -62,6 +63,7 @@ fun PhoneTextField() {
                 unfocusedContainerColor = Color.White,
                 focusedContainerColor = Color.White,
                 errorContainerColor = Color.White,
+                errorLabelColor = MaterialTheme.colors.red600,
                 errorIndicatorColor = MaterialTheme.colors.red600
             ),
             visualTransformation = rememberMaskVisualTransformation("+7(###)###-##-##"),
@@ -69,9 +71,7 @@ fun PhoneTextField() {
                 Text(
                     text = "Номер телефона",
                     color = MaterialTheme.colors.neutral400,
-                    fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.ExtraBold,
+                    style = TTTypography.titleLarge,
                 )
             },
             placeholder = { Text("+7(___)___-__-__") },
@@ -83,7 +83,7 @@ fun PhoneTextField() {
             Text(
                 text = "Заполните поле!",
                 color = MaterialTheme.colors.red600,
-                style = MaterialTheme.typography.bodySmall,
+                style = TTTypography.titleLarge,
                 modifier = Modifier.padding(start = 16.dp)
             )
         }

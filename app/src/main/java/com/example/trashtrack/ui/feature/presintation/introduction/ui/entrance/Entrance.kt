@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.trashtrack.R
 import com.example.trashtrack.ui.feature.presintation.introduction.ui.components.OutlinedTextFieldComponent
+import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 import com.example.trashtrack.ui.theme.spacers
 
@@ -83,9 +85,7 @@ fun EntranceContent(
             Text(
                 text = "Забыли пароль?",
                 color = MaterialTheme.colors.neutral500,
-                fontFamily = FontFamily(listOf(Font(R.font.manrope_bold))),
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Bold
+                style = TTTypography.titleSmall,
             )
         }
         Spacer(modifier = Modifier.height(30.2.dp))
@@ -93,18 +93,14 @@ fun EntranceContent(
             Text(
                 text = "У вас нету аккаунта?",
                 color = Color.Black,
-                fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-                fontSize = 16.sp,
-                fontWeight = FontWeight.ExtraBold
+                style = TTTypography.titleLarge
             )
             Spacer(modifier = Modifier.width(5.dp))
             Text(
                 text = "Зарегистрируйтесь",
                 color = Color.Black,
                 textDecoration = TextDecoration.Underline,
-                fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-                fontSize = 16.sp,
-                fontWeight = FontWeight.ExtraBold,
+                style = TTTypography.titleLarge,
                 modifier = Modifier
                     .clickable(onClick = openRegistrationScreen)
             )
@@ -127,39 +123,44 @@ fun EntranceContent(
             )
         }
         Spacer(modifier = Modifier.height(11.dp))
-        Box(
+        Boxs(
+            openEntranceScreen = openEntranceScreen
+        )
+    }
+}
+
+@Composable
+private fun Boxs(
+    openEntranceScreen: () -> Unit
+){
+    Box(
+        modifier = Modifier
+            .padding(bottom = 42.dp)
+            .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(20.dp))
+    ){
+        Row(
             modifier = Modifier
-                .padding(bottom = 42.dp)
-                .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(20.dp))
-        ){
-            Row(
+                .padding(
+                    top = 10.dp,
+                    start = 10.dp,
+                    bottom = 7.dp,
+                    end = 10.dp
+                )
+        ) {
+            Text(
+                text = "Войти",
+                textDecoration = TextDecoration.Underline,
+                color = Color.Black,
+                style = TTTypography.titleLarge,
                 modifier = Modifier
-                    .padding(
-                        top = 10.dp,
-                        start = 10.dp,
-                        bottom = 7.dp,
-                        end = 10.dp
-                    )
-            ) {
-                Text(
-                    text = "Войти",
-                    textDecoration = TextDecoration.Underline,
-                    color = Color.Black,
-                    fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.ExtraBold,
-                    modifier = Modifier
-                        .clickable(onClick = openEntranceScreen)
-                )
-                Spacer(modifier = Modifier.width(3.dp))
-                Text(
-                    text = "как сотрудник",
-                    color = Color.Black,
-                    fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.ExtraBold,
-                )
-            }
+                    .clickable(onClick = openEntranceScreen)
+            )
+            Spacer(modifier = Modifier.width(3.dp))
+            Text(
+                text = "как сотрудник",
+                color = Color.Black,
+                style = TTTypography.titleLarge
+            )
         }
     }
 }
@@ -181,9 +182,7 @@ private fun TTBottom(
         Text(
             text = "Войти",
             color = Color.White,
-            fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-            fontSize = 24.sp,
-            fontWeight = FontWeight.ExtraBold,
+            style = TTTypography.headlineLarge,
             modifier = Modifier
                 .padding(vertical = 13.dp)
         )
@@ -195,14 +194,13 @@ fun HeadingAndImage(
     modifier: Modifier = Modifier
 ) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(22.dp)
     ) {
         Text(
             text = "Вход в систему",
             color = Color.Black,
-            fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-            fontSize = 24.sp,
-            fontWeight = FontWeight.ExtraBold
+            style = TTTypography.headlineLarge
         )
         Box(
             modifier = Modifier

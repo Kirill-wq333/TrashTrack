@@ -26,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.trashtrack.R
+import com.example.trashtrack.ui.theme.TTTypography
 
 @Preview
 @Composable
@@ -69,9 +70,7 @@ fun Checkbox(
         Text(
             text = title,
             color = Color(0xFF262626),
-            fontFamily = FontFamily(listOf(Font(R.font.roboto_condensed_extrabold))),
-            fontSize = 12.sp,
-            fontWeight = FontWeight.ExtraBold,
+            style = TTTypography.bodyLarge,
         )
     }
 }

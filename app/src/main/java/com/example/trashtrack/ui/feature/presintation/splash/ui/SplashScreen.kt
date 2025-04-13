@@ -45,6 +45,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.trashtrack.R
 import com.example.trashtrack.ui.feature.presintation.splash.ui.components.Frame
 import com.example.trashtrack.ui.feature.presintation.splash.ui.components.TimerProgressBar
+import com.example.trashtrack.ui.theme.TTTypography
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -287,17 +288,13 @@ fun Content(
             ) {
                 Text(
                     text = "При поддерже",
-                    fontFamily = FontFamily(listOf(Font(R.font.roboto_condensed_extrabold))),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.ExtraBold,
+                    style = TTTypography.titleLarge,
                     color = Color(0xFF525252)
                 )
                 Spacer(Modifier.height(15.dp))
                 Text(
                     text = "ДАКАНТ",
-                    fontFamily = FontFamily(listOf(Font(R.font.unbounded_black))),
-                    fontSize = 36.sp,
-                    fontWeight = FontWeight.Black,
+                    style = TTTypography.displayMedium,
                     color = Color(0xFF211600)
                 )
             }
@@ -362,9 +359,7 @@ fun AnimatedColorText(
                 Text(
                     text = char.toString(),
                     color = color ?: LocalContentColor.current,
-                    fontFamily = FontFamily(listOf(Font(R.font.roboto_condensed_black))),
-                    fontSize = 32.sp,
-                    fontWeight = FontWeight.Black,
+                    style = TTTypography.displaySmall,
                     modifier = Modifier
                 )
             }

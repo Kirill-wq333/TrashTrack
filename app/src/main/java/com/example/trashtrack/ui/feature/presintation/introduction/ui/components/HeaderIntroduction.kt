@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.trashtrack.R
+import com.example.trashtrack.ui.theme.TTTypography
 
 @Composable
 fun HeaderIntroduction(
@@ -77,9 +78,7 @@ fun HeaderIntroduction(
             ) {
                 Text(
                     text = "Пропустить",
-                    fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.ExtraBold,
+                    style = TTTypography.titleLarge,
                     color = Color(0xFF262626),
                     modifier = Modifier
                         .clickable(

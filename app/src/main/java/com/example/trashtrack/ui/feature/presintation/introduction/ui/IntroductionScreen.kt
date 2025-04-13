@@ -47,8 +47,10 @@ import com.example.trashtrack.mock.DataClasses
 import com.example.trashtrack.mock.Mock
 import com.example.trashtrack.ui.feature.presintation.introduction.ui.components.HeaderIntroduction
 import com.example.trashtrack.ui.feature.presintation.introduction.ui.entrance.EntranceContent
+import com.example.trashtrack.ui.feature.presintation.introduction.ui.entrance.EntranceEmployee
 import com.example.trashtrack.ui.feature.presintation.introduction.ui.registration.RegistrationContent
 import com.example.trashtrack.ui.feature.presintation.shared.bottomsheet.TTModalBottomSheet
+import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 import com.example.trashtrack.ui.theme.spacers
 
@@ -68,6 +70,7 @@ fun IntroductionScreen(
     var openEntrance by remember { mutableStateOf(false) }
     var openRegistration by remember { mutableStateOf(false) }
     var openRegisterEmployeeScreen by remember { mutableStateOf(false) }
+    var openEntranceEmployeeScreen by remember { mutableStateOf(false) }
     Introduction(
         introduction = introduction,
         openRegistrationScreen = { openRegistration = true },
@@ -79,8 +82,8 @@ fun IntroductionScreen(
             onDismissRequest = { openEntrance = false },
         ) {
             EntranceContent(
-                openEntranceScreen = { openEntrance = true },
-                openRegistrationScreen = { openRegistration = true }
+                openEntranceScreen = { openEntranceEmployeeScreen = true; openEntrance = false },
+                openRegistrationScreen = { openRegistration = true; openEntrance = false }
             )
         }
     }
@@ -90,8 +93,19 @@ fun IntroductionScreen(
             onDismissRequest = { openRegistration = false },
         ) {
             RegistrationContent(
-                openEntranceScreen = { openEntrance = true },
-                openRegisterEmployeeScreen = { openRegisterEmployeeScreen = true }
+                openEntranceScreen = { openEntrance = true; openRegistration = false },
+                openRegisterEmployeeScreen = { openRegisterEmployeeScreen = true; openRegistration = false }
+            )
+        }
+    }
+
+    if (openEntranceEmployeeScreen){
+        TTModalBottomSheet(
+            onDismissRequest = { openEntranceEmployeeScreen = false }
+        ) {
+            EntranceEmployee(
+                openRegistrationEmployeeScreen = { openRegisterEmployeeScreen = true; openEntranceEmployeeScreen = false },
+                backButton = { openRegisterEmployeeScreen = false }
             )
         }
     }
@@ -167,9 +181,7 @@ fun Content(
             text = title,
             color = Color.Black,
             textAlign = TextAlign.Center,
-            fontFamily = FontFamily(listOf(Font(R.font.roboto_condensed_black))),
-            fontSize = 32.sp,
-            fontWeight = FontWeight.Black,
+            style = TTTypography.displaySmall,
         )
         Spacer(modifier = Modifier.height(MaterialTheme.spacers.large))
         Box(
@@ -212,18 +224,14 @@ fun BottomBar(
             text = heading,
             color = Color.Black,
             textAlign = TextAlign.Center,
-            fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-            fontSize = 24.sp,
-            fontWeight = FontWeight.ExtraBold,
+            style = TTTypography.headlineLarge,
         )
         Spacer(modifier = Modifier.height(MaterialTheme.spacers.medium))
         Text(
             text = underHeading,
             color = MaterialTheme.colors.neutral400,
             textAlign = TextAlign.Center,
-            fontFamily = FontFamily(listOf(Font(R.font.manrope_bold))),
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold,
+            style = TTTypography.titleSmall,
         )
         Spacer(modifier = Modifier.height(MaterialTheme.spacers.xxLarge))
         FourCircular(
@@ -267,9 +275,7 @@ fun TTButton(
                 Text(
                     text = "Создать учётную запись",
                     color = Color.White,
-                    fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.ExtraBold,
+                    style = TTTypography.headlineLarge,
                     modifier = Modifier
                         .padding(vertical = 13.dp)
                 )
@@ -281,18 +287,14 @@ fun TTButton(
                 Text(
                     text = "или",
                     color = Color.Black,
-                    fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.ExtraBold,
+                    style = TTTypography.titleLarge,
                 )
                 Spacer(Modifier.width(3.dp))
                 Text(
                     text = "Войти",
                     color = Color.Black,
                     textDecoration = TextDecoration.Underline,
-                    fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.ExtraBold,
+                    style = TTTypography.titleLarge,
                     modifier = Modifier.clickable(onClick = openEntranceScreen)
                 )
             }
@@ -313,9 +315,7 @@ fun TTButton(
             Text(
                 text = "Следующая",
                 color = Color.White,
-                fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-                fontSize = 24.sp,
-                fontWeight = FontWeight.ExtraBold,
+                style = TTTypography.headlineLarge,
                 modifier = Modifier
                     .padding(vertical = 13.dp)
             )

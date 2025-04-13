@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.trashtrack.R
+import com.example.trashtrack.ui.theme.TTTypography
 import kotlinx.coroutines.delay
 
 @Composable
@@ -57,18 +58,20 @@ fun TimerProgressBar(
                 delay(20L)
                 currentPercentage = (currentPercentage + (20f / totalTime)).coerceAtMost(0.8f)
             }
+            delay(500L)
+            isVisible = false
         } else{
             while (currentPercentage < 1f) {
                 delay(20L)
                 currentPercentage = (currentPercentage + (20f / (totalTime * 0.2f))).coerceAtMost(1f)
             }
+            isVisible = true
         }
 
         isCompleted = true
 
-        delay(500L)
 
-        isVisible = false
+
     }
 
     AnimatedVisibility(
@@ -83,9 +86,7 @@ fun TimerProgressBar(
             Text(
                 text = "${(currentPercentage * 100).toInt()}%",
                 color = progressTextColor,
-                fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-                fontSize = 24.sp,
-                fontWeight = FontWeight.ExtraBold,
+                style = TTTypography.headlineLarge,
                 modifier = Modifier.align(Alignment.Start)
             )
             ProgressBar(

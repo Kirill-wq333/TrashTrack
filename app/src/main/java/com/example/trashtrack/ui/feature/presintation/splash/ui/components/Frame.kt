@@ -36,11 +36,6 @@ fun Frame(
     var animationFinished by remember { mutableStateOf(false) }
     var showLine by remember { mutableStateOf(true) }
 
-//    val colorLine by animateColorAsState(
-//            targetValue = if (animationFinished) Color(0xFF006B05) else Color(0xFF404040),
-//    animationSpec = tween(1000)
-//    )
-
     val transition = updateTransition(targetState = currentIndex, label = "pointTransition")
 
     val animatedX by transition.animateFloat(

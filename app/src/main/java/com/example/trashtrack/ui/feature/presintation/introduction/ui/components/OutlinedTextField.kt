@@ -24,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.trashtrack.R
+import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
 @Preview
@@ -42,7 +43,6 @@ fun OutlinedTextFieldComponent(
     nameTextField: String,
     isErrorText: String,
 ) {
-    val interactionSource = remember { MutableInteractionSource() }
     var text by remember { mutableStateOf("") }
     var isError by remember { mutableStateOf(false) }
 
@@ -67,9 +67,7 @@ fun OutlinedTextFieldComponent(
                 Text(
                     text = nameTextField,
                     color = MaterialTheme.colors.neutral400,
-                    fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.ExtraBold,
+                    style = TTTypography.titleLarge,
                 )
             },
             isError = isError,
@@ -80,7 +78,7 @@ fun OutlinedTextFieldComponent(
             Text(
                 text = isErrorText,
                 color = MaterialTheme.colors.red600,
-                style = MaterialTheme.typography.bodySmall,
+                style = TTTypography.titleLarge,
                 modifier = Modifier.padding(start = 16.dp)
             )
         }
