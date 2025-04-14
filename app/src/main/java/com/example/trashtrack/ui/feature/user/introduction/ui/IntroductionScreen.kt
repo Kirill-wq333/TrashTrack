@@ -149,7 +149,7 @@ fun Introduction(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(top = MaterialTheme.spacers.xLarge),
-                verticalArrangement = Arrangement.SpaceBetween
+                verticalArrangement = Arrangement.spacedBy(23.5.dp)
             ) {
                 Content(
                     image = item.image,
