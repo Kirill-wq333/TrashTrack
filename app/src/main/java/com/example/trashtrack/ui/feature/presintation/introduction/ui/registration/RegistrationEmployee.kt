@@ -46,7 +46,8 @@ fun RegistrationEmployee(
 
     Column(
         modifier = Modifier
-            .verticalScroll(rememberScrollState())
+            .verticalScroll(rememberScrollState()),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         BackButton(
             backButton = {}
