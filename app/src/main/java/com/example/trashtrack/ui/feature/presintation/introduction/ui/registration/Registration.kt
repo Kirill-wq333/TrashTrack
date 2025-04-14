@@ -63,7 +63,9 @@ fun RegistrationContent(
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        HeadingAndUnderHeadingText()
+        HeadingAndUnderHeadingText(
+            heading = "Создать учетную запись"
+        )
         Spacer(modifier = Modifier.height(10.dp))
         ColumnsTextField()
         Spacer(modifier = Modifier.height(11.dp))
@@ -87,55 +89,12 @@ fun RegistrationContent(
                 openEntranceScreen = openEntranceScreen,
             )
             Spacer(modifier = Modifier.height(11.dp))
-            Row {
-                Icon(
-                    painter = painterResource(R.drawable.icons_google),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(24.dp)
-                )
-                Spacer(modifier = Modifier.width(14.dp))
-                Icon(
-                    painter = painterResource(R.drawable.vk),
-                    contentDescription = null,
-                    tint = Color.Blue.copy(.8f),
-                    modifier = Modifier
-                        .size(31.4.dp, 19.7.dp)
-                )
-            }
+            Services()
         }
         Spacer(modifier = Modifier.height(7.dp))
-        Box(
-            modifier = Modifier
-                .padding(bottom = 42.dp)
-                .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(20.dp))
-        ){
-            Row(
-                modifier = Modifier
-                    .padding(
-                        top = 10.dp,
-                        start = 10.dp,
-                        bottom = 7.dp,
-                        end = 10.dp
-                    )
-            ) {
-                Text(
-                    text = "Зарегистрироваться",
-                    textDecoration = TextDecoration.Underline,
-                    color = Color.Black,
-                    style = TTTypography.titleLarge,
-                    modifier = Modifier
-                        .clickable(onClick = openRegisterEmployeeScreen)
-                )
-                Spacer(modifier = Modifier.width(3.dp))
-                Text(
-                    text = "как сотрудник",
-                    color = Color.Black,
-                    style = TTTypography.titleLarge,
-                )
-            }
-        }
-
+        RegistrationHowEmployee(
+            openRegisterEmployeeScreen = openRegisterEmployeeScreen
+        )
     }
 }
 
@@ -151,7 +110,7 @@ fun NextOrEntrance(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .clickable(onClick = {  })
+                .clickable(onClick = { })
                 .background(
                     color = Color(0xFF16A34A),
                     shape = RoundedCornerShape(12.dp)
@@ -189,7 +148,7 @@ fun NextOrEntrance(
 }
 
 @Composable
-fun ColumnsTextField(
+private fun ColumnsTextField(
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -221,13 +180,14 @@ fun ColumnsTextField(
 
 @Composable
 fun HeadingAndUnderHeadingText(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    heading: String
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Создать учетную запись",
+            text = heading,
             color = Color.Black,
             textAlign = TextAlign.Center,
             style = TTTypography.headlineLarge,
@@ -239,5 +199,64 @@ fun HeadingAndUnderHeadingText(
             textAlign = TextAlign.Center,
             style = TTTypography.titleSmall,
         )
+    }
+}
+
+@Composable
+fun Services(
+    modifier: Modifier = Modifier
+) {
+    Row {
+        Icon(
+            painter = painterResource(R.drawable.icons_google),
+            contentDescription = null,
+            modifier = Modifier
+                .size(24.dp)
+        )
+        Spacer(modifier = Modifier.width(14.dp))
+        Icon(
+            painter = painterResource(R.drawable.vk),
+            contentDescription = null,
+            tint = Color.Blue.copy(.8f),
+            modifier = Modifier
+                .size(31.4.dp, 19.7.dp)
+        )
+    }
+}
+
+@Composable
+fun RegistrationHowEmployee(
+    modifier: Modifier = Modifier,
+    openRegisterEmployeeScreen: () -> Unit
+) {
+    Box(
+        modifier = Modifier
+            .padding(bottom = 42.dp)
+            .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(20.dp))
+    ){
+        Row(
+            modifier = Modifier
+                .padding(
+                    top = 10.dp,
+                    start = 10.dp,
+                    bottom = 7.dp,
+                    end = 10.dp
+                )
+        ) {
+            Text(
+                text = "Зарегистрироваться",
+                textDecoration = TextDecoration.Underline,
+                color = Color.Black,
+                style = TTTypography.titleLarge,
+                modifier = Modifier
+                    .clickable(onClick = openRegisterEmployeeScreen)
+            )
+            Spacer(modifier = Modifier.width(3.dp))
+            Text(
+                text = "как сотрудник",
+                color = Color.Black,
+                style = TTTypography.titleLarge,
+            )
+        }
     }
 }
