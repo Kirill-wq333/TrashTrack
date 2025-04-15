@@ -24,6 +24,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -41,6 +42,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.trashtrack.ui.feature.user.splash.ui.components.Frame
 import com.example.trashtrack.ui.feature.user.splash.ui.components.TimerProgressBar
 import com.example.trashtrack.ui.theme.TTTypography
+import com.example.trashtrack.ui.theme.colors
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -257,8 +259,8 @@ fun Content(
             AnimatedColorText(
                 text = "TrashTrack",
                 coloredParts = mapOf(
-                    "Trash" to Color.Black,
-                    "Track" to Color(0xFF15803D)
+                    "Trash" to MaterialTheme.colors.black,
+                    "Track" to MaterialTheme.colors.green700
                 ),
                 letterDelay = 150
             )
