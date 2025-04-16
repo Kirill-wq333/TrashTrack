@@ -6,6 +6,7 @@ object Color {
     val neutral400 = Color(0xFFA3A3A3)
     val neutral500 = Color(0xFF737373)
     val neutral700 = Color(0xFF404040)
+    val neutral800 = Color(0xFF262626)
     val neutral900 = Color(0xFF171717)
     val neutral950 = Color(0xFF0A0A0A)
 

@@ -11,6 +11,7 @@ import com.example.trashtrack.mock.Mock
 import com.example.trashtrack.ui.feature.user.alittlemore.ui.ALittleMoreScreen
 import com.example.trashtrack.ui.feature.user.introduction.ui.IntroductionScreen
 import com.example.trashtrack.ui.feature.user.main.ui.MainUserScreen
+import com.example.trashtrack.ui.feature.user.news.ui.NewsScreen
 import com.example.trashtrack.ui.feature.user.splash.ui.DualAxisAnimationScreen
 
 @Composable
@@ -55,7 +56,10 @@ fun NavigationBuilder(
         }
 
         composable("news") {
-
+            NewsScreen(
+                news = Mock.demoNews,
+                backButton = { navController.navigate("user") }
+            )
         }
     }
 }

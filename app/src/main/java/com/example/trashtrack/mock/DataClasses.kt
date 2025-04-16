@@ -16,6 +16,7 @@ object DataClasses {
 
     data class NewsMain(
         val image: Int,
+        val secondImage: Int,
         val nameNews: String,
         val descriptionNews: String
     )
