@@ -67,7 +67,8 @@ fun NewsScreen(
 
     Column(
         modifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .background(MaterialTheme.colors.white),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         NewsMain(
