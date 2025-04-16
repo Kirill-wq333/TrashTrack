@@ -65,7 +65,6 @@ fun ALittleMoreScreen(
 
     Box(
         modifier = Modifier
-            .padding(top = 54.dp)
             .fillMaxSize()
             .background(Color(0xFF15803D)),
         contentAlignment = Alignment.BottomCenter

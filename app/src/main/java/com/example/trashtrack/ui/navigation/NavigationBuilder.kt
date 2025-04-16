@@ -4,6 +4,8 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -23,12 +25,14 @@ import com.example.trashtrack.ui.theme.colors
 fun NavigationBuilder(
     navController: NavHostController,
     setVisibleBottomBarUser: (Boolean) -> Unit,
-    setVisibleBottomBarEmployee: (Boolean) -> Unit
+    setVisibleBottomBarEmployee: (Boolean) -> Unit,
+    paddingValues: PaddingValues
 ) {
     NavHost(
         navController = navController,
         startDestination = AppRoutes.START,
         modifier = Modifier
+            .padding(paddingValues)
             .background(MaterialTheme.colors.white)
     ) {
 

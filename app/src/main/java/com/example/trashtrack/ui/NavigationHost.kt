@@ -28,9 +28,10 @@ fun NavigationHost(
                 )
             }
         }
-    ) {
+    ) {paddingValues ->
         NavigationBuilder(
             navController = navController,
+            paddingValues = paddingValues,
             setVisibleBottomBarUser = { visible -> visibleBottomBarUser = visible },
             setVisibleBottomBarEmployee = { visible -> visibleBottomBarEmployee = visible }
         )

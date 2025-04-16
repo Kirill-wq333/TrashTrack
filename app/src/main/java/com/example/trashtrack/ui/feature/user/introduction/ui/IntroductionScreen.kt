@@ -49,6 +49,7 @@ import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 import com.example.trashtrack.ui.theme.spacers
+import java.nio.file.WatchEvent
 
 @Preview
 @Composable
@@ -131,33 +132,28 @@ fun Introduction(
     var activeCircle by remember { mutableIntStateOf(0) }
     val item = introduction.getOrNull(activeCircle) ?: return
 
-    Scaffold(
-        topBar = {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.White),
+            contentAlignment = Alignment.Center
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
             HeaderIntroduction(
                 visibleBackButton = item.backButtonVisible,
                 visibleSkipButton = item.skipButtonVisible,
                 backButton = { activeCircle = (activeCircle - 1).mod(4) },
                 skipButton = { activeCircle = introduction.size - 1 }
             )
-        }
-    ) { padding ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.White)
-                .padding(padding),
-            contentAlignment = Alignment.Center
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(top = MaterialTheme.spacers.xLarge),
-                verticalArrangement = Arrangement.spacedBy(23.5.dp)
-            ) {
+            Spacer(modifier = Modifier.height(26.dp))
                 Content(
                     image = item.image,
                     title = item.title
                 )
+                Spacer(modifier = Modifier.height(23.5.dp))
                 BottomBar(
                     nextButtonVisible = item.nextButtonVisible,
                     heading = item.heading,
@@ -169,7 +165,6 @@ fun Introduction(
                 )
             }
         }
-    }
 }
 
 @Composable

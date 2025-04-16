@@ -67,7 +67,6 @@ fun NewsScreen(
 
     Column(
         modifier = Modifier
-            .padding(top = 54.dp)
             .fillMaxSize()
             .background(MaterialTheme.colors.white),
         horizontalAlignment = Alignment.CenterHorizontally

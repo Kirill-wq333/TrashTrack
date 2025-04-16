@@ -142,7 +142,7 @@ fun DualAxisAnimationScreen(
             trashTrackStep = true
             dakantStep = true
             padding.animateTo(
-                targetValue = 89f,
+                targetValue = 60f,
                 animationSpec = tween(1000)
             )
         }
