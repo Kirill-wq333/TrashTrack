@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.trashtrack.R
+import com.example.trashtrack.ui.approuts.AppRoutes
 import com.example.trashtrack.ui.feature.user.splash.ui.components.TimerProgressBar
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -46,7 +47,7 @@ fun ALittleMoreScreen(
     LaunchedEffect(allAnimationsFinished) {
         delay(1000)
         if (allAnimationsFinished) {
-            navController.navigate("introduction") {
+            navController.navigate(AppRoutes.INTRODUCTION) {
                 popUpTo(navController.graph.startDestinationId)
                 launchSingleTop = true
             }
@@ -64,6 +65,7 @@ fun ALittleMoreScreen(
 
     Box(
         modifier = Modifier
+            .padding(top = 54.dp)
             .fillMaxSize()
             .background(Color(0xFF15803D)),
         contentAlignment = Alignment.BottomCenter

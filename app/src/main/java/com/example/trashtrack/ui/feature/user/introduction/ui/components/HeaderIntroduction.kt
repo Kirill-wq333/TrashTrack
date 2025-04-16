@@ -30,6 +30,7 @@ fun HeaderIntroduction(
 ) {
     Row(
         modifier = Modifier
+            .padding(top = 54.dp)
             .fillMaxWidth()
             .padding(
                 top = 40.5.dp,

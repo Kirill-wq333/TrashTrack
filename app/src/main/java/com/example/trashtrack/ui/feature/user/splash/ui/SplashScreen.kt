@@ -39,6 +39,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.trashtrack.ui.approuts.AppRoutes
 import com.example.trashtrack.ui.feature.user.splash.ui.components.Frame
 import com.example.trashtrack.ui.feature.user.splash.ui.components.TimerProgressBar
 import com.example.trashtrack.ui.theme.TTTypography
@@ -106,7 +107,7 @@ fun DualAxisAnimationScreen(
 
     LaunchedEffect(allAnimationsFinished) {
         if (allAnimationsFinished) {
-            navController.navigate("aLittleMore") {
+            navController.navigate(AppRoutes.A_LITTLE_MORE) {
                 popUpTo(navController.graph.startDestinationId)
                 launchSingleTop = true
             }

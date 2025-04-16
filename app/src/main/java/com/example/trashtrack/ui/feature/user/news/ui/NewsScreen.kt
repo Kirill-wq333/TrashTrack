@@ -67,6 +67,7 @@ fun NewsScreen(
 
     Column(
         modifier = Modifier
+            .padding(top = 54.dp)
             .fillMaxSize()
             .background(MaterialTheme.colors.white),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -168,7 +169,7 @@ private fun BackButton(
             Icon(
                 imageVector = ImageVector.vectorResource(R.drawable.left_chevron_button),
                 contentDescription = null,
-                tint = MaterialTheme.colors.primary,
+                tint = MaterialTheme.colors.primary600,
                 modifier = Modifier
                     .padding(9.dp)
             )
