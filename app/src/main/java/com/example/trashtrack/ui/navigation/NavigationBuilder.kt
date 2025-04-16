@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import com.example.trashtrack.mock.Mock
 import com.example.trashtrack.ui.feature.user.alittlemore.ui.ALittleMoreScreen
 import com.example.trashtrack.ui.feature.user.introduction.ui.IntroductionScreen
+import com.example.trashtrack.ui.feature.user.main.ui.MainUserScreen
 import com.example.trashtrack.ui.feature.user.splash.ui.DualAxisAnimationScreen
 
 @Composable
@@ -40,16 +41,20 @@ fun NavigationBuilder(
             )
         }
 
-        composable(
-            "introduction",
-            exitTransition = { fadeOut(tween(1500)) }
-        ) {
+        composable("introduction",) {
             IntroductionScreen(
                 introduction = Mock.demoIntroduction,
+                openMainScreen = { navController.navigate("user") }
             )
         }
 
         composable("user") {
+            MainUserScreen(
+                openNews = { navController.navigate("news") }
+            )
+        }
+
+        composable("news") {
 
         }
     }

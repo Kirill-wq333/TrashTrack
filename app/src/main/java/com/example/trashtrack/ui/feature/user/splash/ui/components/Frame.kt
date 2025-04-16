@@ -28,7 +28,8 @@ fun Frame(
     width: Float,
     maxHistorySize: Int,
     points: List<Pair<Float,Float>>,
-    colorLine: Color
+    colorLine: Color,
+    animationSpeed: Float = 2f
 ) {
     var currentIndex by remember { mutableStateOf(0) }
     val positionHistory = remember { mutableStateListOf<Offset>() }
@@ -108,7 +109,7 @@ fun Frame(
 
     LaunchedEffect(currentIndex) {
         if (currentIndex < points.size - 1) {
-            delay(1100)
+            delay((1100/ animationSpeed).toLong())
             currentIndex++
         } else {
             animationFinished = true

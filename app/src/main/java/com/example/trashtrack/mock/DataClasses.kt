@@ -13,4 +13,10 @@ object DataClasses {
         val underHeading: String,
         val nextButtonVisible: Boolean
     )
+
+    data class NewsMain(
+        val image: Int,
+        val nameNews: String,
+        val descriptionNews: String
+    )
 }

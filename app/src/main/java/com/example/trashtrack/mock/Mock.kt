@@ -76,4 +76,28 @@ object Mock{
         ),
 
     )
+
+    val demoNews = listOf<DataClasses.NewsMain>(
+        DataClasses.NewsMain(
+            nameNews = "Новый экологичный сервис по вывозу мусора!",
+            image = R.drawable.scale_12001,
+            descriptionNews = ""
+        ),
+        DataClasses.NewsMain(
+            nameNews = "Ищем сотрудников в нашу дружную команду",
+            image = R.drawable.scale_12001,
+            descriptionNews = ""
+        ),
+        DataClasses.NewsMain(
+            nameNews = "Выгодней не найдешь",
+            image = R.drawable.scale_12001,
+            descriptionNews = ""
+        ),
+        DataClasses.NewsMain(
+            nameNews = "Мы первые ...",
+            image = R.drawable.scale_12001,
+            descriptionNews = ""
+        ),
+    )
+
 }

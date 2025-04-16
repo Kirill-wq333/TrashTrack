@@ -40,7 +40,8 @@ private fun EntrancePreview() {
     Surface {
         EntranceContent(
             openEntranceScreen = {},
-            openRegistrationScreen = {}
+            openRegistrationScreen = {},
+            openMainScreen = {}
         )
     }
 }
@@ -49,7 +50,8 @@ private fun EntrancePreview() {
 fun EntranceContent(
     modifier: Modifier = Modifier,
     openEntranceScreen: () -> Unit,
-    openRegistrationScreen: () -> Unit
+    openRegistrationScreen: () -> Unit,
+    openMainScreen: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -76,7 +78,7 @@ fun EntranceContent(
                 .padding(horizontal = 16.dp),
             horizontalAlignment = Alignment.Start
         ) {
-            TTBottom()
+            TTBottom(openMainScreen = openMainScreen)
             Spacer(modifier = Modifier.height(MaterialTheme.spacers.small))
             Text(
                 text = "Забыли пароль?",
@@ -163,12 +165,13 @@ private fun Boxs(
 
 @Composable
 private fun TTBottom(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    openMainScreen: () -> Unit
 ) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = {})
+            .clickable(onClick = openMainScreen)
             .background(
                 color = Color(0xFF16A34A),
                 shape = RoundedCornerShape(12.dp)

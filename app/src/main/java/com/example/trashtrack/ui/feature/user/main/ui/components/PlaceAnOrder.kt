@@ -36,7 +36,8 @@ fun PlaceAnOrder() {
                 .background(
                     color = MaterialTheme.colors.green600,
                     shape = RoundedCornerShape(12.dp)
-                    )
+                    ),
+            contentAlignment = Alignment.Center
         ){
             Text(
                 text = "Сделать заказ",

@@ -56,12 +56,14 @@ private fun IntroductionPreview() {
 
     IntroductionScreen(
         introduction = Mock.demoIntroduction,
+        openMainScreen = {}
     )
 }
 
 @Composable
 fun IntroductionScreen(
     introduction: List<DataClasses.Introduction>,
+    openMainScreen: () -> Unit
 ) {
     var openEntrance by remember { mutableStateOf(false) }
     var openRegistration by remember { mutableStateOf(false) }
@@ -79,7 +81,8 @@ fun IntroductionScreen(
         ) {hide ->
             EntranceContent(
                 openEntranceScreen = { openEntranceEmployeeScreen = true; hide() },
-                openRegistrationScreen = { openRegistration = true; hide() }
+                openRegistrationScreen = { openRegistration = true; hide() },
+                openMainScreen = { openMainScreen(); hide() }
             )
         }
     }
