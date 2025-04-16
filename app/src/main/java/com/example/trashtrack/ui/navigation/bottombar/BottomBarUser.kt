@@ -67,7 +67,6 @@ fun BottomBarUser(
         modifier = Modifier
             .fillMaxWidth()
             .background(MaterialTheme.colors.neutral100),
-        contentAlignment = Alignment.Center
     ) {
         Row(
             modifier = Modifier
