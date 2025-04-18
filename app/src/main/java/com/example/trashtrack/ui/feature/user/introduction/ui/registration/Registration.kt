@@ -19,19 +19,26 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.R
+import com.example.trashtrack.ui.feature.user.introduction.ui.components.ConfirmPasswordTextField
 import com.example.trashtrack.ui.feature.user.introduction.ui.components.OutlinedTextFieldComponent
+import com.example.trashtrack.ui.feature.user.introduction.ui.components.PasswordTextField
 import com.example.trashtrack.ui.feature.user.introduction.ui.components.PhoneTextField
+import com.example.trashtrack.ui.preferences.SecurePrefsHelper
 import com.example.trashtrack.ui.shared.checkbox.Checkbox
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.spacers
@@ -52,8 +59,18 @@ fun RegistrationContent(
     openEntranceScreen: () -> Unit,
     openRegisterEmployeeScreen: () -> Unit
 ) {
+    val context = LocalContext.current
+
+    var password by remember { mutableStateOf("") }
+    var name by remember { mutableStateOf("") }
+    var phone by remember { mutableStateOf("7") }
+    var email by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
+    val passwordsMatch = remember(password, confirmPassword) { password == confirmPassword }
+    var isPasswordVisible by remember { mutableStateOf(false) }
     val isChecked = remember { mutableStateOf(false) }
 
+    val securePrefsHelper = remember { SecurePrefsHelper.getInstance(context) }
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -61,7 +78,22 @@ fun RegistrationContent(
             heading = "Создать учетную запись"
         )
         Spacer(modifier = Modifier.height(10.dp))
-        ColumnsTextField()
+        ColumnsTextField(
+            password = password,
+            phone = phone,
+            name = name,
+            email = email,
+            onPhoneChange = { phone = it.take(10) },
+            onEmailChange = { email = it },
+            onNameChange = { name = it },
+            confirmPassword = confirmPassword,
+            onPasswordChange = { password = it },
+            onVisibilityChange = { isPasswordVisible = !isPasswordVisible },
+            onConfirmPasswordChange = { confirmPassword = it },
+            isPasswordVisible = isPasswordVisible,
+            passwordsMatch = passwordsMatch
+        )
+
         Spacer(modifier = Modifier.height(11.dp))
 
         Column(
@@ -81,6 +113,17 @@ fun RegistrationContent(
                 modifier =Modifier
                     .padding(horizontal = 36.dp),
                 openEntranceScreen = openEntranceScreen,
+                enable = passwordsMatch && password.isNotEmpty() && confirmPassword.isNotEmpty(),
+                onClickNext = {
+                    if (isChecked.value) {
+                        val success = securePrefsHelper.saveUserData(
+                            email = email,
+                            password = password,
+                            name = name,
+                            phone = phone
+                        )
+                    }
+                }
             )
             Spacer(modifier = Modifier.height(11.dp))
             Services()
@@ -96,7 +139,9 @@ fun RegistrationContent(
 @Composable
 fun NextOrEntrance(
     modifier: Modifier = Modifier,
-    openEntranceScreen: () -> Unit
+    openEntranceScreen: () -> Unit,
+    onClickNext: () -> Unit,
+    enable: Boolean
 ) {
     Column(
         modifier = modifier,
@@ -105,7 +150,10 @@ fun NextOrEntrance(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .clickable(onClick = { })
+                .clickable(
+                    onClick = onClickNext,
+                    enabled = enable
+                    )
                 .background(
                     color = Color(0xFF16A34A),
                     shape = RoundedCornerShape(12.dp)
@@ -145,7 +193,20 @@ fun NextOrEntrance(
 
 @Composable
 private fun ColumnsTextField(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    password: String,
+    confirmPassword: String,
+    phone: String,
+    name: String,
+    email: String,
+    onPasswordChange: (String) -> Unit,
+    onEmailChange: (String) -> Unit,
+    onPhoneChange: (String) -> Unit,
+    onNameChange: (String) -> Unit,
+    onConfirmPasswordChange: (String) -> Unit,
+    isPasswordVisible: Boolean,
+    passwordsMatch: Boolean,
+    onVisibilityChange: (Boolean) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -154,20 +215,30 @@ private fun ColumnsTextField(
     ) {
         OutlinedTextFieldComponent(
             nameTextField = "Имя",
-            isErrorText = "Заполните поле!"
+            isErrorText = "Заполните поле!",
+            onTextChange = onNameChange,
+            text = name
         )
         OutlinedTextFieldComponent(
             nameTextField = "Email",
-            isErrorText = "Неверная почта!"
+            isErrorText = "Неверная почта!",
+            text = email,
+            onTextChange = onEmailChange
         )
-        PhoneTextField()
-        OutlinedTextFieldComponent(
-            nameTextField = "Придумайте пароль",
-            isErrorText = "Пароль не надежен!"
+        PhoneTextField(
+            phone = phone,
+            onPhoneChange = onPhoneChange
         )
-        OutlinedTextFieldComponent(
-            nameTextField = "Повторите пароль",
-            isErrorText = "Пароли не совпадают! "
+        PasswordTextField(
+            password = password,
+            onPasswordChange = onPasswordChange,
+            isPasswordVisible = isPasswordVisible,
+            onVisibilityChange = onVisibilityChange
+        )
+        ConfirmPasswordTextField(
+            confirmPassword = confirmPassword,
+            passwordsMatch = passwordsMatch,
+            onConfirmPasswordChange = onConfirmPasswordChange
         )
 
     }
@@ -202,7 +273,9 @@ fun HeadingAndUnderHeadingText(
 fun Services(
     modifier: Modifier = Modifier
 ) {
-    Row {
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         Icon(
             painter = painterResource(R.drawable.icons_google),
             contentDescription = null,

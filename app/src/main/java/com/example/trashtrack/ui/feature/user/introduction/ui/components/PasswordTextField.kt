@@ -36,9 +36,13 @@ import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
 @Composable
-fun PasswordTextField() {
-    var password by remember { mutableStateOf("") }
-    var isPasswordVisible by remember { mutableStateOf(false) }
+fun PasswordTextField(
+    password: String,
+    onPasswordChange: (String) -> Unit,
+    isPasswordVisible: Boolean,
+    onVisibilityChange: (Boolean) -> Unit
+) {
+
     val passwordStrength = remember(password) {
         when {
             password.isEmpty() -> PasswordStrength.EMPTY
@@ -48,12 +52,12 @@ fun PasswordTextField() {
     }
 
     Column(
-        modifier = Modifier.padding(16.dp),
+        modifier = Modifier.padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         OutlinedTextField(
             value = password,
-            onValueChange = { password = it },
+            onValueChange = onPasswordChange,
             modifier = Modifier.fillMaxWidth(),
             label = { Text(
                 text = "Пароль",
@@ -64,7 +68,7 @@ fun PasswordTextField() {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             trailingIcon = {
                 IconButton(
-                    onClick = { isPasswordVisible = !isPasswordVisible },
+                    onClick = { onVisibilityChange(isPasswordVisible) },
                     ) {
                     Icon(
                         painter = if (isPasswordVisible) painterResource(R.drawable.eye)
@@ -78,6 +82,7 @@ fun PasswordTextField() {
             colors = TextFieldDefaults.colors(
                 focusedTextColor = MaterialTheme.colors.black,
                 unfocusedTextColor = MaterialTheme.colors.black,
+                errorTextColor = MaterialTheme.colors.red600,
                 focusedContainerColor = MaterialTheme.colors.white,
                 unfocusedContainerColor = MaterialTheme.colors.white,
                 errorContainerColor = MaterialTheme.colors.white,
@@ -98,7 +103,7 @@ fun PasswordTextField() {
             }
             PasswordStrength.STRONG -> {
                 Text(
-                    text = "Пароль надежный",
+                    text = "Пароль совпадает",
                     color = MaterialTheme.colors.green600,
                     style = TTTypography.titleLarge,
                     modifier = Modifier.padding(start = 6.dp)
@@ -111,14 +116,4 @@ fun PasswordTextField() {
 
 private enum class PasswordStrength {
     EMPTY, WEAK, STRONG
-}
-
-@Preview
-@Composable
-fun PasswordTextFieldPreview() {
-    MaterialTheme {
-        Surface {
-            PasswordTextField()
-        }
-    }
 }

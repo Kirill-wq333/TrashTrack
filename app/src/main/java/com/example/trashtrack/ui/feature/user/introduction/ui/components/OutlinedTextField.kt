@@ -28,6 +28,8 @@ private fun ComponentPreview() {
         OutlinedTextFieldComponent(
             nameTextField = "Имя",
             isErrorText = "Заполните текст!",
+            text = "",
+            onTextChange = {}
         )
     }
 }
@@ -36,8 +38,9 @@ private fun ComponentPreview() {
 fun OutlinedTextFieldComponent(
     nameTextField: String,
     isErrorText: String,
+    text: String,
+    onTextChange: (String) -> Unit
 ) {
-    var text by remember { mutableStateOf("") }
     var isError by remember { mutableStateOf(false) }
 
     Column(
@@ -57,7 +60,7 @@ fun OutlinedTextFieldComponent(
                 cursorColor = MaterialTheme.colors.black
             ),
             onValueChange = {
-                text = it
+                onTextChange(it)
                 isError = it.isEmpty()
             },
             label = {

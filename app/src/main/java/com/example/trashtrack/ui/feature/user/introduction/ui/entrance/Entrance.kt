@@ -20,6 +20,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -41,7 +45,8 @@ private fun EntrancePreview() {
         EntranceContent(
             openEntranceScreen = {},
             openRegistrationScreen = {},
-            openMainScreen = {}
+            openMainScreen = {},
+
         )
     }
 }
@@ -51,8 +56,11 @@ fun EntranceContent(
     modifier: Modifier = Modifier,
     openEntranceScreen: () -> Unit,
     openRegistrationScreen: () -> Unit,
-    openMainScreen: () -> Unit
+    openMainScreen: () -> Unit,
 ) {
+    var password by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+
     Column(
         modifier = Modifier
             .fillMaxWidth(),
@@ -63,12 +71,16 @@ fun EntranceContent(
         Column{
             OutlinedTextFieldComponent(
                 nameTextField = "Email",
-                isErrorText = "Неверная почта!"
+                isErrorText = "Неверная почта!",
+                text = email,
+                onTextChange = { email = it }
             )
             Spacer(modifier = Modifier.height(25.dp))
             OutlinedTextFieldComponent(
                 nameTextField = "Пароль",
-                isErrorText = "Пароль не надёжный!"
+                isErrorText = "Пароль не надёжный!",
+                text = password,
+                onTextChange = { password = it }
             )
         }
         Spacer(modifier = Modifier.height(37.dp))

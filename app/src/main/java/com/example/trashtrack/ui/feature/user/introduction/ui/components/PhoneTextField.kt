@@ -25,21 +25,13 @@ import com.example.trashtrack.ui.shared.text.transform.rememberMaskVisualTransfo
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
-@Preview
-@Composable
-private fun PhonePreview() {
-    Surface {
-        MaterialTheme {
-            PhoneTextField()
-        }
-    }
-}
 
 @Composable
-fun PhoneTextField() {
-    var phone by remember { mutableStateOf("7") }
+fun PhoneTextField(
+    phone: String,
+    onPhoneChange: (String) -> Unit
+) {
     var isError by remember { mutableStateOf(false) }
-    val interactionSource = remember { MutableInteractionSource() }
 
     Column(
         modifier = Modifier
@@ -50,7 +42,7 @@ fun PhoneTextField() {
         OutlinedTextField(
             value = phone,
             onValueChange = {
-                phone = it.take(11)
+                onPhoneChange(it)
                 isError = phone.length < 11 && phone.isNotEmpty()
             },
             colors = TextFieldDefaults.colors(

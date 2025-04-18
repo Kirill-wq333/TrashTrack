@@ -17,6 +17,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,6 +42,9 @@ fun EntranceEmployee(
     openRegistrationEmployeeScreen: () -> Unit,
     backButton: () -> Unit
 ) {
+    var password by remember { mutableStateOf("") }
+    var pass by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
@@ -48,7 +55,15 @@ fun EntranceEmployee(
         Spacer(modifier = Modifier.height(13.dp))
         HeadingAndImage()
         Spacer(modifier = Modifier.height(MaterialTheme.spacers.medium))
-        ColumnsTextFields()
+        ColumnsTextFields(
+            password = password,
+            pass = pass,
+            email = email,
+            onPasswordChange = { password = it },
+            onEmailChange = { email = it },
+            onPassChange = { pass = it }
+
+        )
         Spacer(modifier = Modifier.height(37.dp))
         TTButtonAndText()
         Spacer(modifier = Modifier.height(20.dp))
@@ -95,22 +110,35 @@ private fun BackButton(
 
 @Composable
 private fun ColumnsTextFields(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    password: String,
+    pass: String,
+    email: String,
+    onPasswordChange: (String) -> Unit,
+    onEmailChange: (String) -> Unit,
+    onPassChange: (String) -> Unit,
+
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(25.dp)
     ) {
         OutlinedTextFieldComponent(
             nameTextField = "Email",
-            isErrorText = "Неверная почта!"
+            isErrorText = "Неверная почта!",
+            text = email,
+            onTextChange = onEmailChange
         )
         OutlinedTextFieldComponent(
             nameTextField = "Пароль",
-            isErrorText = "Не правильно введен пароль!"
+            isErrorText = "Не правильно введен пароль!",
+            text = password,
+            onTextChange = onPasswordChange
         )
         OutlinedTextFieldComponent(
             nameTextField = "Номер пропуска",
-            isErrorText = "Номер пропуска неверен!"
+            isErrorText = "Номер пропуска неверен!",
+            text = pass,
+            onTextChange = onPassChange
         )
     }
 }
