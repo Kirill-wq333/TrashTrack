@@ -76,7 +76,9 @@ fun Questions(
                 Image(
                     painter = painterResource(R.drawable.questions),
                     contentDescription = null,
-                    modifier = Modifier.size(80.dp,88.dp)
+                    modifier = Modifier
+                        .size(80.dp,88.dp)
+                        .weight(0.5f)
                 )
             }
         }

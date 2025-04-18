@@ -83,7 +83,8 @@ fun NewsItem(
             Image(
                 painter = painterResource(id = image),
                 contentDescription = null,
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.matchParentSize()
             )
         }
         Text(
