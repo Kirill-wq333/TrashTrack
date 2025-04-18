@@ -70,8 +70,6 @@ class SecurePrefsHelper (context: Context) {
     }
 
     private fun String.hashPassword(): String {
-        // Реальная реализация должна использовать надежный алгоритм хеширования
-        // Например, PBKDF2, bcrypt или scrypt
         return "salt_${this}_${length}".sha256()
     }
 
