@@ -4,7 +4,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -18,7 +22,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -26,6 +32,8 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.R
+import com.example.trashtrack.ui.theme.TTTypography
+import com.example.trashtrack.ui.theme.colors
 
 @Composable
 fun PasswordTextField() {
@@ -47,39 +55,53 @@ fun PasswordTextField() {
             value = password,
             onValueChange = { password = it },
             modifier = Modifier.fillMaxWidth(),
-            label = { Text("Пароль") },
+            label = { Text(
+                text = "Пароль",
+                color = MaterialTheme.colors.neutral400,
+                style = TTTypography.titleLarge,
+            ) },
             visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             trailingIcon = {
-                IconButton(onClick = { isPasswordVisible = !isPasswordVisible }) {
+                IconButton(
+                    onClick = { isPasswordVisible = !isPasswordVisible },
+                    ) {
                     Icon(
-                        imageVector = if (isPasswordVisible) ImageVector.vectorResource(R.drawable.eye)
-                                        else ImageVector.vectorResource(R.drawable.blind),
-                        contentDescription = null
+                        painter = if (isPasswordVisible) painterResource(R.drawable.eye)
+                                        else painterResource(R.drawable.blind),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(18.dp)
                     )
                 }
             },
-            isError = passwordStrength == PasswordStrength.WEAK && password.isNotEmpty(),
             colors = TextFieldDefaults.colors(
-
-            )
+                focusedTextColor = MaterialTheme.colors.black,
+                unfocusedTextColor = MaterialTheme.colors.black,
+                focusedContainerColor = MaterialTheme.colors.white,
+                unfocusedContainerColor = MaterialTheme.colors.white,
+                errorContainerColor = MaterialTheme.colors.white,
+                focusedIndicatorColor = MaterialTheme.colors.green600,
+                cursorColor = MaterialTheme.colors.black
+                ),
+            isError = passwordStrength == PasswordStrength.WEAK && password.isNotEmpty(),
         )
 
         when (passwordStrength) {
             PasswordStrength.WEAK -> {
                 Text(
                     text = "Пароль должен содержать минимум 8 символов",
-                    color = MaterialTheme.colorScheme.error,
-                    style = MaterialTheme.typography.bodySmall,
-                    modifier = Modifier.padding(start = 12.dp)
+                    color = MaterialTheme.colors.red600,
+                    style = TTTypography.titleLarge,
+                    modifier = Modifier.padding(start = 6.dp)
                 )
             }
             PasswordStrength.STRONG -> {
                 Text(
                     text = "Пароль надежный",
-                    color = MaterialTheme.colorScheme.primary,
-                    style = MaterialTheme.typography.bodySmall,
-                    modifier = Modifier.padding(start = 12.dp)
+                    color = MaterialTheme.colors.green600,
+                    style = TTTypography.titleLarge,
+                    modifier = Modifier.padding(start = 6.dp)
                 )
             }
             else -> Unit

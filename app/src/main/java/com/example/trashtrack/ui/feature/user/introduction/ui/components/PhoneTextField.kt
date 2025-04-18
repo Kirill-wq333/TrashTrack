@@ -55,13 +55,14 @@ fun PhoneTextField() {
             },
             colors = TextFieldDefaults.colors(
                 focusedIndicatorColor = MaterialTheme.colors.green600,
-                unfocusedContainerColor = Color.White,
+                unfocusedContainerColor = MaterialTheme.colors.white,
                 focusedTextColor = MaterialTheme.colors.black,
                 unfocusedTextColor = MaterialTheme.colors.black,
-                focusedContainerColor = Color.White,
-                errorContainerColor = Color.White,
+                focusedContainerColor = MaterialTheme.colors.white,
+                errorContainerColor = MaterialTheme.colors.white,
                 errorLabelColor = MaterialTheme.colors.red600,
-                errorIndicatorColor = MaterialTheme.colors.red600
+                errorIndicatorColor = MaterialTheme.colors.red600,
+                cursorColor = MaterialTheme.colors.black
             ),
             visualTransformation = rememberMaskVisualTransformation("+#(###)###-##-##"),
             label = {
@@ -81,7 +82,7 @@ fun PhoneTextField() {
                 text = "Заполните поле!",
                 color = MaterialTheme.colors.red600,
                 style = TTTypography.titleLarge,
-                modifier = Modifier.padding(start = 16.dp)
+                modifier = Modifier.padding(start = 6.dp)
             )
         }
     }
