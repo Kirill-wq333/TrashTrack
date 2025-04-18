@@ -38,7 +38,6 @@ import com.example.trashtrack.ui.theme.spacers
 
 @Composable
 fun EntranceEmployee(
-    modifier: Modifier = Modifier,
     openRegistrationEmployeeScreen: () -> Unit,
     backButton: () -> Unit
 ) {
@@ -77,7 +76,6 @@ fun EntranceEmployee(
 
 @Composable
 private fun BackButton(
-    modifier: Modifier = Modifier,
     backButton: () -> Unit
 ) {
     Box(
@@ -110,7 +108,6 @@ private fun BackButton(
 
 @Composable
 private fun ColumnsTextFields(
-    modifier: Modifier = Modifier,
     password: String,
     pass: String,
     email: String,
@@ -145,7 +142,6 @@ private fun ColumnsTextFields(
 
 @Composable
 fun Account(
-    modifier: Modifier = Modifier,
     openRegistrationEmployeeScreen: () -> Unit
 ) {
     Row {
@@ -167,9 +163,7 @@ fun Account(
 }
 
 @Composable
-fun Companion(
-    modifier: Modifier = Modifier
-) {
+fun Companion() {
     Row(
         modifier = Modifier
             .padding(bottom = 36.dp)
@@ -192,9 +186,7 @@ fun Companion(
 }
 
 @Composable
-private fun TTButtonAndText(
-    modifier: Modifier = Modifier
-) {
+private fun TTButtonAndText() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -212,9 +204,7 @@ private fun TTButtonAndText(
 }
 
 @Composable
-private fun TTBottom(
-    modifier: Modifier = Modifier
-) {
+private fun TTBottom() {
     Box(
         modifier = Modifier
             .fillMaxWidth()

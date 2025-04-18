@@ -18,6 +18,7 @@ import com.example.trashtrack.ui.feature.user.alittlemore.ui.ALittleMoreScreen
 import com.example.trashtrack.ui.feature.user.introduction.ui.IntroductionScreen
 import com.example.trashtrack.ui.feature.user.main.ui.MainUserScreen
 import com.example.trashtrack.ui.feature.user.news.ui.NewsScreen
+import com.example.trashtrack.ui.feature.user.orders.OrdersScreen
 import com.example.trashtrack.ui.feature.user.splash.ui.DualAxisAnimationScreen
 import com.example.trashtrack.ui.theme.colors
 
@@ -83,7 +84,7 @@ fun NavigationBuilder(
         }
 
         composable(AppRoutes.ORDERS) {
-
+            OrdersScreen()
         }
     }
 }

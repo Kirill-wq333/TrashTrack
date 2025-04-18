@@ -24,7 +24,6 @@ import com.example.trashtrack.ui.theme.colors
 
 @Composable
 fun MainUserScreen(
-    modifier: Modifier = Modifier,
     openNews: () -> Unit
 ) {
     Column(

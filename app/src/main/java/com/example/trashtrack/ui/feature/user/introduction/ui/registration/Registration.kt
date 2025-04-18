@@ -39,8 +39,10 @@ import com.example.trashtrack.ui.feature.user.introduction.ui.components.Outline
 import com.example.trashtrack.ui.feature.user.introduction.ui.components.PasswordTextField
 import com.example.trashtrack.ui.feature.user.introduction.ui.components.PhoneTextField
 import com.example.trashtrack.ui.preferences.SecurePrefsHelper
+import com.example.trashtrack.ui.shared.button.TTBottom
 import com.example.trashtrack.ui.shared.checkbox.Checkbox
 import com.example.trashtrack.ui.theme.TTTypography
+import com.example.trashtrack.ui.theme.colors
 import com.example.trashtrack.ui.theme.spacers
 
 @Preview
@@ -147,28 +149,12 @@ fun NextOrEntrance(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable(
-                    onClick = onClickNext,
-                    enabled = enable
-                    )
-                .background(
-                    color = Color(0xFF16A34A),
-                    shape = RoundedCornerShape(12.dp)
-                ),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = "Далее",
-                color = Color.White,
-                style = TTTypography.headlineLarge,
-                modifier = Modifier
-                    .clickable(onClick = {})
-                    .padding(vertical = 13.dp)
-            )
-        }
+        TTBottom(
+            text = "Далее",
+            onClick = onClickNext,
+            color = MaterialTheme.colors.green600,
+            enable = enable
+        )
 
         Spacer(modifier = Modifier.height(MaterialTheme.spacers.small))
 

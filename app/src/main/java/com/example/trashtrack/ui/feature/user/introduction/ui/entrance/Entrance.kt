@@ -1,7 +1,6 @@
 package com.example.trashtrack.ui.feature.user.introduction.ui.entrance
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -34,6 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.R
 import com.example.trashtrack.ui.feature.user.introduction.ui.components.OutlinedTextFieldComponent
+import com.example.trashtrack.ui.shared.button.TTBottom
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 import com.example.trashtrack.ui.theme.spacers
@@ -53,7 +53,6 @@ private fun EntrancePreview() {
 
 @Composable
 fun EntranceContent(
-    modifier: Modifier = Modifier,
     openEntranceScreen: () -> Unit,
     openRegistrationScreen: () -> Unit,
     openMainScreen: () -> Unit,
@@ -84,20 +83,10 @@ fun EntranceContent(
             )
         }
         Spacer(modifier = Modifier.height(37.dp))
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            horizontalAlignment = Alignment.Start
-        ) {
-            TTBottom(openMainScreen = openMainScreen)
-            Spacer(modifier = Modifier.height(MaterialTheme.spacers.small))
-            Text(
-                text = "Забыли пароль?",
-                color = MaterialTheme.colors.neutral500,
-                style = TTTypography.titleSmall,
-            )
-        }
+        TTButton(
+            openMainScreen = openMainScreen,
+            enable = true
+        )
         Spacer(modifier = Modifier.height(30.2.dp))
         Row {
             Text(
@@ -140,6 +129,32 @@ fun EntranceContent(
 }
 
 @Composable
+private fun TTButton(
+    openMainScreen: () -> Unit,
+    enable: Boolean,
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
+        horizontalAlignment = Alignment.Start
+    ) {
+        TTBottom(
+            onClick = openMainScreen,
+            text = "Войти",
+            enable = enable,
+            color = MaterialTheme.colors.green600
+        )
+        Spacer(modifier = Modifier.height(MaterialTheme.spacers.small))
+        Text(
+            text = "Забыли пароль?",
+            color = MaterialTheme.colors.neutral500,
+            style = TTTypography.titleSmall,
+        )
+    }
+}
+
+@Composable
 private fun Boxs(
     openEntranceScreen: () -> Unit
 ){
@@ -176,34 +191,7 @@ private fun Boxs(
 }
 
 @Composable
-private fun TTBottom(
-    modifier: Modifier = Modifier,
-    openMainScreen: () -> Unit
-) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(onClick = openMainScreen)
-            .background(
-                color = Color(0xFF16A34A),
-                shape = RoundedCornerShape(12.dp)
-            ),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = "Войти",
-            color = Color.White,
-            style = TTTypography.headlineLarge,
-            modifier = Modifier
-                .padding(vertical = 13.dp)
-        )
-    }
-}
-
-@Composable
-fun HeadingAndImage(
-    modifier: Modifier = Modifier
-) {
+fun HeadingAndImage() {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(22.dp)

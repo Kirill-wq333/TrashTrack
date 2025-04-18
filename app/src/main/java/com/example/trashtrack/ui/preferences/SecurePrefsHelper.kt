@@ -1,6 +1,7 @@
 package com.example.trashtrack.ui.preferences
 
 import android.content.Context
+import android.util.Log
 import androidx.core.content.edit
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
@@ -18,6 +19,22 @@ class SecurePrefsHelper (context: Context) {
         EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
         EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
     )
+
+    fun isDataSaved(): Boolean {
+        return sharedPrefs.contains(KEY_EMAIL) &&
+                sharedPrefs.contains(KEY_PASSWORD_HASH) &&
+                sharedPrefs.contains(KEY_NAME) &&
+                sharedPrefs.contains(KEY_PHONE)
+    }
+
+    // Метод для логирования всех сохраненных данных (только для отладки)
+    fun logAllData() {
+        Log.d("SecurePrefs", "Email: ${sharedPrefs.getString(KEY_EMAIL, null)}")
+        Log.d("SecurePrefs", "Name: ${sharedPrefs.getString(KEY_NAME, null)}")
+        Log.d("SecurePrefs", "Phone: ${sharedPrefs.getString(KEY_PHONE, null)}")
+        // Пароль хеширован, поэтому выводим только факт его наличия
+        Log.d("SecurePrefs", "Password saved: ${sharedPrefs.contains(KEY_PASSWORD_HASH)}")
+    }
 
     // Сохранение всех данных пользователя
     fun saveUserData(

@@ -1,6 +1,5 @@
 package com.example.trashtrack.ui.feature.employee.introduction
 
-import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -15,7 +14,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,7 +22,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -33,12 +30,11 @@ import com.example.trashtrack.ui.feature.user.introduction.ui.components.Confirm
 import com.example.trashtrack.ui.feature.user.introduction.ui.components.OutlinedTextFieldComponent
 import com.example.trashtrack.ui.feature.user.introduction.ui.components.PasswordTextField
 import com.example.trashtrack.ui.feature.user.introduction.ui.components.PhoneTextField
-import com.example.trashtrack.ui.shared.checkbox.Checkbox
 import com.example.trashtrack.ui.feature.user.introduction.ui.registration.HeadingAndUnderHeadingText
 import com.example.trashtrack.ui.feature.user.introduction.ui.registration.NextOrEntrance
 import com.example.trashtrack.ui.feature.user.introduction.ui.registration.RegistrationHowEmployee
 import com.example.trashtrack.ui.feature.user.introduction.ui.registration.Services
-import com.example.trashtrack.ui.preferences.SecurePrefsHelper
+import com.example.trashtrack.ui.shared.checkbox.Checkbox
 
 
 @Preview
@@ -55,7 +51,6 @@ private fun RegistrationEmployeePreview() {
 
 @Composable
 fun RegistrationEmployeeScreen(
-    modifier: Modifier = Modifier,
     openEntranceScreen: () -> Unit,
     openEntranceEmployeeScreen: () -> Unit,
     backButton: () -> Unit,
@@ -137,7 +132,6 @@ fun RegistrationEmployeeScreen(
 
 @Composable
 private fun BackButton(
-    modifier: Modifier = Modifier,
     backButton: () -> Unit
 ) {
     Box(
@@ -170,7 +164,6 @@ private fun BackButton(
 
 @Composable
 private fun ColumnsTextField(
-    modifier: Modifier = Modifier,
     password: String,
     confirmPassword: String,
     phone: String,
