@@ -37,7 +37,7 @@ private fun PhonePreview() {
 
 @Composable
 fun PhoneTextField() {
-    var phone by remember { mutableStateOf("") }
+    var phone by remember { mutableStateOf("7") }
     var isError by remember { mutableStateOf(false) }
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -50,18 +50,20 @@ fun PhoneTextField() {
         OutlinedTextField(
             value = phone,
             onValueChange = {
-                phone = it.take(10)
-                isError = phone.length < 10 && phone.isNotEmpty()
+                phone = it.take(11)
+                isError = phone.length < 11 && phone.isNotEmpty()
             },
             colors = TextFieldDefaults.colors(
                 focusedIndicatorColor = MaterialTheme.colors.green600,
                 unfocusedContainerColor = Color.White,
+                focusedTextColor = MaterialTheme.colors.black,
+                unfocusedTextColor = MaterialTheme.colors.black,
                 focusedContainerColor = Color.White,
                 errorContainerColor = Color.White,
                 errorLabelColor = MaterialTheme.colors.red600,
                 errorIndicatorColor = MaterialTheme.colors.red600
             ),
-            visualTransformation = rememberMaskVisualTransformation("+7(###)###-##-##"),
+            visualTransformation = rememberMaskVisualTransformation("+#(###)###-##-##"),
             label = {
                 Text(
                     text = "Номер телефона",

@@ -49,6 +49,8 @@ fun OutlinedTextFieldComponent(
             colors = TextFieldDefaults.colors(
                 focusedIndicatorColor = MaterialTheme.colors.green600,
                 unfocusedContainerColor = Color.White,
+                focusedTextColor = MaterialTheme.colors.black,
+                unfocusedTextColor = MaterialTheme.colors.black,
                 focusedContainerColor = Color.White,
                 errorContainerColor = Color.White,
                 errorIndicatorColor = MaterialTheme.colors.red600
