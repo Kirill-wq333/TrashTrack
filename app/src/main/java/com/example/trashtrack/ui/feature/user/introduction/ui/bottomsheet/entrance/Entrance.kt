@@ -1,4 +1,4 @@
-package com.example.trashtrack.ui.feature.user.introduction.ui.entrance
+package com.example.trashtrack.ui.feature.user.introduction.ui.bottomsheet.entrance
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -105,9 +105,11 @@ fun EntranceContent(
             )
         }
         Spacer(modifier = Modifier.height(12.5.dp))
-        Row {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Icon(
-                painter = painterResource(R.drawable.icons_google),
+                painter = painterResource(R.drawable.ic_google),
                 contentDescription = null,
                 modifier = Modifier
                     .size(24.dp)

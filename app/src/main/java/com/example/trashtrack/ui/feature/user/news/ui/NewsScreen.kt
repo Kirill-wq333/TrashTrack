@@ -2,7 +2,6 @@ package com.example.trashtrack.ui.feature.user.news.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,10 +11,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,18 +23,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.text.HtmlCompat
-import androidx.core.text.toHtml
-import com.example.trashtrack.R
 import com.example.trashtrack.mock.DataClasses
 import com.example.trashtrack.mock.Mock
 import com.example.trashtrack.ui.feature.user.main.ui.components.NewsItem
+import com.example.trashtrack.ui.shared.button.back.BackButton
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
@@ -47,16 +41,17 @@ private fun NewsScreenPreview() {
     Surface {
         NewsScreen(
             news = Mock.demoNews,
-            backButton = {}
+            backButton = {},
+            color = MaterialTheme.colors.white
         )
     }
 }
 
 @Composable
 fun NewsScreen(
-    modifier: Modifier = Modifier,
     news: List<DataClasses.NewsMain>,
     backButton: () -> Unit,
+    color: Color
 ) {
     var currentNewsIndex by remember { mutableStateOf(0) }
     val currentNews = news[currentNewsIndex]
@@ -68,7 +63,7 @@ fun NewsScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colors.white),
+            .background(color = color),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         NewsMain(
@@ -121,7 +116,6 @@ fun NewsScreen(
 
 @Composable
 fun NextMainNews(
-    modifier: Modifier = Modifier,
     nameNews: String,
     openNews: () -> Unit,
     image: Int
@@ -148,39 +142,11 @@ fun NextMainNews(
 }
 
 @Composable
-private fun BackButton(
-    modifier: Modifier = Modifier,
-    backButton: () -> Unit
-) {
-
-        Box(
-            modifier = Modifier
-                .clickable(
-                    onClick = backButton
-                )
-                .padding(start = 14.dp, top = 11.dp)
-                .background(
-                    color = MaterialTheme.colors.white,
-                    shape = RoundedCornerShape(6.dp)
-                ),
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(
-                imageVector = ImageVector.vectorResource(R.drawable.left_chevron_button),
-                contentDescription = null,
-                tint = MaterialTheme.colors.primary600,
-                modifier = Modifier
-                    .padding(9.dp)
-            )
-        }
-}
-
-@Composable
 private fun NewsMain(
-    modifier: Modifier = Modifier,
     image: Int,
     backButton: () -> Unit
 ) {
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -194,7 +160,11 @@ private fun NewsMain(
             modifier = Modifier.matchParentSize()
         )
         BackButton(
-            backButton = backButton
+            backButton = backButton,
+            paddingStart = 14.dp,
+            paddingTop = 11.dp,
+            color = MaterialTheme.colors.white
         )
     }
+
 }

@@ -51,12 +51,16 @@ import kotlinx.coroutines.launch
 @Preview
 @Composable
 private fun DualAxisAnimationPreview() {
-        DualAxisAnimationScreen(navController = rememberNavController())
+        DualAxisAnimationScreen(
+            navController = rememberNavController(),
+            color = MaterialTheme.colors.white
+        )
 }
 
 @Composable
 fun DualAxisAnimationScreen(
-    navController: NavHostController
+    navController: NavHostController,
+    color: Color
 ) {
 
     var listStep by remember { mutableStateOf(false) }
@@ -161,7 +165,8 @@ fun DualAxisAnimationScreen(
         boxOffsetY = boxOffsetY,
         point = point,
         points = points,
-        padding = padding
+        padding = padding,
+        color = color
     )
 }
 @SuppressLint("UseOfNonLambdaOffsetOverload")
@@ -170,14 +175,15 @@ fun DualAxisAnimationContent(
     point: List<Pair<Float, Float>>,
     points:List<Pair<Float, Float>>,
     padding: Animatable<Float, AnimationVector1D>,
+    boxSize: Animatable<Float, AnimationVector1D>,
+    boxOffsetY: Animatable<Float, AnimationVector1D>,
     listStep: Boolean,
     timerStep: Boolean,
     frameStep: Boolean,
+    dakantStep: Boolean,
     trashTrackStep: Boolean,
     circleStep: Boolean,
-    dakantStep: Boolean,
-    boxSize: Animatable<Float, AnimationVector1D>,
-    boxOffsetY: Animatable<Float, AnimationVector1D>
+    color: Color
 ) {
 
     val colorLine by animateColorAsState(
@@ -187,7 +193,7 @@ fun DualAxisAnimationContent(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.White),
+            .background(color = color),
         contentAlignment = Alignment.Center
     ) {
         AnimatedVisibility(

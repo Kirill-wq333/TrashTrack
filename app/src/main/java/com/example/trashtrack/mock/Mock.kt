@@ -79,6 +79,7 @@ object Mock {
 
     val demoNews = listOf<DataClasses.NewsMain>(
         DataClasses.NewsMain(
+            id = 1,
             nameNews = "Новый экологичный сервис по вывозу мусора!",
             image = R.drawable.dacant_news01,
             secondImage = R.drawable.dacant_news04,
@@ -113,6 +114,7 @@ object Mock {
             """.trimIndent()
         ),
         DataClasses.NewsMain(
+            id = 2,
             nameNews = "Ищем сотрудников в нашу дружную команду",
             image = R.drawable.dacant_news04,
             secondImage = R.drawable.dacant_news03,
@@ -153,6 +155,7 @@ object Mock {
             """.trimIndent()
         ),
         DataClasses.NewsMain(
+            id = 3,
             nameNews = "Выгодней не найдешь",
             image = R.drawable.dacant_news03,
             secondImage = R.drawable.dacant_news02,
@@ -190,6 +193,7 @@ object Mock {
             """.trimIndent()
         ),
         DataClasses.NewsMain(
+            id = 4,
             nameNews = "Мы первые ...",
             image = R.drawable.dacant_news02,
             secondImage = R.drawable.dacant_news01,

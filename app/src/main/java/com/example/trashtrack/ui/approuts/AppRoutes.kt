@@ -8,4 +8,6 @@ object AppRoutes {
     const val NEWS = "news"
     const val PROFILE_USER = "profileUser"
     const val ORDERS = "orders"
+    const val DATA = "data"
+    const val SUBSCRIPTIONS = "subscriptions"
 }

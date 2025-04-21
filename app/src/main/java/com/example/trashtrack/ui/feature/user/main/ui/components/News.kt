@@ -2,17 +2,19 @@ package com.example.trashtrack.ui.feature.user.main.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,7 +24,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.trashtrack.R
 import com.example.trashtrack.mock.DataClasses
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
@@ -30,7 +31,7 @@ import com.example.trashtrack.ui.theme.colors
 @Composable
 fun NewsMain(
     newsMain: List<DataClasses.NewsMain>,
-    openNews: () -> Unit
+    onNewsClick: (DataClasses.NewsMain) -> Unit
 ) {
 
     Column(
@@ -44,16 +45,17 @@ fun NewsMain(
             style = TTTypography.titleLarge
         )
         Spacer(modifier = Modifier.height(11.dp))
-        LazyRow(
+        Row(
             modifier = Modifier
+                .horizontalScroll(rememberScrollState())
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(13.dp)
         ) {
-            items(newsMain) { item ->
+            newsMain.forEach { newsMain ->
                 NewsItem(
-                    nameNews = item.nameNews,
-                    openNews = openNews,
-                    image = item.image
+                    nameNews = newsMain.nameNews,
+                    openNews = { onNewsClick(newsMain) },
+                    image = newsMain.image
                 )
             }
         }

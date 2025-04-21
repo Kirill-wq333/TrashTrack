@@ -1,4 +1,4 @@
-package com.example.trashtrack.ui.feature.employee.introduction
+package com.example.trashtrack.ui.feature.employee.introduction.bottomsheet
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -24,14 +24,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.R
 import com.example.trashtrack.ui.feature.user.introduction.ui.components.OutlinedTextFieldComponent
-import com.example.trashtrack.ui.feature.user.introduction.ui.entrance.HeadingAndImage
+import com.example.trashtrack.ui.feature.user.introduction.ui.bottomsheet.entrance.HeadingAndImage
+import com.example.trashtrack.ui.shared.button.back.BackButton
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 import com.example.trashtrack.ui.theme.spacers
@@ -49,7 +48,7 @@ fun EntranceEmployee(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         BackButton(
-            backButton = backButton
+            backButton = backButton,
         )
         Spacer(modifier = Modifier.height(13.dp))
         HeadingAndImage()
@@ -71,38 +70,6 @@ fun EntranceEmployee(
         )
         Spacer(modifier = Modifier.height(13.dp))
         Companion()
-    }
-}
-
-@Composable
-private fun BackButton(
-    backButton: () -> Unit
-) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 33.dp),
-        contentAlignment = Alignment.CenterStart
-    ){
-        Box(
-            modifier = Modifier
-                .clickable(
-                    onClick = backButton
-                )
-                .background(
-                    color = Color(0xFFF6F6F5),
-                    shape = RoundedCornerShape(6.dp)
-                ),
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(
-                imageVector = ImageVector.vectorResource(R.drawable.left_chevron_button),
-                contentDescription = null,
-                tint = Color.Black,
-                modifier = Modifier
-                    .padding(9.dp)
-            )
-        }
     }
 }
 
@@ -144,7 +111,9 @@ private fun ColumnsTextFields(
 fun Account(
     openRegistrationEmployeeScreen: () -> Unit
 ) {
-    Row {
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         Text(
             text = "У вас нету аккаунта?",
             color = Color.Black,

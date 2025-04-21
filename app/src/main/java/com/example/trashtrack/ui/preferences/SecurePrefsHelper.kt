@@ -41,13 +41,15 @@ class SecurePrefsHelper (context: Context) {
         email: String,
         password: String,
         name: String,
-        phone: String
+        phone: String,
+        token: String = ""
     ) {
         sharedPrefs.edit {
             putString(KEY_EMAIL, email)
             putString(KEY_PASSWORD_HASH, password.hashPassword())
             putString(KEY_NAME, name)
             putString(KEY_PHONE, phone)
+            putString(KEY_TOKEN, token)
             apply()
         }
     }
@@ -71,13 +73,31 @@ class SecurePrefsHelper (context: Context) {
     fun getUserPasswordHash(): String? = sharedPrefs.getString(KEY_PASSWORD_HASH, null)
     fun getUserName(): String? = sharedPrefs.getString(KEY_NAME, null)
     fun getUserPhone(): String? = sharedPrefs.getString(KEY_PHONE, null)
+    fun getAuthToken(): String? {
+        return sharedPrefs.getString(KEY_TOKEN, null)
+    }
 
     // Очистка всех данных
     fun clearUserData() {
         sharedPrefs.edit {
+            remove(KEY_EMAIL)
+            remove(KEY_PASSWORD_HASH)
+            remove(KEY_NAME)
+            remove(KEY_PHONE)
+            apply()
+        }
+    }
+
+    private fun clear() {
+        sharedPrefs.edit {
             clear()
             apply()
         }
+    }
+
+    fun deleteAccount() {
+        clearUserData()
+        clear()
     }
 
     // Проверка наличия сохраненных данных
@@ -122,5 +142,6 @@ class SecurePrefsHelper (context: Context) {
         private const val KEY_PASSWORD_HASH = "encrypted_password"
         private const val KEY_NAME = "user_name"
         private const val KEY_PHONE = "user_phone"
+        private const val KEY_TOKEN = "auth_token"
     }
 }

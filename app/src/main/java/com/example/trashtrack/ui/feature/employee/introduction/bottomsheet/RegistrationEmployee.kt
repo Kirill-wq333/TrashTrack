@@ -1,17 +1,12 @@
-package com.example.trashtrack.ui.feature.employee.introduction
+package com.example.trashtrack.ui.feature.employee.introduction.bottomsheet
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -20,20 +15,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.trashtrack.R
 import com.example.trashtrack.ui.feature.user.introduction.ui.components.ConfirmPasswordTextField
 import com.example.trashtrack.ui.feature.user.introduction.ui.components.OutlinedTextFieldComponent
 import com.example.trashtrack.ui.feature.user.introduction.ui.components.PasswordTextField
 import com.example.trashtrack.ui.feature.user.introduction.ui.components.PhoneTextField
-import com.example.trashtrack.ui.feature.user.introduction.ui.registration.HeadingAndUnderHeadingText
-import com.example.trashtrack.ui.feature.user.introduction.ui.registration.NextOrEntrance
-import com.example.trashtrack.ui.feature.user.introduction.ui.registration.RegistrationHowEmployee
-import com.example.trashtrack.ui.feature.user.introduction.ui.registration.Services
+import com.example.trashtrack.ui.feature.user.introduction.ui.bottomsheet.registration.HeadingAndUnderHeadingText
+import com.example.trashtrack.ui.feature.user.introduction.ui.bottomsheet.registration.NextOrEntrance
+import com.example.trashtrack.ui.feature.user.introduction.ui.bottomsheet.registration.RegistrationHowEmployee
+import com.example.trashtrack.ui.feature.user.introduction.ui.bottomsheet.registration.Services
+import com.example.trashtrack.ui.shared.button.back.BackButton
 import com.example.trashtrack.ui.shared.checkbox.Checkbox
 
 
@@ -127,38 +119,6 @@ fun RegistrationEmployeeScreen(
             openScreen = openEntranceEmployeeScreen,
             text = "Войти"
         )
-    }
-}
-
-@Composable
-private fun BackButton(
-    backButton: () -> Unit
-) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 33.dp),
-        contentAlignment = Alignment.CenterStart
-    ){
-        Box(
-            modifier = Modifier
-                .clickable(
-                    onClick = backButton
-                )
-                .background(
-                    color = Color(0xFFF6F6F5),
-                    shape = RoundedCornerShape(6.dp)
-                ),
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(
-                imageVector = ImageVector.vectorResource(R.drawable.left_chevron_button),
-                contentDescription = null,
-                tint = Color.Black,
-                modifier = Modifier
-                    .padding(9.dp)
-            )
-        }
     }
 }
 

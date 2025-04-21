@@ -20,10 +20,10 @@ fun TTBottom(
     onClick: () -> Unit,
     text: String,
     color: Color,
-    enable: Boolean
+    enable: Boolean = false
 ) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .clickable(
                 onClick = onClick,

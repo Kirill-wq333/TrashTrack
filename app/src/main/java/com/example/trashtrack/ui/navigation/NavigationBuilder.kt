@@ -10,8 +10,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.example.trashtrack.mock.Mock
 import com.example.trashtrack.ui.approuts.AppRoutes
 import com.example.trashtrack.ui.feature.user.alittlemore.ui.ALittleMoreScreen
@@ -19,6 +21,7 @@ import com.example.trashtrack.ui.feature.user.introduction.ui.IntroductionScreen
 import com.example.trashtrack.ui.feature.user.main.ui.MainUserScreen
 import com.example.trashtrack.ui.feature.user.news.ui.NewsScreen
 import com.example.trashtrack.ui.feature.user.orders.OrdersScreen
+import com.example.trashtrack.ui.feature.user.profile.ProfileScreen
 import com.example.trashtrack.ui.feature.user.splash.ui.DualAxisAnimationScreen
 import com.example.trashtrack.ui.theme.colors
 
@@ -29,12 +32,14 @@ fun NavigationBuilder(
     setVisibleBottomBarEmployee: (Boolean) -> Unit,
     paddingValues: PaddingValues
 ) {
+    val mockNews = Mock.demoNews
+    val colorFrame = MaterialTheme.colors.white
+
     NavHost(
         navController = navController,
         startDestination = AppRoutes.START,
         modifier = Modifier
             .padding(paddingValues)
-            .background(MaterialTheme.colors.white)
     ) {
 
         composable(
@@ -42,7 +47,8 @@ fun NavigationBuilder(
             exitTransition = { fadeOut(tween(1500)) }
         ) {
             DualAxisAnimationScreen(
-                navController = navController
+                navController = navController,
+                color = colorFrame
             )
         }
 
@@ -56,35 +62,61 @@ fun NavigationBuilder(
             )
         }
 
-        composable(route = AppRoutes.INTRODUCTION,) {
+        composable(route = AppRoutes.INTRODUCTION) {
             IntroductionScreen(
                 introduction = Mock.demoIntroduction,
                 openMainScreen = {
-                    navController.navigate("user");
+                    navController.navigate(AppRoutes.USER)
                     setVisibleBottomBarUser(true)
-                }
+                },
+                color = colorFrame
             )
         }
 
         composable(route = AppRoutes.USER) {
             MainUserScreen(
-                openNews = { navController.navigate("news") }
+                onNewsClick = { newsItem ->
+                    navController.navigate("${AppRoutes.NEWS}/${newsItem.id}")
+                },
+                newsMain = mockNews,
+                color = colorFrame
             )
         }
 
-        composable(route = AppRoutes.NEWS) {
+        composable(
+            route = "${AppRoutes.NEWS}/{newsId}",
+            arguments = listOf(navArgument("newsId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val newsId = backStackEntry.arguments?.getInt("newsId") ?: return@composable
+            val newsItem = mockNews.find { it.id == newsId } ?: return@composable
+
             NewsScreen(
-                news = Mock.demoNews,
-                backButton = { navController.navigate("user") }
+                news = listOf(newsItem),
+                backButton = { navController.popBackStack() },
+                color = colorFrame
             )
         }
 
         composable(route = AppRoutes.PROFILE_USER) {
-
+            ProfileScreen(
+                navController = navController,
+                color = colorFrame
+            )
         }
 
         composable(AppRoutes.ORDERS) {
-            OrdersScreen()
+            OrdersScreen(
+                color = colorFrame
+            )
         }
+
+        composable(AppRoutes.SUBSCRIPTIONS) {
+
+        }
+
+        composable(AppRoutes.DATA) {
+
+        }
+
     }
 }

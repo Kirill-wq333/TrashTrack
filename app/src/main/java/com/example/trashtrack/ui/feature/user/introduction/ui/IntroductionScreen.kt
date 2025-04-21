@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -41,30 +40,34 @@ import androidx.compose.ui.unit.dp
 import com.example.trashtrack.mock.DataClasses
 import com.example.trashtrack.mock.Mock
 import com.example.trashtrack.ui.feature.user.introduction.ui.components.HeaderIntroduction
-import com.example.trashtrack.ui.feature.user.introduction.ui.entrance.EntranceContent
-import com.example.trashtrack.ui.feature.employee.introduction.EntranceEmployee
-import com.example.trashtrack.ui.feature.user.introduction.ui.registration.RegistrationContent
-import com.example.trashtrack.ui.feature.employee.introduction.RegistrationEmployeeScreen
+import com.example.trashtrack.ui.feature.user.introduction.ui.bottomsheet.entrance.EntranceContent
+import com.example.trashtrack.ui.feature.employee.introduction.bottomsheet.EntranceEmployee
+import com.example.trashtrack.ui.feature.user.introduction.ui.bottomsheet.registration.RegistrationContent
+import com.example.trashtrack.ui.feature.employee.introduction.bottomsheet.RegistrationEmployeeScreen
 import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 import com.example.trashtrack.ui.theme.spacers
-import java.nio.file.WatchEvent
 
+@Preview(device = "spec:width=360dp,height=640dp")
+@Preview(device = "spec:width=480dp,height=800dp")
+@Preview(device = "spec:width=1440dp,height=2560dp")
 @Preview
 @Composable
 private fun IntroductionPreview() {
 
     IntroductionScreen(
         introduction = Mock.demoIntroduction,
-        openMainScreen = {}
+        openMainScreen = {},
+        color = MaterialTheme.colors.white
     )
 }
 
 @Composable
 fun IntroductionScreen(
     introduction: List<DataClasses.Introduction>,
-    openMainScreen: () -> Unit
+    openMainScreen: () -> Unit,
+    color: Color
 ) {
     var openEntrance by remember { mutableStateOf(false) }
     var openRegistration by remember { mutableStateOf(false) }
@@ -73,7 +76,8 @@ fun IntroductionScreen(
     Introduction(
         introduction = introduction,
         openRegistrationScreen = { openRegistration = true },
-        openEntranceScreen = { openEntrance = true }
+        openEntranceScreen = { openEntrance = true },
+        color = color
     )
 
     if (openEntrance) {
@@ -127,21 +131,22 @@ fun IntroductionScreen(
 fun Introduction(
     introduction: List<DataClasses.Introduction>,
     openRegistrationScreen: () -> Unit,
-    openEntranceScreen: () -> Unit
+    openEntranceScreen: () -> Unit,
+    color: Color
 ) {
     var activeCircle by remember { mutableIntStateOf(0) }
-    val item = introduction.getOrNull(activeCircle) ?: return
+    var item = introduction.getOrNull(activeCircle) ?: return
 
-        Box(
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = color),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.White),
-            contentAlignment = Alignment.Center
         ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-            ) {
             HeaderIntroduction(
                 visibleBackButton = item.backButtonVisible,
                 visibleSkipButton = item.skipButtonVisible,
@@ -149,22 +154,22 @@ fun Introduction(
                 skipButton = { activeCircle = introduction.size - 1 }
             )
             Spacer(modifier = Modifier.height(26.dp))
-                Content(
-                    image = item.image,
-                    title = item.title
-                )
-                Spacer(modifier = Modifier.height(23.5.dp))
-                BottomBar(
-                    nextButtonVisible = item.nextButtonVisible,
-                    heading = item.heading,
-                    underHeading = item.underHeading,
-                    onClickNext = { activeCircle = (activeCircle + 1) % 4 },
-                    openEntranceScreen = openEntranceScreen,
-                    openRegistrationScreen = openRegistrationScreen,
-                    activeCircle = activeCircle
-                )
-            }
+            Content(
+                image = item.image,
+                title = item.title
+            )
+            Spacer(modifier = Modifier.height(23.5.dp))
+            BottomBar(
+                nextButtonVisible = item.nextButtonVisible,
+                heading = item.heading,
+                underHeading = item.underHeading,
+                onClickNext = { activeCircle = (activeCircle + 1) % 4 },
+                openEntranceScreen = openEntranceScreen,
+                openRegistrationScreen = openRegistrationScreen,
+                activeCircle = activeCircle
+            )
         }
+    }
 }
 
 @Composable
@@ -185,7 +190,6 @@ fun Content(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(270.dp)
         ) {
             Image(
                 painter = painterResource(image),
