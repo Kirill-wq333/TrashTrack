@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -44,7 +45,13 @@ fun OrdersScreen() {
 
     Scaffold(
         topBar = {
-            TopBar()
+            Text(
+                text = "Мои заказы",
+                color = MaterialTheme.colors.black,
+                style = TTTypography.headlineLarge,
+                modifier = Modifier
+                    .padding(start = 30.dp, top = 39.dp)
+            )
         }
     ) { paddingValue ->
         Box(
@@ -59,7 +66,7 @@ fun OrdersScreen() {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
-                text.forEachIndexed { index , i ->
+                text.forEachIndexed { index, i ->
                     Column(
                         modifier = Modifier
                             .width(157.dp)
@@ -88,23 +95,4 @@ fun OrdersScreen() {
 
         }
     }
-}
-
-@Composable
-fun TopBar() {
-
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-    ) {
-        Text(
-            text = "Мои заказы",
-            color = MaterialTheme.colors.black,
-            style = TTTypography.headlineLarge,
-            modifier = Modifier
-                .padding(start = 30.dp, top = 39.dp)
-        )
-    }
-    Spacer(modifier = Modifier.height(38.dp))
-
 }
