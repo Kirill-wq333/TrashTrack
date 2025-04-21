@@ -1,5 +1,6 @@
 package com.example.trashtrack.ui.feature.user.news.ui
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -42,19 +43,27 @@ private fun NewsScreenPreview() {
         NewsScreen(
             news = Mock.demoNews,
             backButton = {},
-            color = MaterialTheme.colors.white
+            color = Color.White,
+            navigateToNews = {}
         )
     }
 }
 
 @Composable
 fun NewsScreen(
+    newsId: Int = 1,
     news: List<DataClasses.NewsMain>,
     backButton: () -> Unit,
+    navigateToNews: (Int) -> Unit,
     color: Color
 ) {
-    var currentNewsIndex by remember { mutableStateOf(0) }
-    val currentNews = news[currentNewsIndex]
+    val currentNews = news.find { it.id == newsId }
+
+    // Handle the case where the news item with the given ID is not found
+    if (currentNews == null) {
+        Text("News item with ID $newsId not found.", color = Color.Red)
+        return // Exit the composable
+    }
 
     val annotatedString = remember(currentNews.descriptionNews) {
         HtmlCompat.fromHtml(currentNews.descriptionNews, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
@@ -104,7 +113,11 @@ fun NewsScreen(
                 NextMainNews(
                     nameNews = currentNews.nameNews,
                     openNews = {
-                        currentNewsIndex = (currentNewsIndex + 1) % Mock.demoNews.size
+                        val currentIndex = news.indexOfFirst { it.id == newsId }
+                        val nextIndex = (currentIndex + 1) % news.size
+                        val nextNewsId = news[nextIndex].id
+                        Log.d("NewsScreen", "Current ID: $newsId, Next ID: $nextNewsId, Current Index: $currentIndex, Next Index: $nextIndex")
+                        navigateToNews(nextNewsId)
                     },
                     image = currentNews.secondImage
                 )

@@ -8,6 +8,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -40,6 +44,7 @@ fun NavigationBuilder(
         startDestination = AppRoutes.START,
         modifier = Modifier
             .padding(paddingValues)
+            .background(MaterialTheme.colors.white)
     ) {
 
         composable(
@@ -56,7 +61,7 @@ fun NavigationBuilder(
             route = AppRoutes.A_LITTLE_MORE,
             enterTransition = { fadeIn(tween(1500)) },
             exitTransition = { fadeOut(tween(1500)) }
-            ) {
+        ) {
             ALittleMoreScreen(
                 navController = navController
             )
@@ -87,16 +92,18 @@ fun NavigationBuilder(
             route = "${AppRoutes.NEWS}/{newsId}",
             arguments = listOf(navArgument("newsId") { type = NavType.IntType })
         ) { backStackEntry ->
-            val newsId = backStackEntry.arguments?.getInt("newsId") ?: return@composable
-            val newsItem = mockNews.find { it.id == newsId } ?: return@composable
+            var newsId = backStackEntry.arguments?.getInt("newsId") ?: return@composable
 
             NewsScreen(
-                news = listOf(newsItem),
+                newsId = newsId,
+                news = mockNews,
                 backButton = { navController.popBackStack() },
+                navigateToNews = { id ->
+                    navController.navigate("${AppRoutes.NEWS}/$id")
+                },
                 color = colorFrame
             )
         }
-
         composable(route = AppRoutes.PROFILE_USER) {
             ProfileScreen(
                 navController = navController,
@@ -105,9 +112,7 @@ fun NavigationBuilder(
         }
 
         composable(AppRoutes.ORDERS) {
-            OrdersScreen(
-                color = colorFrame
-            )
+            OrdersScreen(color = colorFrame)
         }
 
         composable(AppRoutes.SUBSCRIPTIONS) {
