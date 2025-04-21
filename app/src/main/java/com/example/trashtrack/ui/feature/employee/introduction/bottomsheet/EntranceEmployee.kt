@@ -138,7 +138,7 @@ fun Companion() {
             .padding(bottom = 36.dp)
     ) {
         Icon(
-            painter = painterResource(R.drawable.icons_google),
+            painter = painterResource(R.drawable.ic_google),
             contentDescription = null,
             modifier = Modifier
                 .size(24.dp)
