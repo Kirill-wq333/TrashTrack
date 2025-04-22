@@ -1,4 +1,4 @@
-package com.evothings.mhand.presentation.feature.shared.picker.date.components
+package com.example.trashtrack.ui.shared.picker.date.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -21,6 +21,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.evothings.mhand.presentation.feature.shared.picker.date.model.Year
 import com.evothings.mhand.presentation.feature.shared.picker.date.tools.PickerDateUtil
+import com.example.trashtrack.ui.theme.TTTypography
+import com.example.trashtrack.ui.theme.colors
 
 @Composable
 fun YearPicker(
@@ -74,7 +76,7 @@ private fun YearItem(
     Box(
         modifier = Modifier
             .background(
-                color = if (isSelected) MaterialTheme.colorScheme.primary else Color.Transparent,
+                color = if (isSelected) MaterialTheme.colors.green600 else Color.Transparent,
                 shape = MaterialTheme.shapes.small
             )
             .clickable(
@@ -86,7 +88,7 @@ private fun YearItem(
     ) {
         Text(
             text = year.toString(),
-            style = MaterialTheme.typography.headlineSmall,
+            style = TTTypography.titleLarge,
             modifier = Modifier
                 .padding(
                     vertical = 6.dp,

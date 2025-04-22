@@ -18,7 +18,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.Text
-import com.evothings.mhand.R
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
@@ -30,20 +29,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.evothings.mhand.presentation.feature.shared.button.Button
-import com.evothings.mhand.presentation.feature.shared.button.icon.IconButton
-import com.evothings.mhand.presentation.feature.shared.picker.date.components.CalendarGrid
-import com.evothings.mhand.presentation.feature.shared.picker.date.components.WeekdaysRow
-import com.evothings.mhand.presentation.feature.shared.picker.date.components.YearPicker
+import com.example.trashtrack.ui.shared.picker.date.components.CalendarGrid
+import com.example.trashtrack.ui.shared.picker.date.components.WeekdaysRow
+import com.example.trashtrack.ui.shared.picker.date.components.YearPicker
 import com.evothings.mhand.presentation.feature.shared.picker.date.tools.PickerDateUtil
-import com.evothings.mhand.presentation.theme.MegahandTheme
-import com.evothings.mhand.presentation.theme.colorScheme.ColorTokens
-import com.evothings.mhand.presentation.theme.spacers
 import com.example.trashtrack.R
+import com.example.trashtrack.ui.shared.button.Button
+import com.example.trashtrack.ui.shared.button.icon.IconButton
+import com.example.trashtrack.ui.theme.colors
 import java.time.format.TextStyle
 import java.util.Locale
 
@@ -217,20 +213,20 @@ private fun PickerActionButtons(
     ) {
         Button(
             modifier = Modifier.weight(0.5f),
-            text = stringResource(id = R.string.cancel),
+            text = "Отмена",
             borderColor = colorScheme.secondary.copy(alpha = 0.1f),
             textColor = colorScheme.secondary,
             onClick = onClickHide
         )
         Spacer(
             modifier = Modifier
-                .width(MaterialTheme.spacers.medium)
+                .width(12.dp)
         )
         Button(
             modifier = Modifier.weight(0.5f),
-            text = stringResource(id = R.string.save),
-            backgroundColor = colorScheme.primary,
-            textColor = ColorTokens.Graphite,
+            text = "Сохранить",
+            backgroundColor = MaterialTheme.colors.green600,
+            textColor = MaterialTheme.colors.neutral950,
             onClick = onProceed
         )
     }

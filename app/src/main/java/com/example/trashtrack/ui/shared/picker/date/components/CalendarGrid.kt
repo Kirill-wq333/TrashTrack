@@ -1,4 +1,4 @@
-package com.evothings.mhand.presentation.feature.shared.picker.date.components
+package com.example.trashtrack.ui.shared.picker.date.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -21,7 +21,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.evothings.mhand.presentation.feature.shared.picker.date.tools.PickerDateUtil
 import com.evothings.mhand.presentation.feature.shared.picker.date.tools.PickerDaysCalculator
-import com.evothings.mhand.presentation.theme.colorScheme.ColorTokens
+import com.example.trashtrack.ui.theme.TTTypography
+import com.example.trashtrack.ui.theme.colors
 
 @Composable
 fun CalendarGrid(
@@ -84,7 +85,7 @@ private fun DayItem(
         if (isSelected && isActive) MaterialTheme.colorScheme.primary else Color.Transparent
 
     val numberColor =
-        if (isSelected && isActive) ColorTokens.Graphite else MaterialTheme.colorScheme.secondary
+        if (isSelected && isActive) MaterialTheme.colors.green600 else MaterialTheme.colorScheme.secondary
 
     Box(
         modifier = Modifier
@@ -101,7 +102,7 @@ private fun DayItem(
     ) {
         Text(
             text = number.toString(),
-            style = MaterialTheme.typography.headlineSmall,
+            style = TTTypography.titleLarge,
             color = numberColor.copy(alpha = if (isActive) 1.0f else .25f),
             modifier = Modifier.padding(
                 vertical = 6.dp,
