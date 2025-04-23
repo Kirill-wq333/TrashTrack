@@ -46,19 +46,19 @@ import java.util.Locale
 @Preview
 @Composable
 private fun DatePickerPreview() {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(colorScheme.background)
-                .padding(24.dp),
-            contentAlignment = Alignment.Center
-        ) {
-            DatePicker(
-                dateToSet = 1727105298309,
-                onConfirmDate = {},
-                onHide = {}
-            )
-        }
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(colorScheme.background)
+            .padding(24.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        DatePicker(
+            dateToSet = 1727105298309,
+            onConfirmDate = {},
+            onHide = {}
+        )
+    }
 }
 
 @Composable
