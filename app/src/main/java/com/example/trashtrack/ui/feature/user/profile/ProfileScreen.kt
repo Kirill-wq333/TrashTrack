@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -33,6 +34,7 @@ import com.example.trashtrack.R
 import com.example.trashtrack.ui.approuts.AppRoutes
 import com.example.trashtrack.ui.feature.user.profile.bottomsheet.DeleteAccount
 import com.example.trashtrack.ui.feature.user.profile.screens.DataScreen
+import com.example.trashtrack.ui.feature.user.profile.screens.SubscriptionScreen
 import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
@@ -49,27 +51,41 @@ data class ProfileTextAndIconItem(
 
 @Composable
 fun ProfileScreen(
-    modifier: Modifier = Modifier,
     navController: NavHostController,
     color: Color,
-    type: ProfileType = ProfileType.MainProfile
 ) {
+    var currentScreenType by remember { mutableStateOf<ProfileType>(ProfileType.MainProfile) }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(color = color)
     ) {
-    when(type) {
+    when(currentScreenType) {
         ProfileType.MainProfile ->{
             ContentProfile(
-                navController = navController
+                navController = navController,
+                openDataScreen = {
+                    currentScreenType = ProfileType.DataProfile
+                },
+                openSubscription = {
+                    currentScreenType = ProfileType.SubscriptionProfile
+                }
             )
         }
-        ProfileType . SubscriptionProfile ->{
-
+        ProfileType.SubscriptionProfile ->{
+            SubscriptionScreen(
+                backButton = {
+                    currentScreenType = ProfileType.MainProfile
+                }
+            )
         }
         ProfileType.DataProfile ->{
-            DataScreen()
+            DataScreen(
+                backButton = {
+                    currentScreenType = ProfileType.MainProfile
+                }
+            )
         }
     }
 
@@ -80,6 +96,8 @@ fun ProfileScreen(
 @Composable
 fun ContentProfile(
     navController: NavHostController,
+    openDataScreen: () -> Unit,
+    openSubscription: () -> Unit
 ) {
     val context = LocalContext.current
 
@@ -91,14 +109,14 @@ fun ContentProfile(
             colorText = MaterialTheme.colors.black,
             text = "Мои данные",
             icon = R.drawable.lucide_user_pen,
-            onClick = { navController.navigate(ProfileType.DataProfile) }
+            onClick = openDataScreen
         ),
         ProfileTextAndIconItem(
             colorIcon = MaterialTheme.colors.green600,
             colorText = MaterialTheme.colors.black,
             text = "Мои подписки",
             icon = R.drawable.mdi_subscriptions,
-            onClick = { navController.navigate(ProfileType.SubscriptionProfile) }
+            onClick = openSubscription
         ),
         ProfileTextAndIconItem(
             colorIcon = MaterialTheme.colors.green600,
@@ -144,7 +162,9 @@ fun ContentProfile(
                     Icon(
                         imageVector = ImageVector.vectorResource(i.icon),
                         contentDescription = null,
-                        tint = i.colorIcon
+                        tint = i.colorIcon,
+                        modifier = Modifier
+                            .size(16.dp)
                     )
                     Text(
                         text = i.text,

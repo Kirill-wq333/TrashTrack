@@ -1,7 +1,6 @@
 package com.example.trashtrack.ui.feature.user.orders
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,14 +12,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -29,9 +27,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-import com.example.trashtrack.ui.approuts.AppRoutes
 import com.example.trashtrack.ui.feature.user.orders.components.FirstSubscription
 import com.example.trashtrack.ui.feature.user.orders.components.OneTimeFee
 import com.example.trashtrack.ui.feature.user.orders.components.Subscription
@@ -44,7 +39,7 @@ import com.example.trashtrack.ui.theme.colors
 private fun OrdersPreview() {
     Surface {
         PlaceAnOrderScreen(
-            navController = rememberNavController()
+            backButton = {}
         )
     }
 }
@@ -63,7 +58,7 @@ private fun OrdersScreenPreview() {
 fun OrdersScreen(
     color: Color
 ) {
-    var selectedTabIndex by remember { mutableStateOf(0) }
+    var selectedTabIndex by remember { mutableIntStateOf(0) }
     val text = listOf("Активные", "История")
 
 
@@ -122,15 +117,14 @@ fun OrdersScreen(
 
 @Composable
 fun PlaceAnOrderScreen(
-    modifier: Modifier = Modifier,
-    navController: NavHostController
+    backButton: () -> Unit
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
     ){
         BackButton(
-            backButton = { navController.navigate(AppRoutes.USER) },
+            backButton = backButton,
             paddingTop = 17.dp,
             paddingStart = 16.dp
         )

@@ -61,7 +61,6 @@ fun DeleteAccount(
             TTBottom(
                 text = "Да",
                 onClick = { authManager.deleteAccount(); openIntroductionScreen() },
-                color = MaterialTheme.colors.green600,
             )
             TTBottom(
                 text = "Отмена",

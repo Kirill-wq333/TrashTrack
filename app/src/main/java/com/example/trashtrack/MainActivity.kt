@@ -7,7 +7,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.trashtrack.ui.NavigationHost
-import com.example.trashtrack.ui.navigation.NavigationBuilder
 import com.example.trashtrack.ui.preferences.SecurePrefsHelper
 import com.example.trashtrack.ui.theme.TrashTrackTheme
 

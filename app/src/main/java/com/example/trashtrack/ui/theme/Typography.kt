@@ -37,98 +37,98 @@ val TTTypography: Typography
     get() = Typography(
         displayMedium = TextStyle(
             fontSize = 36.sp,
-            lineHeight = 36.sp,
+            lineHeight = 45.sp,
             fontFamily = unbounded,
             fontWeight = FontWeight.Black,
             letterSpacing = getLetterSpacing(36).sp
         ),
         displaySmall = TextStyle(
             fontSize = 32.sp,
-            lineHeight = 32.sp,
+            lineHeight = 37.5.sp,
             fontFamily = roboto,
             fontWeight = FontWeight.Black,
             letterSpacing = getLetterSpacing(32).sp
         ),
         headlineLarge = TextStyle(
             fontSize = 24.sp,
-            lineHeight = 24.sp,
+            lineHeight = 33.sp,
             fontFamily = manrope,
             fontWeight = FontWeight.ExtraBold,
             letterSpacing = getLetterSpacing(24).sp
         ),
         headlineMedium = TextStyle(
             fontSize = 24.sp,
-            lineHeight = 24.sp,
+            lineHeight = 28.1.sp,
             fontFamily = roboto,
             fontWeight = FontWeight.Thin,
             letterSpacing = getLetterSpacing(24).sp
         ),
         headlineSmall = TextStyle(
             fontSize = 20.sp,
-            lineHeight = 20.sp,
+            lineHeight = 23.4.sp,
             fontFamily = roboto,
             fontWeight = FontWeight.Black,
             letterSpacing = getLetterSpacing(20).sp
         ),
         titleLarge = TextStyle(
             fontSize = 16.sp,
-            lineHeight = 16.sp,
+            lineHeight = 21.9.sp,
             fontFamily = manrope,
             fontWeight = FontWeight.ExtraBold,
             letterSpacing = getLetterSpacing(16).sp
         ),
         titleMedium = TextStyle(
             fontSize = 16.sp,
-            lineHeight = 16.sp,
+            lineHeight = 18.8.sp,
             fontFamily = roboto,
             fontWeight = FontWeight.Bold,
             letterSpacing = getLetterSpacing(16).sp
         ),
         titleSmall = TextStyle(
             fontSize = 14.sp,
-            lineHeight = 14.sp,
+            lineHeight = 19.1.sp,
             fontFamily = manrope,
             fontWeight = FontWeight.Bold,
             letterSpacing = getLetterSpacing(14).sp
         ),
         bodyLarge = TextStyle(
             fontSize = 12.sp,
-            lineHeight = 12.sp,
+            lineHeight = 14.1.sp,
             fontFamily = roboto,
             fontWeight = FontWeight.ExtraBold,
             letterSpacing = getLetterSpacing(12).sp
         ),
         bodyMedium = TextStyle(
             fontSize = 12.sp,
-            lineHeight = 12.sp,
+            lineHeight = 16.4.sp,
             fontFamily = manrope,
             fontWeight = FontWeight.Normal,
             letterSpacing = getLetterSpacing(12).sp
         ),
         bodySmall = TextStyle(
             fontSize = 8.sp,
-            lineHeight = 8.sp,
+            lineHeight = 9.4.sp,
             fontFamily = roboto,
             fontWeight = FontWeight.Bold,
             letterSpacing = getLetterSpacing(8).sp
         ),
         labelLarge = TextStyle(
             fontSize = 6.sp,
-            lineHeight = 6.sp,
+            lineHeight = 7.sp,
             fontFamily = roboto,
             fontWeight = FontWeight.Bold,
             letterSpacing = getLetterSpacing(6).sp
         ),
         labelMedium = TextStyle(
             fontSize = 4.sp,
-            lineHeight = 4.sp,
+            lineHeight = 4.7.sp,
             fontFamily = roboto,
             fontWeight = FontWeight.ExtraBold,
             letterSpacing = getLetterSpacing(4).sp
         ),
         labelSmall = TextStyle(
             fontSize = 4.sp,
-            lineHeight = 4.sp,
+            lineHeight = 4.7.sp,
             fontFamily = roboto,
             fontWeight = FontWeight.Normal,
             letterSpacing = getLetterSpacing(4).sp

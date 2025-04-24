@@ -4,6 +4,7 @@ import androidx.compose.ui.graphics.Color
 
 object Color {
     val neutral100 = Color(0xFFF5F5F5)
+    val neutral300 = Color(0xFFD4D4D4)
     val neutral400 = Color(0xFFA3A3A3)
     val neutral500 = Color(0xFF737373)
     val primary600 = Color(0xFF525252)
@@ -12,6 +13,7 @@ object Color {
     val neutral900 = Color(0xFF171717)
     val neutral950 = Color(0xFF0A0A0A)
 
+    val primary = Color(0xFF46423E)
 
     val green700 = Color(0xFF15803D)
     val green600 = Color(0xFF16A34A)

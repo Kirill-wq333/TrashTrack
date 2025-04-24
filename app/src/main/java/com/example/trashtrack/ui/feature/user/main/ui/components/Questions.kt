@@ -62,7 +62,7 @@ fun Questions(
                 modifier = Modifier
                     .padding(start = 7.dp, end = 10.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
+                horizontalArrangement = Arrangement.Start
             ) {
                 Text(
                     text = "Нажмите  здесь для связи с ТЕХ.ПОДДЕРЖКОЙ",
@@ -70,7 +70,7 @@ fun Questions(
                     color = MaterialTheme.colors.green600,
                     style = TTTypography.titleLarge,
                     modifier = Modifier
-                        .weight(0.5f)
+                        .weight(0.6f)
                 )
                 Spacer(modifier = Modifier.width(51.dp))
                 Image(
@@ -78,7 +78,7 @@ fun Questions(
                     contentDescription = null,
                     modifier = Modifier
                         .size(80.dp,88.dp)
-                        .weight(0.5f)
+                        .weight(0.4f)
                 )
             }
         }

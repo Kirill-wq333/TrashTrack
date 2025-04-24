@@ -26,7 +26,8 @@ import com.example.trashtrack.ui.theme.colors
 
 @Composable
 fun DataScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    backButton: () -> Unit
 ) {
     var email by remember { mutableStateOf("") }
     var name by remember { mutableStateOf("") }
@@ -38,12 +39,14 @@ fun DataScreen(
         email = email,
         onChangeName = { name = it },
         onChangeEmail = { email = it },
-        onChangePhone = { phone = it }
+        onChangePhone = { phone = it },
+        backButton = backButton
     )
 }
 
 @Composable
 fun Content(
+    backButton: () -> Unit,
     name: String,
     phone: String,
     email: String,
@@ -64,8 +67,9 @@ fun Content(
             horizontalAlignment = Alignment.Start
         ) {
             BackButton(
-                backButton = {},
-                paddingStart = 0.dp
+                backButton = backButton,
+                paddingStart = 0.dp,
+                color = MaterialTheme.colors.neutral300
             )
             Spacer(modifier = Modifier.height(43.dp))
             Column(
