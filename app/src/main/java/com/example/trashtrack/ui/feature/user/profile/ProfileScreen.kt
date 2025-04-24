@@ -32,6 +32,7 @@ import androidx.navigation.NavHostController
 import com.example.trashtrack.R
 import com.example.trashtrack.ui.approuts.AppRoutes
 import com.example.trashtrack.ui.feature.user.profile.bottomsheet.DeleteAccount
+import com.example.trashtrack.ui.feature.user.profile.screens.DataScreen
 import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
@@ -50,7 +51,35 @@ data class ProfileTextAndIconItem(
 fun ProfileScreen(
     modifier: Modifier = Modifier,
     navController: NavHostController,
-    color: Color
+    color: Color,
+    type: ProfileType = ProfileType.MainProfile
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = color)
+    ) {
+    when(type) {
+        ProfileType.MainProfile ->{
+            ContentProfile(
+                navController = navController
+            )
+        }
+        ProfileType . SubscriptionProfile ->{
+
+        }
+        ProfileType.DataProfile ->{
+            DataScreen()
+        }
+    }
+
+    }
+
+}
+
+@Composable
+fun ContentProfile(
+    navController: NavHostController,
 ) {
     val context = LocalContext.current
 
@@ -62,14 +91,14 @@ fun ProfileScreen(
             colorText = MaterialTheme.colors.black,
             text = "Мои данные",
             icon = R.drawable.lucide_user_pen,
-            onClick = { navController.navigate(AppRoutes.DATA) }
+            onClick = { navController.navigate(ProfileType.DataProfile) }
         ),
         ProfileTextAndIconItem(
             colorIcon = MaterialTheme.colors.green600,
             colorText = MaterialTheme.colors.black,
             text = "Мои подписки",
             icon = R.drawable.mdi_subscriptions,
-            onClick = { navController.navigate(AppRoutes.SUBSCRIPTIONS) }
+            onClick = { navController.navigate(ProfileType.SubscriptionProfile) }
         ),
         ProfileTextAndIconItem(
             colorIcon = MaterialTheme.colors.green600,
@@ -87,65 +116,54 @@ fun ProfileScreen(
         ),
     )
 
-
-
-
-
-
-    Box(
+    Column(
         modifier = Modifier
-            .fillMaxSize()
-            .background(color = color)
+            .fillMaxWidth()
     ) {
+        Text(
+            text = "Добрый день",
+            color = MaterialTheme.colors.black,
+            style = TTTypography.displaySmall,
+            modifier = Modifier
+                .padding(top = 39.dp, start = 30.dp)
+        )
+        Spacer(modifier = Modifier.height(58.dp))
         Column(
             modifier = Modifier
-                .fillMaxWidth()
+                .padding(start = 32.dp),
+            verticalArrangement = Arrangement.spacedBy(39.dp)
         ) {
-            Text(
-                text = "Добрый день",
-                color = MaterialTheme.colors.black,
-                style = TTTypography.displaySmall,
-                modifier = Modifier
-                    .padding(top = 39.dp, start = 30.dp)
-            )
-            Spacer(modifier = Modifier.height(58.dp))
-            Column(
-                modifier = Modifier
-                    .padding(start = 32.dp),
-                verticalArrangement = Arrangement.spacedBy(39.dp)
-            ) {
-                profileItem.forEach { i ->
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable(onClick = i.onClick),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(5.dp)
-                    ) {
-                        Icon(
-                            imageVector = ImageVector.vectorResource(i.icon),
-                            contentDescription = null,
-                            tint = i.colorIcon
-                        )
-                        Text(
-                            text = i.text,
-                            color = i.colorText,
-                            style = TTTypography.titleLarge
-                        )
-                    }
+            profileItem.forEach { i ->
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable(onClick = i.onClick),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(5.dp)
+                ) {
+                    Icon(
+                        imageVector = ImageVector.vectorResource(i.icon),
+                        contentDescription = null,
+                        tint = i.colorIcon
+                    )
+                    Text(
+                        text = i.text,
+                        color = i.colorText,
+                        style = TTTypography.titleLarge
+                    )
                 }
             }
         }
-        if (openDeleteAccount) {
-            TTModalBottomSheet(
-                onDismissRequest = { openDeleteAccount = false }
-            ) { hide ->
-                DeleteAccount(
-                    openProfileScreen = { hide() },
-                    openIntroductionScreen = { navController.navigate(AppRoutes.INTRODUCTION) },
-                )
-            }
-        }
-
     }
+    if (openDeleteAccount) {
+        TTModalBottomSheet(
+            onDismissRequest = { openDeleteAccount = false }
+        ) { hide ->
+            DeleteAccount(
+                openProfileScreen = { hide() },
+                openIntroductionScreen = { navController.navigate(AppRoutes.INTRODUCTION); hide() },
+            )
+        }
+    }
+
 }

@@ -115,13 +115,5 @@ fun NavigationBuilder(
             OrdersScreen(color = colorFrame)
         }
 
-        composable(AppRoutes.SUBSCRIPTIONS) {
-
-        }
-
-        composable(AppRoutes.DATA) {
-
-        }
-
     }
 }
