@@ -56,6 +56,7 @@ fun TTBottomBorder(
     onClick: () -> Unit,
     text: String,
     colorBorder: Color = Color(0xFFEDECEC),
+    backgroundColor: Color = Color.Unspecified,
     enable: Boolean = false,
     style: TextStyle = TTTypography.headlineLarge
 ) {
@@ -65,6 +66,10 @@ fun TTBottomBorder(
             .clickable(
                 onClick = onClick,
                 enabled = enable
+            )
+            .background(
+                color = backgroundColor,
+                shape = RoundedCornerShape(12.dp)
             )
             .border(
                 width = 1.dp,
