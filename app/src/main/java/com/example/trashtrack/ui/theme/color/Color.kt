@@ -3,6 +3,7 @@ package com.example.trashtrack.ui.theme.color
 import androidx.compose.ui.graphics.Color
 
 object Color {
+    val neutral50 = Color(0xFFFAFAFA)
     val neutral100 = Color(0xFFF5F5F5)
     val neutral300 = Color(0xFFD4D4D4)
     val neutral400 = Color(0xFFA3A3A3)

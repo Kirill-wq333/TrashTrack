@@ -33,9 +33,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.R
 import com.example.trashtrack.ui.feature.user.introduction.ui.components.ConfirmPasswordTextField
-import com.example.trashtrack.ui.feature.user.introduction.ui.components.OutlinedTextFieldComponent
-import com.example.trashtrack.ui.feature.user.introduction.ui.components.PasswordTextField
-import com.example.trashtrack.ui.feature.user.introduction.ui.components.PhoneTextField
+import com.example.trashtrack.ui.shared.text.textfield.OutlinedTextFieldComponent
+import com.example.trashtrack.ui.shared.text.textfield.PasswordTextField
+import com.example.trashtrack.ui.shared.text.textfield.PhoneTextField
 import com.example.trashtrack.ui.preferences.SecurePrefsHelper
 import com.example.trashtrack.ui.shared.button.TTBottom
 import com.example.trashtrack.ui.shared.checkbox.Checkbox

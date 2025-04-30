@@ -17,8 +17,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.trashtrack.ui.feature.user.introduction.ui.components.OutlinedTextFieldComponent
-import com.example.trashtrack.ui.feature.user.introduction.ui.components.PhoneTextField
+import com.example.trashtrack.ui.shared.text.textfield.OutlinedTextFieldComponent
+import com.example.trashtrack.ui.shared.text.textfield.PhoneTextField
 import com.example.trashtrack.ui.shared.button.TTBottom
 import com.example.trashtrack.ui.shared.button.back.BackButton
 import com.example.trashtrack.ui.theme.TTTypography

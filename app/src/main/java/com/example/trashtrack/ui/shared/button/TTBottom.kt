@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
@@ -23,6 +24,7 @@ fun TTBottom(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
     text: String,
+    paddingHorizontal: Dp = 0.dp,
     color: Color = MaterialTheme.colors.green600,
     enable: Boolean = true,
     style: TextStyle = TTTypography.headlineLarge
@@ -30,6 +32,7 @@ fun TTBottom(
     Box(
         modifier = modifier
             .fillMaxWidth()
+            .padding(horizontal = paddingHorizontal)
             .clickable(
                 onClick = onClick,
                 enabled = enable
