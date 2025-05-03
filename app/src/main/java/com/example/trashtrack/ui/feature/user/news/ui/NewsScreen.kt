@@ -12,15 +12,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Surface
+import androidx.compose.material3.Surface
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -59,7 +56,6 @@ fun NewsScreen(
 ) {
     val currentNews = news.find { it.id == newsId }
 
-    // Handle the case where the news item with the given ID is not found
     if (currentNews == null) {
         Text("News item with ID $newsId not found.", color = Color.Red)
         return // Exit the composable
@@ -116,7 +112,6 @@ fun NewsScreen(
                         val currentIndex = news.indexOfFirst { it.id == newsId }
                         val nextIndex = (currentIndex + 1) % news.size
                         val nextNewsId = news[nextIndex].id
-                        Log.d("NewsScreen", "Current ID: $newsId, Next ID: $nextNewsId, Current Index: $currentIndex, Next Index: $nextIndex")
                         navigateToNews(nextNewsId)
                     },
                     image = currentNews.secondImage

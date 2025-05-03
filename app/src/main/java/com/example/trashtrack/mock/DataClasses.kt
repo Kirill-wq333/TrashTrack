@@ -21,4 +21,9 @@ object DataClasses {
         val nameNews: String,
         val descriptionNews: String
     )
+
+    class KgAndL(
+        val kg: Int,
+        val l: Int
+    )
 }

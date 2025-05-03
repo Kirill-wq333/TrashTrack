@@ -1,7 +1,6 @@
 package com.example.trashtrack.ui.feature.user.map.ui.components
 
 import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -55,7 +54,7 @@ private fun DetailedInformationPreview() {
 }
 
 @Composable
-fun Content(
+private fun Content(
     color: Color
 ) {
     var address by remember { mutableStateOf("") }
@@ -147,12 +146,13 @@ fun DetailedInformationContent(
 }
 
 @Composable
-fun HeadingAndBackButton(backButton: () -> Unit) {
+private fun HeadingAndBackButton(backButton: () -> Unit) {
     BackButton(
         paddingStart = 13.dp,
         backButton = backButton,
         paddingTop = 11.dp,
-        paddingIcon = 12.dp
+        paddingIcon = 12.dp,
+        sizeIcon = 45.dp
     )
     Spacer(modifier = Modifier.height(16.dp))
     Text(

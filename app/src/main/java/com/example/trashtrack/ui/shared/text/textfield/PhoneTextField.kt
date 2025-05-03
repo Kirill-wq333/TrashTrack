@@ -50,7 +50,7 @@ fun PhoneTextField(
                 errorContainerColor = MaterialTheme.colors.white,
                 errorLabelColor = MaterialTheme.colors.red600,
                 errorIndicatorColor = MaterialTheme.colors.red600,
-                cursorColor = MaterialTheme.colors.black
+                cursorColor = MaterialTheme.colors.green600
             ),
             visualTransformation = rememberMaskVisualTransformation("+#(###)###-##-##"),
             label = {

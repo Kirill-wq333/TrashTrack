@@ -60,7 +60,7 @@ fun OutlinedTextFieldComponent(
                 focusedContainerColor = MaterialTheme.colors.white,
                 errorContainerColor = MaterialTheme.colors.white,
                 errorIndicatorColor = MaterialTheme.colors.red600,
-                cursorColor = MaterialTheme.colors.black
+                cursorColor = MaterialTheme.colors.green600
             ),
             onValueChange = {
                 onTextChange(it)

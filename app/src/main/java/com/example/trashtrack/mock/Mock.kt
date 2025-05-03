@@ -226,4 +226,19 @@ object Mock {
         ),
     )
 
+    val demoKgAndL = listOf<DataClasses.KgAndL>(
+        DataClasses.KgAndL(
+            kg = 5,
+            l = 35
+        ),
+        DataClasses.KgAndL(
+            kg = 10,
+            l = 70
+        ),
+        DataClasses.KgAndL(
+            kg = 20,
+            l = 105
+        )
+    )
+
 }

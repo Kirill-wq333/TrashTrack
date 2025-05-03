@@ -247,7 +247,7 @@ fun DualAxisAnimationContent(
 }
 
 @Composable
-fun Content(
+private fun Content(
     dacantStep: Boolean,
     timerStep: Boolean,
     padding: Animatable<Float, AnimationVector1D>,

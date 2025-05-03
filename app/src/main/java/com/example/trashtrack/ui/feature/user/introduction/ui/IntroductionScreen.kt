@@ -176,7 +176,7 @@ fun Introduction(
 }
 
 @Composable
-fun Content(
+private fun Content(
     image: Int,
     title: AnnotatedString
 ) {

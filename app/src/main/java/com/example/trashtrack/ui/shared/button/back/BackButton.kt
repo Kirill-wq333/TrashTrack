@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
@@ -24,6 +25,7 @@ fun BackButton(
     paddingEnd: Dp = 0.dp,
     paddingStart: Dp = 33.dp,
     paddingIcon: Dp = 9.dp,
+    sizeIcon: Dp = 24.dp,
     backButton: () -> Unit,
     color: Color = Color(0xFFF6F6F5)
 ) {
@@ -50,6 +52,7 @@ fun BackButton(
             contentDescription = null,
             tint = Color.Black,
             modifier = modifier
+                .size(sizeIcon)
                 .padding(paddingIcon)
         )
     }

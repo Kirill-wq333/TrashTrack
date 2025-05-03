@@ -45,7 +45,7 @@ fun DataScreen(
 }
 
 @Composable
-fun Content(
+private fun Content(
     backButton: () -> Unit,
     name: String,
     phone: String,

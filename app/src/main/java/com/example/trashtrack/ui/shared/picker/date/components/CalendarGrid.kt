@@ -82,10 +82,10 @@ private fun DayItem(
 ) {
 
     val backgroundColor =
-        if (isSelected && isActive) MaterialTheme.colorScheme.primary else Color.Transparent
+        if (isSelected && isActive) MaterialTheme.colors.green600 else Color.Transparent
 
     val numberColor =
-        if (isSelected && isActive) MaterialTheme.colors.green600 else MaterialTheme.colorScheme.secondary
+        if (isSelected && isActive) MaterialTheme.colors.black else MaterialTheme.colorScheme.secondary
 
     Box(
         modifier = Modifier

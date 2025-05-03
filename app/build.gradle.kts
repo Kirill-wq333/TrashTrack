@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.trashtrack"
-        minSdk = 26
+        minSdk = 28
         targetSdk = 34
         versionCode = 100
         versionName = "1.01"

@@ -76,7 +76,7 @@ fun PasswordTextField(
                 unfocusedContainerColor = MaterialTheme.colors.white,
                 errorContainerColor = MaterialTheme.colors.white,
                 focusedIndicatorColor = MaterialTheme.colors.green600,
-                cursorColor = MaterialTheme.colors.black
+                cursorColor = MaterialTheme.colors.green600
                 ),
             isError = passwordStrength == PasswordStrength.WEAK && password.isNotEmpty(),
         )
