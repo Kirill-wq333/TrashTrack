@@ -62,7 +62,7 @@ fun RegistrationEmployeeScreen(
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState()),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.Start
     ) {
         BackButton(
             backButton = backButton
@@ -79,7 +79,7 @@ fun RegistrationEmployeeScreen(
             phone = phone,
             name = name,
             email = email,
-            onPhoneChange = { phone = it.take(10) },
+            onPhoneChange = { phone = it.take(11) },
             onPasswordChange = { password = it },
             onNameChange = { name = it },
             onEmailChange = { email = it },
@@ -98,14 +98,14 @@ fun RegistrationEmployeeScreen(
         ) {
             Checkbox(
                 modifier = Modifier
-                    .padding(horizontal =  29.dp),
+                    .padding(horizontal = 29.dp),
                 title = "Я согласен с условиями предоставления услуг и политикой конфиденциальности»",
                 isChecked = isChecked.value,
                 onCheck = { isChecked.value = !isChecked.value }
             )
             Spacer(modifier = Modifier.height(23.dp))
             NextOrEntrance(
-                modifier =Modifier
+                modifier = Modifier
                     .padding(horizontal = 36.dp),
                 openEntranceScreen = openEntranceScreen,
                 enable = passwordsMatch && password.isNotEmpty() && confirmPassword.isNotEmpty(),
@@ -113,12 +113,13 @@ fun RegistrationEmployeeScreen(
             )
             Spacer(modifier = Modifier.height(11.dp))
             Services()
+
+            Spacer(modifier = Modifier.height(7.dp))
+            RegistrationHowEmployee(
+                openScreen = openEntranceEmployeeScreen,
+                text = "Войти"
+            )
         }
-        Spacer(modifier = Modifier.height(7.dp))
-        RegistrationHowEmployee(
-            openScreen = openEntranceEmployeeScreen,
-            text = "Войти"
-        )
     }
 }
 

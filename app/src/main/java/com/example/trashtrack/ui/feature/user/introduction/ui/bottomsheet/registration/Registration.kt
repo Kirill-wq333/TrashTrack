@@ -36,7 +36,7 @@ import com.example.trashtrack.ui.feature.user.introduction.ui.components.Confirm
 import com.example.trashtrack.ui.shared.text.textfield.OutlinedTextFieldComponent
 import com.example.trashtrack.ui.shared.text.textfield.PasswordTextField
 import com.example.trashtrack.ui.shared.text.textfield.PhoneTextField
-import com.example.trashtrack.ui.preferences.SecurePrefsHelper
+//import com.example.trashtrack.ui.preferences.SecurePrefsHelper
 import com.example.trashtrack.ui.shared.button.TTBottom
 import com.example.trashtrack.ui.shared.checkbox.Checkbox
 import com.example.trashtrack.ui.theme.TTTypography
@@ -70,7 +70,7 @@ fun RegistrationContent(
     var isPasswordVisible by remember { mutableStateOf(false) }
     val isChecked = remember { mutableStateOf(false) }
 
-    val securePrefsHelper = remember { SecurePrefsHelper.getInstance(context) }
+//    val securePrefsHelper = remember { SecurePrefsHelper.getInstance(context) }
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -83,7 +83,7 @@ fun RegistrationContent(
             phone = phone,
             name = name,
             email = email,
-            onPhoneChange = { phone = it.take(10) },
+            onPhoneChange = { phone = it.take(11) },
             onEmailChange = { email = it },
             onNameChange = { name = it },
             confirmPassword = confirmPassword,
@@ -115,14 +115,14 @@ fun RegistrationContent(
                 openEntranceScreen = openEntranceScreen,
                 enable = passwordsMatch && password.isNotEmpty() && confirmPassword.isNotEmpty(),
                 onClickNext = {
-                    if (isChecked.value) {
-                        val success = securePrefsHelper.saveUserData(
-                            email = email,
-                            password = password,
-                            name = name,
-                            phone = phone
-                        )
-                    }
+//                    if (isChecked.value) {
+//                        val success = securePrefsHelper.saveUserData(
+//                            email = email,
+//                            password = password,
+//                            name = name,
+//                            phone = phone
+//                        )
+//                    }
                 }
             )
             Spacer(modifier = Modifier.height(11.dp))
@@ -258,6 +258,7 @@ fun Services(
     modifier: Modifier = Modifier
 ) {
     Row(
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(

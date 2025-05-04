@@ -14,7 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.example.trashtrack.ui.preferences.AuthManager
+//import com.example.trashtrack.ui.preferences.AuthManager
 import com.example.trashtrack.ui.shared.button.TTBottom
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
@@ -27,7 +27,7 @@ fun DeleteAccount(
 ) {
     val context = LocalContext.current
 
-    val authManager = remember { AuthManager.getInstance(context) }
+//    val authManager = remember { AuthManager.getInstance(context) }
 
     Column(
         modifier = Modifier
@@ -60,7 +60,10 @@ fun DeleteAccount(
         ) {
             TTBottom(
                 text = "Да",
-                onClick = { authManager.deleteAccount(); openIntroductionScreen() },
+                onClick = {
+//                    authManager.deleteAccount();
+                    openIntroductionScreen()
+                          },
             )
             TTBottom(
                 text = "Отмена",

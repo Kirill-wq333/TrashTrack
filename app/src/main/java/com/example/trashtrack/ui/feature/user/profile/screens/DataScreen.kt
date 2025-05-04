@@ -39,7 +39,7 @@ fun DataScreen(
         email = email,
         onChangeName = { name = it },
         onChangeEmail = { email = it },
-        onChangePhone = { phone = it },
+        onChangePhone = { phone = it.take(11) },
         backButton = backButton
     )
 }

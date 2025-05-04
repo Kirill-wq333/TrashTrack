@@ -33,7 +33,6 @@ import com.example.trashtrack.ui.theme.colors
 fun NavigationBuilder(
     navController: NavHostController,
     setVisibleBottomBarUser: (Boolean) -> Unit,
-    setVisibleBottomBarEmployee: (Boolean) -> Unit,
     paddingValues: PaddingValues
 ) {
     val mockNews = Mock.demoNews

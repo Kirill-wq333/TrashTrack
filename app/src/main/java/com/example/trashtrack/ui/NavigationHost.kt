@@ -18,7 +18,6 @@ fun NavigationHost(
 ) {
     if (navController == null) return
     var visibleBottomBarUser by remember { mutableStateOf(false) }
-    var visibleBottomBarEmployee by remember { mutableStateOf(false) }
 
     HostScaffold(
         bottomBar = {
@@ -33,7 +32,6 @@ fun NavigationHost(
             navController = navController,
             paddingValues = paddingValues,
             setVisibleBottomBarUser = { visible -> visibleBottomBarUser = visible },
-            setVisibleBottomBarEmployee = { visible -> visibleBottomBarEmployee = visible }
         )
     }
 }

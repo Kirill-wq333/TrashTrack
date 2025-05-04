@@ -26,14 +26,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.R
 import com.example.trashtrack.ui.shared.text.textfield.OutlinedTextFieldComponent
 import com.example.trashtrack.ui.feature.user.introduction.ui.bottomsheet.entrance.HeadingAndImage
+import com.example.trashtrack.ui.feature.user.introduction.ui.bottomsheet.registration.Services
 import com.example.trashtrack.ui.shared.button.back.BackButton
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 import com.example.trashtrack.ui.theme.spacers
+
+@Preview
+@Composable
+private fun EntranceEmployeePreview() {
+    EntranceEmployee(
+        openRegistrationEmployeeScreen = {},
+        backButton = {}
+    )
+}
 
 @Composable
 fun EntranceEmployee(
@@ -45,7 +56,7 @@ fun EntranceEmployee(
     var email by remember { mutableStateOf("") }
 
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.Start
     ) {
         BackButton(
             backButton = backButton,
@@ -63,13 +74,17 @@ fun EntranceEmployee(
 
         )
         Spacer(modifier = Modifier.height(37.dp))
-        TTButtonAndText()
-        Spacer(modifier = Modifier.height(20.dp))
-        Account(
-            openRegistrationEmployeeScreen = openRegistrationEmployeeScreen
-        )
-        Spacer(modifier = Modifier.height(13.dp))
-        Companion()
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            TTButtonAndText()
+            Spacer(modifier = Modifier.height(20.dp))
+            Account(
+                openRegistrationEmployeeScreen = openRegistrationEmployeeScreen
+            )
+            Spacer(modifier = Modifier.height(13.dp))
+            Services(modifier = Modifier.padding(bottom = 36.dp))
+        }
     }
 }
 
@@ -127,29 +142,6 @@ fun Account(
             style = TTTypography.titleLarge,
             modifier = Modifier
                 .clickable(onClick = openRegistrationEmployeeScreen)
-        )
-    }
-}
-
-@Composable
-fun Companion() {
-    Row(
-        modifier = Modifier
-            .padding(bottom = 36.dp)
-    ) {
-        Icon(
-            painter = painterResource(R.drawable.ic_google),
-            contentDescription = null,
-            modifier = Modifier
-                .size(24.dp)
-        )
-        Spacer(modifier = Modifier.width(14.dp))
-        Icon(
-            painter = painterResource(R.drawable.vk),
-            contentDescription = null,
-            tint = Color.Blue.copy(.8f),
-            modifier = Modifier
-                .size(31.4.dp, 19.7.dp)
         )
     }
 }

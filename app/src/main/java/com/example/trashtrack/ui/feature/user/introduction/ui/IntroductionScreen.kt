@@ -144,11 +144,11 @@ fun Introduction(
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
             .background(color = color),
-        contentAlignment = Alignment.Center
     ) {
         Column(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
             HeaderIntroduction(
                 visibleBackButton = item.backButtonVisible,
