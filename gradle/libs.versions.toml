@@ -1,5 +1,5 @@
 [versions]
-agp = "8.8.2"
+agp = "8.9.1"
 androidxComposeBom = "2025.03.01"
 androidxJunit = "1.2.1"
 animation = "1.7.8"
