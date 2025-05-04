@@ -40,6 +40,7 @@ fun OutlinedTextFieldComponent(
     nameTextField: String,
     padding: Dp = 16.dp,
     isErrorText: String,
+    readOnly: Boolean = false,
     text: String,
     placeholder: @Composable (() -> Unit)? = null,
     onTextChange: (String) -> Unit
@@ -66,6 +67,7 @@ fun OutlinedTextFieldComponent(
                 onTextChange(it)
                 isError = it.isEmpty()
             },
+            readOnly = readOnly,
             label = {
                 Text(
                     text = nameTextField,

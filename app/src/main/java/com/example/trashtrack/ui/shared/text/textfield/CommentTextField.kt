@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.trashtrack.ui.theme.TTTypography
@@ -26,7 +27,9 @@ import com.example.trashtrack.ui.theme.colors
 
 @Composable
 fun CommentTextField(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    startPadding: Dp = 25.dp,
+    endPadding: Dp = 23.dp
 ) {
     var comment by remember { mutableStateOf("") }
     val focusManager = LocalFocusManager.current
@@ -41,7 +44,7 @@ fun CommentTextField(
         ) },
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 25.dp, end = 23.dp)
+            .padding(start = startPadding, end = endPadding)
             .heightIn(min = 56.dp, max = 180.dp),
         singleLine = false,
         maxLines = 5,

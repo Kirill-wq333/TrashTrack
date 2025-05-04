@@ -52,8 +52,8 @@ fun BackButton(
             contentDescription = null,
             tint = Color.Black,
             modifier = modifier
-                .size(sizeIcon)
                 .padding(paddingIcon)
+                .size(sizeIcon)
         )
     }
 }

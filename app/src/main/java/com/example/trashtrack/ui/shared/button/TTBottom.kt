@@ -60,7 +60,7 @@ fun TTBottomBorder(
     text: String,
     colorBorder: Color = Color(0xFFEDECEC),
     backgroundColor: Color = Color.Unspecified,
-    enable: Boolean = false,
+    enable: Boolean = true,
     style: TextStyle = TTTypography.headlineLarge
 ) {
     Box(
