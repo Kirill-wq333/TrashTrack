@@ -22,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
@@ -32,14 +33,48 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.R
+import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
 import com.example.trashtrack.ui.shared.button.TTBottom
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+
+@Preview
+@Composable
+private fun EjectionTimeBSPreview() {
+    val textList = listOf(
+        "10:00",
+        "11:00",
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+        "18:00",
+        "19:00",
+        "20:00",
+        "21:00",
+        "22:00"
+    )
+
+    var time by remember { mutableStateOf("") }
+
+    TTModalBottomSheet(
+        onDismissRequest = {}
+    ) {
+        EjectionTimeBS(
+            times = textList,
+            selectedText = time,
+            onSave = {time = it}
+        )
+    }
+}
 
 @Composable
 fun EjectionTimeBS(

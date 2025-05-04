@@ -10,10 +10,24 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
 import com.example.trashtrack.ui.shared.button.TTBottom
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
+
+@Preview
+@Composable
+private fun ErrorAddressPreview() {
+    TTModalBottomSheet(
+        onDismissRequest = {}
+    ) {
+        ErrorAddress(
+            onBack = {}
+        )
+    }
+}
 
 @Composable
 fun ErrorAddress(

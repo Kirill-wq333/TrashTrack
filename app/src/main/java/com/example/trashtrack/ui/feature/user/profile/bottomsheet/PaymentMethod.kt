@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -41,14 +42,16 @@ fun PaymentMethod(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 7.dp, end = 22.dp, bottom = 53.dp),
-        horizontalAlignment = Alignment.Start
+        horizontalAlignment = Alignment.Start,
+        verticalArrangement = Arrangement.spacedBy(18.dp)
     ) {
         Text(
             text = "Способ оплаты",
             color = MaterialTheme.colors.neutral950,
             style = TTTypography.headlineLarge
         )
-        Column {
+
+        Column(verticalArrangement = Arrangement.spacedBy(9.dp)) {
             IconAndTextItem(
                 text = "Банковская карта",
                 icon = R.drawable.ic_card_bank
@@ -81,7 +84,8 @@ private fun IconAndTextItem(
             Icon(
                 painter = painterResource(id = icon),
                 contentDescription = null,
-                tint = tint
+                tint = tint,
+                modifier = Modifier.size(width = 16.dp, height = 20.dp)
             )
         } else {
             Icon(

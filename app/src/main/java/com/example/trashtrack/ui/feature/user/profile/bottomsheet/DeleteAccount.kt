@@ -13,11 +13,28 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
 //import com.example.trashtrack.ui.preferences.AuthManager
 import com.example.trashtrack.ui.shared.button.TTBottom
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
+
+@Preview
+@Composable
+private fun DeleteAccountPreview() {
+    TTModalBottomSheet(
+        onDismissRequest = {}
+    ) {
+        DeleteAccount(
+            openProfileScreen = {},
+            openIntroductionScreen = {}
+        )
+    }
+}
+
 
 @Composable
 fun DeleteAccount(
@@ -49,7 +66,8 @@ fun DeleteAccount(
             Text(
                 text = "Вы уверены, что хотите удалить аккаунт?",
                 color = MaterialTheme.colors.neutral500,
-                style = TTTypography.titleLarge
+                style = TTTypography.titleLarge,
+                textAlign = TextAlign.Center
             )
         }
         Spacer(modifier = Modifier.height(49.dp))
