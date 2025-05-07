@@ -23,9 +23,11 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.example.trashtrack.R
 import com.example.trashtrack.ui.theme.TTTypography
 import kotlinx.coroutines.delay
 
@@ -79,7 +81,7 @@ fun TimerProgressBar(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "${(currentPercentage * 100).toInt()}%",
+                text =  stringResource(R.string.progress_bar_title,(currentPercentage * 100).toInt()),
                 color = progressTextColor,
                 style = TTTypography.headlineLarge,
                 modifier = Modifier.align(Alignment.Start)

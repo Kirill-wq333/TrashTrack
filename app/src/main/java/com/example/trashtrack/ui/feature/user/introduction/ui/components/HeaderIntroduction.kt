@@ -6,14 +6,17 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.trashtrack.R
 import com.example.trashtrack.ui.shared.button.back.BackButton
 import com.example.trashtrack.ui.theme.TTTypography
+import com.example.trashtrack.ui.theme.colors
 
 @Composable
 fun HeaderIntroduction(
@@ -49,9 +52,9 @@ fun HeaderIntroduction(
                 contentAlignment = Alignment.CenterEnd
             ) {
                 Text(
-                    text = "Пропустить",
+                    text = stringResource(R.string.skip),
                     style = TTTypography.titleLarge,
-                    color = Color(0xFF262626),
+                    color = MaterialTheme.colors.neutral800,
                     modifier = Modifier
                         .clickable(
                             onClick = skipButton

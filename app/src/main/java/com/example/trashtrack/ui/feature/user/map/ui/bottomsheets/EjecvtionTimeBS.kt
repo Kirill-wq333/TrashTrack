@@ -1,5 +1,6 @@
 package com.example.trashtrack.ui.feature.user.map.ui.bottomsheets
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -7,7 +8,6 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -38,7 +38,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.R
 import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
-import com.example.trashtrack.ui.shared.button.TTBottom
+import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 import kotlinx.coroutines.CoroutineScope
@@ -76,6 +76,7 @@ private fun EjectionTimeBSPreview() {
     }
 }
 
+@SuppressLint("ConfigurationScreenWidthHeight")
 @Composable
 fun EjectionTimeBS(
     onSave: (String) -> Unit,
@@ -122,10 +123,9 @@ fun EjectionTimeBS(
             padding = padding,
             itemWidth = itemWidth,
             onItemSelected = onItemSelected,
-            spacing = spacing,
         )
         Spacer(modifier = Modifier.height(28.dp))
-        TTBottom(
+        TTButton(
             modifier = Modifier
                 .padding(start = 18.dp,end = 26.dp, bottom = 23.dp),
             text = "Указать",
@@ -210,7 +210,6 @@ private fun Times(
     scrollState: ScrollState,
     padding: Dp,
     itemWidth: Dp,
-    spacing: Dp,
 ) {
 
     Row(

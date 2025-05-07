@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
-import com.example.trashtrack.ui.shared.button.TTBottom
+import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.shared.text.textfield.OutlinedTextFieldComponent
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
@@ -33,7 +33,6 @@ private fun SearchAddressOnMapPreview() {
 
 @Composable
 fun SearchAddressOnMap(
-    modifier: Modifier = Modifier,
     nextOpenData: () -> Unit
 ) {
     var address by remember { mutableStateOf("") }
@@ -69,7 +68,7 @@ fun SearchAddressOnMap(
                 }
             )
             Spacer(modifier = Modifier.height(19.dp))
-            TTBottom(
+            TTButton(
                 modifier = Modifier.padding(start = 10.dp),
                 text = "Потвердить адрес",
                 onClick = nextOpenData,

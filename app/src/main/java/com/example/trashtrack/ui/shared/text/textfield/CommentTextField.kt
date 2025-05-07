@@ -27,7 +27,6 @@ import com.example.trashtrack.ui.theme.colors
 
 @Composable
 fun CommentTextField(
-    modifier: Modifier = Modifier,
     startPadding: Dp = 25.dp,
     endPadding: Dp = 23.dp
 ) {

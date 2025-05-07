@@ -34,11 +34,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.trashtrack.R
 import com.example.trashtrack.mock.DataClasses
 import com.example.trashtrack.mock.Mock
 import com.example.trashtrack.ui.feature.user.introduction.ui.components.HeaderIntroduction
@@ -89,7 +91,8 @@ fun IntroductionScreen(
             EntranceContent(
                 openEntranceScreen = { openEntranceEmployeeScreen = true; hide() },
                 openRegistrationScreen = { openRegistration = true; hide() },
-                openMainScreen = { openMainScreen(); hide() }
+                openScreen = { openMainScreen(); hide() },
+                visibleBoxs = true
             )
         }
     }
@@ -137,7 +140,7 @@ fun Introduction(
     color: Color
 ) {
     var activeCircle by remember { mutableIntStateOf(0) }
-    var item = introduction.getOrNull(activeCircle) ?: return
+    val item = introduction.getOrNull(activeCircle) ?: return
 
     Box(
         modifier = Modifier
@@ -244,7 +247,7 @@ fun BottomBar(
 
         )
         Spacer(modifier = Modifier.height(MaterialTheme.spacers.xxLarge))
-        TTButton(
+        TTButtons(
             nextButtonVisible = nextButtonVisible,
             onClickNext = onClickNext,
             openEntranceScreen = openEntranceScreen,
@@ -254,7 +257,7 @@ fun BottomBar(
 }
 
 @Composable
-fun TTButton(
+fun TTButtons(
     nextButtonVisible: Boolean,
     onClickNext: () -> Unit,
     openRegistrationScreen: () -> Unit,
@@ -278,7 +281,7 @@ fun TTButton(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "Создать учётную запись",
+                    text = stringResource(R.string.create_account),
                     color = Color.White,
                     style = TTTypography.headlineLarge,
                     modifier = Modifier
@@ -290,13 +293,13 @@ fun TTButton(
 
             Row {
                 Text(
-                    text = "или",
+                    text = stringResource(R.string.or),
                     color = Color.Black,
                     style = TTTypography.titleLarge,
                 )
                 Spacer(Modifier.width(3.dp))
                 Text(
-                    text = "Войти",
+                    text = stringResource(R.string.entrance),
                     color = Color.Black,
                     textDecoration = TextDecoration.Underline,
                     style = TTTypography.titleLarge,
@@ -318,7 +321,7 @@ fun TTButton(
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "Следующая",
+                text = stringResource(R.string.next_screen_button),
                 color = Color.White,
                 style = TTTypography.headlineLarge,
                 modifier = Modifier

@@ -13,7 +13,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
-import com.example.trashtrack.ui.shared.button.TTBottom
+import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
@@ -51,12 +51,12 @@ fun DeleteSubscriptionBS(
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(49.dp))
-        TTBottom(
+        TTButton(
             text = "Да",
             onClick = {}
         )
         Spacer(modifier = Modifier.height(11.dp))
-        TTBottom(
+        TTButton(
             text = "Отменить",
             onClick = backClick,
             color = MaterialTheme.colors.neutral400

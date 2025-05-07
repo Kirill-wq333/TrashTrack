@@ -20,6 +20,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -89,7 +90,7 @@ fun ALittleMoreScreen(
             )
             Spacer(modifier = Modifier.height(54.dp))
             Text(
-                text = "Ещё немного...",
+                text = stringResource(R.string.a_little_more),
                 color = Color.White,
                 fontFamily = FontFamily(listOf(Font(R.font.manrope_extrabold))),
                 fontSize = 24.sp,

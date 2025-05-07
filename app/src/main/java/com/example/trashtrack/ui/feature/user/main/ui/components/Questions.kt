@@ -35,9 +35,7 @@ private fun QuestionsPreview() {
 }
 
 @Composable
-fun Questions(
-    modifier: Modifier = Modifier
-) {
+fun Questions() {
 
     Box(
         modifier = Modifier

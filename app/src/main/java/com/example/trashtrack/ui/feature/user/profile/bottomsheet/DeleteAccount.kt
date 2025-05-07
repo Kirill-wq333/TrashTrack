@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -18,7 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
 //import com.example.trashtrack.ui.preferences.AuthManager
-import com.example.trashtrack.ui.shared.button.TTBottom
+import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
@@ -76,14 +75,14 @@ fun DeleteAccount(
                 .fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(11.dp)
         ) {
-            TTBottom(
+            TTButton(
                 text = "Да",
                 onClick = {
 //                    authManager.deleteAccount();
                     openIntroductionScreen()
                           },
             )
-            TTBottom(
+            TTButton(
                 text = "Отмена",
                 onClick = openProfileScreen,
                 color = MaterialTheme.colors.neutral400,

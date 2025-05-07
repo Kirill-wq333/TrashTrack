@@ -28,7 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.R
-import com.example.trashtrack.ui.shared.button.TTBottom
+import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.shared.text.textfield.CommentTextField
 import com.example.trashtrack.ui.shared.text.textfield.OutlinedTextFieldComponent
 import com.example.trashtrack.ui.theme.TTTypography
@@ -104,7 +104,7 @@ private fun Content(
                 )
             }
         }
-        TTBottom(
+        TTButton(
             text = "Мои подписки",
             onClick = {},
             modifier = Modifier
@@ -165,9 +165,7 @@ private fun Header() {
 }
 
 @Composable
-fun EjectionTimeRead(
-    modifier: Modifier = Modifier
-) {
+fun EjectionTimeRead() {
     Column(
         modifier = Modifier
             .padding(start = 27.dp),

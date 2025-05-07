@@ -21,7 +21,6 @@ object Color {
     val green600 = Color(0xFF16A34A)
     val green500 = Color(0xFF22C55E)
     val green200 = Color(0xFFBBF7D0)
-    val greenButton = Color(0xFF006B05)
 
     val red600 = Color(0xFFDC2626)
 

@@ -20,7 +20,7 @@ import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
 @Composable
-fun TTBottom(
+fun TTButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
     text: String,
@@ -54,7 +54,7 @@ fun TTBottom(
 }
 
 @Composable
-fun TTBottomBorder(
+fun TTButtonBorder(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
     text: String,

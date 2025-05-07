@@ -1,18 +1,18 @@
 package com.example.trashtrack.ui.preferences
 
-import android.content.Context
-import android.content.SharedPreferences
-import android.util.Base64
-import android.util.Log
-import androidx.core.content.edit
-import androidx.security.crypto.EncryptedSharedPreferences
-import androidx.security.crypto.MasterKey
-import java.security.KeyStore
-import java.security.MessageDigest
-import java.security.SecureRandom
-import javax.crypto.AEADBadTagException
-import javax.crypto.SecretKeyFactory
-import javax.crypto.spec.PBEKeySpec
+//import android.content.Context
+//import android.content.SharedPreferences
+//import android.util.Base64
+//import android.util.Log
+//import androidx.core.content.edit
+//import androidx.security.crypto.EncryptedSharedPreferences
+//import androidx.security.crypto.MasterKey
+//import java.security.KeyStore
+//import java.security.MessageDigest
+//import java.security.SecureRandom
+//import javax.crypto.AEADBadTagException
+//import javax.crypto.SecretKeyFactory
+//import javax.crypto.spec.PBEKeySpec
 
 //class SecurePrefsHelper (context: Context) {
 //    private val masterKey = MasterKey.Builder(context, "master_key_alias")

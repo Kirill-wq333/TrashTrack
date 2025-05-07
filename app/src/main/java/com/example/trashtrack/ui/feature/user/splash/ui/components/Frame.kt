@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,16 +25,15 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun Frame(
-    modifier: Modifier = Modifier,
     width: Float,
     maxHistorySize: Int,
     points: List<Pair<Float,Float>>,
     colorLine: Color,
 ) {
-    var currentIndex by remember { mutableStateOf(0) }
+    var currentIndex by remember { mutableIntStateOf(0) }
     val positionHistory = remember { mutableStateListOf<Offset>() }
     var animationFinished by remember { mutableStateOf(false) }
-    var showLine by remember { mutableStateOf(true) }
+    val showLine by remember { mutableStateOf(true) }
 
     val transition = updateTransition(targetState = currentIndex, label = "pointTransition")
 

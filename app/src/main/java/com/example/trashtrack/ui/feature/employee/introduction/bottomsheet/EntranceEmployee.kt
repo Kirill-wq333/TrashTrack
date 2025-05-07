@@ -1,42 +1,19 @@
 package com.example.trashtrack.ui.feature.employee.introduction.bottomsheet
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.trashtrack.R
-import com.example.trashtrack.ui.shared.text.textfield.OutlinedTextFieldComponent
-import com.example.trashtrack.ui.feature.user.introduction.ui.bottomsheet.entrance.HeadingAndImage
-import com.example.trashtrack.ui.feature.user.introduction.ui.bottomsheet.registration.Services
+import com.example.trashtrack.ui.feature.user.introduction.ui.bottomsheet.entrance.EntranceContent
 import com.example.trashtrack.ui.shared.button.back.BackButton
-import com.example.trashtrack.ui.theme.TTTypography
-import com.example.trashtrack.ui.theme.colors
-import com.example.trashtrack.ui.theme.spacers
+import com.example.trashtrack.ui.shared.text.textfield.OutlinedTextFieldComponent
 
 @Preview
 @Composable
@@ -54,137 +31,28 @@ fun EntranceEmployee(
     openRegistrationEmployeeScreen: () -> Unit,
     backButton: () -> Unit
 ) {
-    var password by remember { mutableStateOf("") }
     var pass by remember { mutableStateOf("") }
-    var email by remember { mutableStateOf("") }
 
     Column(
+        verticalArrangement = Arrangement.spacedBy(13.dp),
         horizontalAlignment = Alignment.Start
     ) {
         BackButton(
             backButton = backButton,
         )
-        Spacer(modifier = Modifier.height(13.dp))
-        HeadingAndImage()
-        Spacer(modifier = Modifier.height(MaterialTheme.spacers.medium))
-        ColumnsTextFields(
-            password = password,
-            pass = pass,
-            email = email,
-            onPasswordChange = { password = it },
-            onEmailChange = { email = it },
-            onPassChange = { pass = it }
-
-        )
-        Spacer(modifier = Modifier.height(37.dp))
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            TTButtonAndText()
-            Spacer(modifier = Modifier.height(20.dp))
-            Account(
-                openRegistrationEmployeeScreen = openRegistrationEmployeeScreen
-            )
-            Spacer(modifier = Modifier.height(13.dp))
-            Services(modifier = Modifier.padding(bottom = 36.dp))
-        }
-    }
-}
-
-@Composable
-private fun ColumnsTextFields(
-    password: String,
-    pass: String,
-    email: String,
-    onPasswordChange: (String) -> Unit,
-    onEmailChange: (String) -> Unit,
-    onPassChange: (String) -> Unit,
-
-) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(25.dp)
-    ) {
-        OutlinedTextFieldComponent(
-            nameTextField = "Email",
-            isErrorText = "Неверная почта!",
-            text = email,
-            onTextChange = onEmailChange
-        )
-        OutlinedTextFieldComponent(
-            nameTextField = "Пароль",
-            isErrorText = "Не правильно введен пароль!",
-            text = password,
-            onTextChange = onPasswordChange
-        )
-        OutlinedTextFieldComponent(
-            nameTextField = "Номер пропуска",
-            isErrorText = "Номер пропуска неверен!",
-            text = pass,
-            onTextChange = onPassChange
-        )
-    }
-}
-
-@Composable
-fun Account(
-    openRegistrationEmployeeScreen: () -> Unit
-) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            text = "У вас нету аккаунта?",
-            color = Color.Black,
-            style = TTTypography.titleLarge
-        )
-        Spacer(modifier = Modifier.width(5.dp))
-        Text(
-            text = "Зарегистрируйтесь",
-            color = Color.Black,
-            textDecoration = TextDecoration.Underline,
-            style = TTTypography.titleLarge,
-            modifier = Modifier
-                .clickable(onClick = openRegistrationEmployeeScreen)
-        )
-    }
-}
-
-@Composable
-private fun TTButtonAndText() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp),
-        horizontalAlignment = Alignment.Start
-    ) {
-        TTBottom()
-        Spacer(modifier = Modifier.height(MaterialTheme.spacers.small))
-        Text(
-            text = "Забыли пароль?",
-            color = MaterialTheme.colors.neutral500,
-            style = TTTypography.titleSmall,
-        )
-    }
-}
-
-@Composable
-private fun TTBottom() {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(onClick = {})
-            .background(
-                color = Color(0xFF16A34A),
-                shape = RoundedCornerShape(12.dp)
-            ),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = "Войти",
-            color = Color.White,
-            style = TTTypography.headlineLarge,
-            modifier = Modifier
-                .padding(vertical = 13.dp)
+        EntranceContent(
+            openRegistrationScreen = openRegistrationEmployeeScreen,
+            openScreen = {},
+            visibleBoxs = false,
+            visibleContent = true,
+            content = {
+                OutlinedTextFieldComponent(
+                    nameTextField = "Номер пропуска",
+                    isErrorText = "Номер пропуска неверен!",
+                    onTextChange = {pass = it},
+                    text = pass
+                )
+            },
         )
     }
 }

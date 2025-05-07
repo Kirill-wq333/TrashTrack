@@ -1,6 +1,6 @@
 package com.example.trashtrack.ui.preferences
 
-import android.content.Context
+//import android.content.Context
 
 //class AuthManager(context: Context) {
 //

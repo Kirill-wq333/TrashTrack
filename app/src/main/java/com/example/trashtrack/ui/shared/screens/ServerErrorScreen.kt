@@ -18,7 +18,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.R
-import com.example.trashtrack.ui.shared.button.TTBottomBorder
+import com.example.trashtrack.ui.shared.button.TTButtonBorder
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
@@ -31,9 +31,7 @@ private fun ServerErrorScreenPreview() {
 }
 
 @Composable
-fun ServerErrorScreen(
-    modifier: Modifier = Modifier
-) {
+fun ServerErrorScreen() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -66,7 +64,7 @@ fun ServerErrorScreen(
                 textAlign = TextAlign.Center
             )
         }
-        TTBottomBorder(
+        TTButtonBorder(
             text = "Обновите страницу",
             onClick = {},
             style = TTTypography.titleLarge,

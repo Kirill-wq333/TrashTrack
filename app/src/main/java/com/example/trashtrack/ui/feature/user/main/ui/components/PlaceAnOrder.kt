@@ -9,8 +9,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.example.trashtrack.ui.shared.button.TTBottom
+import com.example.trashtrack.R
+import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
@@ -26,13 +28,13 @@ fun PlaceAnOrder(
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         Text(
-            text = "Вывезим мусор из жилых помещений за вас",
+            text = stringResource(R.string.garbage_collection_from_residential_buildings),
             color = MaterialTheme.colors.black,
             style = TTTypography.headlineLarge
         )
-        TTBottom(
+        TTButton(
             onClick = openPlaceAnOrder,
-            text = "Сделать заказ",
+            text = stringResource(R.string.order_button),
         )
     }
 }

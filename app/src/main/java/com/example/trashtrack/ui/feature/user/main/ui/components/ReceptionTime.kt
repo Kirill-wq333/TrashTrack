@@ -15,11 +15,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.trashtrack.R
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
@@ -33,9 +35,7 @@ private fun ReceptionTimePreview() {
 
 
 @Composable
-fun ReceptionTime(
-    modifier: Modifier = Modifier
-) {
+fun ReceptionTime() {
     val text = buildAnnotatedString {
         withStyle(style = SpanStyle(color = MaterialTheme.colors.black)) {
             append("Trash")
@@ -62,9 +62,7 @@ fun ReceptionTime(
 }
 
 @Composable
-fun Time(
-    modifier: Modifier = Modifier
-) {
+fun Time() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -81,7 +79,7 @@ fun Time(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Мы принимаем заказы",
+                text = stringResource(R.string.order_main),
                 color = MaterialTheme.colors.black,
                 style = TTTypography.titleLarge
             )
@@ -95,7 +93,7 @@ fun Time(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "10:00-22:00",
+                    text = stringResource(R.string.time_main),
                     color = MaterialTheme.colors.white,
                     style = TTTypography.displaySmall,
                     modifier = Modifier
@@ -109,7 +107,7 @@ fun Time(
             }
             Spacer(modifier = Modifier.height(10.dp))
             Text(
-                text = "По будням",
+                text = stringResource(R.string.on_weekdays),
                 color = MaterialTheme.colors.green600,
                 style = TTTypography.titleLarge
             )

@@ -11,10 +11,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -28,12 +26,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.R
+import com.example.trashtrack.ui.feature.user.introduction.ui.bottomsheet.registration.Services
+import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.shared.text.textfield.OutlinedTextFieldComponent
-import com.example.trashtrack.ui.shared.button.TTBottom
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 import com.example.trashtrack.ui.theme.spacers
@@ -45,17 +45,21 @@ private fun EntrancePreview() {
         EntranceContent(
             openEntranceScreen = {},
             openRegistrationScreen = {},
-            openMainScreen = {},
-
+            openScreen = {},
+            content = {},
+            visibleBoxs = true
         )
     }
 }
 
 @Composable
 fun EntranceContent(
-    openEntranceScreen: () -> Unit,
+    openEntranceScreen: () -> Unit = {},
     openRegistrationScreen: () -> Unit,
-    openMainScreen: () -> Unit,
+    openScreen: () -> Unit,
+    content: @Composable () -> Unit = {},
+    visibleBoxs: Boolean,
+    visibleContent: Boolean = false
 ) {
     var password by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -69,34 +73,37 @@ fun EntranceContent(
         Spacer(modifier = Modifier.height(MaterialTheme.spacers.medium))
         Column{
             OutlinedTextFieldComponent(
-                nameTextField = "Email",
-                isErrorText = "Неверная почта!",
+                nameTextField = stringResource(R.string.email_text_field_label),
+                isErrorText = stringResource(R.string.error_email),
                 text = email,
                 onTextChange = { email = it }
             )
             Spacer(modifier = Modifier.height(25.dp))
             OutlinedTextFieldComponent(
-                nameTextField = "Пароль",
-                isErrorText = "Пароль не надёжный!",
+                nameTextField = stringResource(R.string.entering_a_password),
+                isErrorText = stringResource(R.string.error_entering_a_password),
                 text = password,
                 onTextChange = { password = it }
             )
+            if(visibleContent) {
+                Spacer(modifier = Modifier.height(25.dp))
+                content()
+            }
         }
         Spacer(modifier = Modifier.height(37.dp))
-        TTButton(
-            openMainScreen = openMainScreen,
-            enable = true
+        TTButtons(
+            openMainScreen = openScreen,
         )
         Spacer(modifier = Modifier.height(30.2.dp))
         Row {
             Text(
-                text = "У вас нету аккаунта?",
+                text = stringResource(R.string.you_have_not_account),
                 color = Color.Black,
                 style = TTTypography.titleLarge
             )
             Spacer(modifier = Modifier.width(5.dp))
             Text(
-                text = "Зарегистрируйтесь",
+                text = stringResource(R.string.register_introduction),
                 color = Color.Black,
                 textDecoration = TextDecoration.Underline,
                 style = TTTypography.titleLarge,
@@ -105,35 +112,19 @@ fun EntranceContent(
             )
         }
         Spacer(modifier = Modifier.height(12.5.dp))
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Icon(
-                painter = painterResource(R.drawable.ic_google),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(24.dp)
-            )
-            Spacer(modifier = Modifier.width(14.dp))
-            Icon(
-                painter = painterResource(R.drawable.vk),
-                contentDescription = null,
-                tint = Color.Blue.copy(.8f),
-                modifier = Modifier
-                    .size(31.4.dp, 19.7.dp)
+        Services()
+        Spacer(modifier = Modifier.height(11.dp))
+        if (visibleBoxs) {
+            Boxs(
+                openEntranceScreen = openEntranceScreen
             )
         }
-        Spacer(modifier = Modifier.height(11.dp))
-        Boxs(
-            openEntranceScreen = openEntranceScreen
-        )
     }
 }
 
 @Composable
-private fun TTButton(
+private fun TTButtons(
     openMainScreen: () -> Unit,
-    enable: Boolean,
 ) {
     Column(
         modifier = Modifier
@@ -141,15 +132,14 @@ private fun TTButton(
             .padding(horizontal = 16.dp),
         horizontalAlignment = Alignment.Start
     ) {
-        TTBottom(
+        TTButton(
             onClick = openMainScreen,
-            text = "Войти",
-            enable = enable,
+            text = stringResource(R.string.entrance_button),
             color = MaterialTheme.colors.green600
         )
         Spacer(modifier = Modifier.height(MaterialTheme.spacers.small))
         Text(
-            text = "Забыли пароль?",
+            text = stringResource(R.string.forgot_your_password),
             color = MaterialTheme.colors.neutral500,
             style = TTTypography.titleSmall,
         )
@@ -175,7 +165,7 @@ private fun Boxs(
                 )
         ) {
             Text(
-                text = "Войти",
+                text = stringResource(R.string.entrance_button),
                 textDecoration = TextDecoration.Underline,
                 color = Color.Black,
                 style = TTTypography.titleLarge,
@@ -184,7 +174,7 @@ private fun Boxs(
             )
             Spacer(modifier = Modifier.width(3.dp))
             Text(
-                text = "как сотрудник",
+                text = stringResource(R.string.employee_introduction_title),
                 color = Color.Black,
                 style = TTTypography.titleLarge
             )
@@ -199,7 +189,7 @@ fun HeadingAndImage() {
         verticalArrangement = Arrangement.spacedBy(22.dp)
     ) {
         Text(
-            text = "Вход в систему",
+            text = stringResource(R.string.entrance_in_system),
             color = Color.Black,
             style = TTTypography.headlineLarge
         )

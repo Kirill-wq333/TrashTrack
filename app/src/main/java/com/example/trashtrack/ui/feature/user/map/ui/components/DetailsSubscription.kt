@@ -18,12 +18,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -40,7 +40,7 @@ import com.example.trashtrack.mock.DataClasses
 import com.example.trashtrack.mock.Mock
 import com.example.trashtrack.ui.feature.user.map.ui.bottomsheets.EjectionTimeBS
 import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
-import com.example.trashtrack.ui.shared.button.TTBottom
+import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.shared.button.back.BackButton
 import com.example.trashtrack.ui.shared.text.textfield.CommentTextField
 import com.example.trashtrack.ui.shared.text.textfield.DateTextField
@@ -80,7 +80,7 @@ fun DetailsSubscription(
     var openElectionTimeBS by remember { mutableStateOf(false) }
     var date by remember { mutableStateOf("") }
     var time by remember { mutableStateOf("") }
-    var currentIndex by remember { mutableStateOf(0) }
+    val currentIndex by remember { mutableIntStateOf(0) }
 
     DetailsSubscriptionContent(
         color = color,
@@ -315,9 +315,7 @@ fun EjectionTime(
 }
 
 @Composable
-fun SummaryAndBottom(
-    modifier: Modifier = Modifier
-) {
+fun SummaryAndBottom() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -366,7 +364,7 @@ fun SummaryAndBottom(
             }
         }
         Spacer(modifier = Modifier.height(19.dp))
-        TTBottom(
+        TTButton(
             onClick = {},
             text = "Перейти к оплате",
         )

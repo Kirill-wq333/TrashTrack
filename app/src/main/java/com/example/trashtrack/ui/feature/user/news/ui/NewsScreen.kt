@@ -1,6 +1,5 @@
 package com.example.trashtrack.ui.feature.user.news.ui
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

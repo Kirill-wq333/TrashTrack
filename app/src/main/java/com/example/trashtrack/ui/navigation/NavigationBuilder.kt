@@ -8,10 +8,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -91,7 +87,7 @@ fun NavigationBuilder(
             route = "${AppRoutes.NEWS}/{newsId}",
             arguments = listOf(navArgument("newsId") { type = NavType.IntType })
         ) { backStackEntry ->
-            var newsId = backStackEntry.arguments?.getInt("newsId") ?: return@composable
+            val newsId = backStackEntry.arguments?.getInt("newsId") ?: return@composable
 
             NewsScreen(
                 newsId = newsId,

@@ -21,9 +21,7 @@ import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
 @Composable
-fun TechnicalWorksScreen(
-    modifier: Modifier = Modifier
-) {
+fun TechnicalWorksScreen() {
     Column(
         modifier = Modifier
             .fillMaxWidth()

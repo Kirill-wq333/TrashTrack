@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
-import com.example.trashtrack.ui.shared.button.TTBottom
+import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
@@ -50,7 +50,7 @@ fun PaymentFunctionNotValid(
             style = TTTypography.titleLarge
         )
         Spacer(modifier = Modifier.height(21.dp))
-        TTBottom(
+        TTButton(
             text = "ОК",
             onClick = {}
         )

@@ -25,8 +25,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,7 +37,7 @@ import com.example.trashtrack.ui.shared.text.textfield.OutlinedTextFieldComponen
 import com.example.trashtrack.ui.shared.text.textfield.PasswordTextField
 import com.example.trashtrack.ui.shared.text.textfield.PhoneTextField
 //import com.example.trashtrack.ui.preferences.SecurePrefsHelper
-import com.example.trashtrack.ui.shared.button.TTBottom
+import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.shared.checkbox.Checkbox
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
@@ -57,9 +57,9 @@ private fun RegistrationPreview() {
 @Composable
 fun RegistrationContent(
     openEntranceScreen: () -> Unit,
-    openRegisterEmployeeScreen: () -> Unit
+    openRegisterEmployeeScreen: () -> Unit,
+    content: @Composable () -> Unit = {}
 ) {
-    val context = LocalContext.current
 
     var password by remember { mutableStateOf("") }
     var name by remember { mutableStateOf("") }
@@ -91,7 +91,8 @@ fun RegistrationContent(
             onVisibilityChange = { isPasswordVisible = !isPasswordVisible },
             onConfirmPasswordChange = { confirmPassword = it },
             isPasswordVisible = isPasswordVisible,
-            passwordsMatch = passwordsMatch
+            passwordsMatch = passwordsMatch,
+            content = content
         )
 
         Spacer(modifier = Modifier.height(11.dp))
@@ -104,7 +105,7 @@ fun RegistrationContent(
             Checkbox(
                 modifier = Modifier
                     .padding(horizontal =  29.dp),
-                title = "Я согласен с условиями предоставления услуг и политикой конфиденциальности»",
+                title = stringResource(R.string.checkbox_title),
                 isChecked = isChecked.value,
                 onCheck = { isChecked.value = !isChecked.value }
             )
@@ -131,7 +132,7 @@ fun RegistrationContent(
         Spacer(modifier = Modifier.height(7.dp))
         RegistrationHowEmployee(
             openScreen = openRegisterEmployeeScreen,
-            text = "Зарегистрироваться"
+            text = stringResource(R.string.registration_employee)
         )
     }
 }
@@ -147,8 +148,8 @@ fun NextOrEntrance(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TTBottom(
-            text = "Далее",
+        TTButton(
+            text = stringResource(R.string.next_button),
             onClick = onClickNext,
             color = MaterialTheme.colors.green600,
             enable = enable
@@ -158,13 +159,13 @@ fun NextOrEntrance(
 
         Row {
             Text(
-                text = "Или",
+                text = stringResource(R.string.or),
                 color = Color.Black,
                 style = TTTypography.titleLarge,
             )
             Spacer(Modifier.width(3.dp))
             Text(
-                text = "войти",
+                text = stringResource(R.string.entrance),
                 color = Color.Black,
                 textDecoration = TextDecoration.Underline,
                 style = TTTypography.titleLarge,
@@ -177,7 +178,6 @@ fun NextOrEntrance(
 
 @Composable
 private fun ColumnsTextField(
-    modifier: Modifier = Modifier,
     password: String,
     confirmPassword: String,
     phone: String,
@@ -191,6 +191,7 @@ private fun ColumnsTextField(
     isPasswordVisible: Boolean,
     passwordsMatch: Boolean,
     onVisibilityChange: (Boolean) -> Unit,
+    content: @Composable () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -198,14 +199,14 @@ private fun ColumnsTextField(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         OutlinedTextFieldComponent(
-            nameTextField = "Имя",
-            isErrorText = "Заполните поле!",
+            nameTextField = stringResource(R.string.name_text_field_label),
+            isErrorText = stringResource(R.string.error_name_and_number_phone),
             onTextChange = onNameChange,
             text = name
         )
         OutlinedTextFieldComponent(
-            nameTextField = "Email",
-            isErrorText = "Неверная почта!",
+            nameTextField = stringResource(R.string.email_text_field_label),
+            isErrorText = stringResource(R.string.error_email),
             text = email,
             onTextChange = onEmailChange
         )
@@ -213,6 +214,7 @@ private fun ColumnsTextField(
             phone = phone,
             onPhoneChange = onPhoneChange
         )
+        content()
         PasswordTextField(
             password = password,
             onPasswordChange = onPasswordChange,
@@ -231,7 +233,6 @@ private fun ColumnsTextField(
 
 @Composable
 fun HeadingAndUnderHeadingText(
-    modifier: Modifier = Modifier,
     heading: String
 ) {
     Column(
@@ -264,6 +265,7 @@ fun Services(
         Icon(
             painter = painterResource(R.drawable.ic_google),
             contentDescription = null,
+            tint = Color.Unspecified,
             modifier = Modifier
                 .size(24.dp)
         )
@@ -271,7 +273,7 @@ fun Services(
         Icon(
             painter = painterResource(R.drawable.vk),
             contentDescription = null,
-            tint = Color.Blue.copy(.8f),
+            tint = Color.Unspecified,
             modifier = Modifier
                 .size(31.4.dp, 19.7.dp)
         )
@@ -280,7 +282,6 @@ fun Services(
 
 @Composable
 fun RegistrationHowEmployee(
-    modifier: Modifier = Modifier,
     openScreen: () -> Unit,
     text: String
 ) {

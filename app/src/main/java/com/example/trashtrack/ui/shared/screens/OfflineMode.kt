@@ -1,6 +1,5 @@
 package com.example.trashtrack.ui.shared.screens
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,14 +17,12 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.R
-import com.example.trashtrack.ui.shared.button.TTBottomBorder
+import com.example.trashtrack.ui.shared.button.TTButtonBorder
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
 @Composable
-fun OfflineMode(
-    modifier: Modifier = Modifier
-) {
+fun OfflineMode() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -59,7 +56,7 @@ fun OfflineMode(
             )
         }
         Spacer(modifier = Modifier.height(141.dp))
-        TTBottomBorder(
+        TTButtonBorder(
             text = "Обновите страницу",
             onClick = {},
             style = TTTypography.titleLarge,

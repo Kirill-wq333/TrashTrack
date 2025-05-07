@@ -17,14 +17,12 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.R
-import com.example.trashtrack.ui.shared.button.TTBottomBorder
+import com.example.trashtrack.ui.shared.button.TTButtonBorder
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
 @Composable
-fun NotWorkSystemPayment(
-    modifier: Modifier = Modifier
-) {
+fun NotWorkSystemPayment() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -58,7 +56,7 @@ fun NotWorkSystemPayment(
             )
         }
         Spacer(modifier = Modifier.height(141.dp))
-        TTBottomBorder(
+        TTButtonBorder(
             text = "Вернуться на главную",
             onClick = {},
             style = TTTypography.titleLarge,

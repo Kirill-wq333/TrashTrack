@@ -35,7 +35,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.trashtrack.ui.shared.button.TTBottom
+import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.shared.button.back.BackButton
 import com.example.trashtrack.ui.shared.text.textfield.OutlinedTextFieldComponent
 import com.example.trashtrack.ui.theme.TTTypography
@@ -137,7 +137,7 @@ fun DetailedInformationContent(
         Spacer(modifier = Modifier.height(25.dp))
         Switchers(onClickSwitch = onClickSwitch)
         Spacer(modifier = Modifier.height(44.dp))
-        TTBottom(
+        TTButton(
             onClick = {},
             paddingHorizontal = 26.dp,
             text = "Оформить подписку"
@@ -236,7 +236,7 @@ private fun ColumnOutlinedTextField(
 @Composable
 private fun SwitchPreview() {
     var isEnabled by remember { mutableStateOf(false) }
-    Surface() {
+    Surface {
         CustomSwitch(
             onClickSwitch = { isEnabled = !isEnabled }
         )
@@ -271,7 +271,7 @@ fun CustomSwitch(
         }
     }
 
-    var colorBorder = animateColorAsState(
+    val colorBorder = animateColorAsState(
         targetValue = when (switchState) {
             SwitchState.ACTIVE -> MaterialTheme.colors.neutral400
             SwitchState.NOT_ACTIVE -> MaterialTheme.colors.green600
@@ -279,7 +279,7 @@ fun CustomSwitch(
         animationSpec = tween(durationMillis = 1500)
     )
 
-    var backgroundColor = animateColorAsState(
+    val backgroundColor = animateColorAsState(
         targetValue = when (switchState) {
             SwitchState.ACTIVE -> MaterialTheme.colors.white
             SwitchState.NOT_ACTIVE -> MaterialTheme.colors.green600
@@ -287,7 +287,7 @@ fun CustomSwitch(
         animationSpec = tween(durationMillis = 1500)
     )
 
-    var circleColor = animateColorAsState(
+    val circleColor = animateColorAsState(
         targetValue = when (switchState) {
             SwitchState.ACTIVE -> MaterialTheme.colors.neutral400
             SwitchState.NOT_ACTIVE -> MaterialTheme.colors.neutral50

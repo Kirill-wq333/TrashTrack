@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
-import com.example.trashtrack.R
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -24,6 +23,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.example.trashtrack.R
 import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
 import com.example.trashtrack.ui.shared.picker.date.DatePicker
 import com.example.trashtrack.ui.shared.text.transform.rememberMaskVisualTransformation
@@ -31,11 +31,8 @@ import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 import java.time.Instant
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.ZoneId
-import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
-import java.util.concurrent.TimeUnit
 
 @Composable
 fun DateTextField(
@@ -45,7 +42,7 @@ fun DateTextField(
     onDateChange: (String) -> Unit,
     readOnly: Boolean = false
 ) {
-    var isError by remember { mutableStateOf(false) }
+    val isError by remember { mutableStateOf(false) }
     var openDatePicker by remember { mutableStateOf(false) }
 
     val dateTimestampMillis: Long = remember(date) {

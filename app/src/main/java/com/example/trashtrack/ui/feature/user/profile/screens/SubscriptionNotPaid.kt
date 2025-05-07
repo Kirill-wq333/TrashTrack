@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -34,7 +35,7 @@ import com.example.trashtrack.R
 import com.example.trashtrack.ui.feature.user.map.ui.components.EjectionTimeRead
 import com.example.trashtrack.ui.feature.user.profile.bottomsheet.DeleteSubscriptionBS
 import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
-import com.example.trashtrack.ui.shared.button.TTBottom
+import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.shared.button.back.BackButton
 import com.example.trashtrack.ui.shared.text.textfield.CommentTextField
 import com.example.trashtrack.ui.shared.text.textfield.OutlinedTextFieldComponent
@@ -66,8 +67,8 @@ fun SubscriptionNotPaid(
         Content(
             openDeleteBS = { openDeleteBS = true }
         )
-        TTBottom(
-            text = "Оплатить подписку",
+        TTButton(
+            text = stringResource(R.string.payment_subscription_button),
             onClick = {},
             modifier = Modifier
                 .padding(start = 23.dp, end = 25.dp, bottom = 30.dp)

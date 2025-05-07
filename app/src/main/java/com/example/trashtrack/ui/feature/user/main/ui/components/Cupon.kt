@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,9 +36,7 @@ private fun CuponPreview() {
 }
 
 @Composable
-fun Cupon(
-    modifier: Modifier = Modifier
-) {
+fun Cupon() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -57,7 +56,7 @@ fun Cupon(
             verticalArrangement = Arrangement.spacedBy(12.59.dp)
         ) {
             Text(
-                text = "Если оплатите на год вынос мусора",
+                text = stringResource(R.string.payment_on_ears_trash),
                 color = MaterialTheme.colors.white,
                 style = TTTypography.headlineLarge
             )
@@ -66,7 +65,7 @@ fun Cupon(
                     .border(width = 3.dp, color = MaterialTheme.colors.white, shape = RoundedCornerShape(32.dp))
             ) {
                 Text(
-                    text = "Будет скидка 30%",
+                    text = stringResource(R.string.discount_main),
                     color = MaterialTheme.colors.white,
                     style = TTTypography.titleLarge,
                     modifier = Modifier
@@ -83,9 +82,7 @@ fun Cupon(
 }
 
 @Composable
-fun TrashBags(
-    modifier: Modifier = Modifier
-) {
+fun TrashBags() {
     val tint = MaterialTheme.colors.white.copy(0.45f)
 
     Box(

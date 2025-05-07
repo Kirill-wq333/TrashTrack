@@ -22,8 +22,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
-import com.example.trashtrack.ui.shared.button.TTBottom
-import com.example.trashtrack.ui.shared.button.TTBottomBorder
+import com.example.trashtrack.ui.shared.button.TTButtonBorder
+import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
@@ -96,13 +96,13 @@ fun Actions(
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        TTBottomBorder(
+        TTButtonBorder(
             modifier = Modifier.weight(0.5f),
             onClick = onCancel,
             text = "Не сейчас",
             style = TTTypography.titleMedium
         )
-        TTBottom(
+        TTButton(
             modifier = Modifier.weight(0.5f),
             onClick = onUpdate,
             text = "Обновить",

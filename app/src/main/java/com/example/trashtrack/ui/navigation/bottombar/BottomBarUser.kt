@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.List
@@ -20,9 +21,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.trashtrack.R
 import com.example.trashtrack.ui.approuts.AppRoutes
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
@@ -48,17 +51,17 @@ fun BottomBarUser(
     val bottomBarItem = listOf(
         BottomBarItems(
             route = AppRoutes.USER,
-            label = "Главная",
+            label = stringResource(R.string.main_bottom_bar),
             icon = Icons.Default.Home
         ),
         BottomBarItems(
             route = AppRoutes.ORDERS,
-            label = "Заказы",
-            icon = Icons.Default.List
+            label = stringResource(R.string.order_bottom_bar),
+            icon = Icons.AutoMirrored.Filled.List
         ),
         BottomBarItems(
             route = AppRoutes.PROFILE_USER,
-            label = "Профиль",
+            label = stringResource(R.string.profile_bottom_bar),
             icon = Icons.Default.AccountCircle
         ),
     )
@@ -93,7 +96,6 @@ fun BottomBarUser(
 
 @Composable
 private fun BottomBarItem(
-    modifier: Modifier = Modifier,
     imageVector: ImageVector,
     text: String,
     color: Color,

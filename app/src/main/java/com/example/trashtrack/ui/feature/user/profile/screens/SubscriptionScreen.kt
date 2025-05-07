@@ -15,7 +15,6 @@ import com.example.trashtrack.ui.theme.colors
 
 @Composable
 fun SubscriptionScreen(
-    modifier: Modifier = Modifier,
     backButton: () -> Unit
 ) {
     Column(

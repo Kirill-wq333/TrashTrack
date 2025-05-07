@@ -1,3 +1,79 @@
 <resources>
+
+
+    // Splash screen
     <string name="app_name">TrashTrack</string>
+    <string name="trash_title">Trash</string>
+    <string name="track_title">Track</string>
+    <string name="dacant_title">Дакант</string>
+    <string name="with_the_support_of">при поддержке</string>
+    <string name="a_little_more">Ещё немного…</string>
+    <string name="progress_bar_title">%1$s%</string>
+
+
+    // Introduction
+    <string name="entrance">войти</string>
+    <string name="or">Или</string>
+    <string name="forgot_your_password">Забыли пароль?</string>
+    <string name="create_account">Создать учетную запись</string>
+    <string name="create_account_employee">Создать учетную сотрудника</string>
+    <string name="register_introduction">Зарегистрируйтесь</string>
+    <string name="entrance_in_system">Вход в систему</string>
+    <string name="skip">Пропустить</string>
+    <string name="under_heading_bs_introduction"> Добро пожаловать! Пожалуйста, заполните форму ниже, чтобы создать новую учетную запись. Это займет всего несколько минут.</string>
+    <string name="you_have_not_account">У вас нет аккаунта?</string>
+    <string name="registration_employee">Зарегистрироваться</string>
+    <string name="employee_introduction_title">как сотрудник</string>
+    <string name="checkbox_title">Я согласен с условиями предоставления услуг и «политикой конфиденциальности»</string>
+
+    // Button
+    <string name="next_screen_button">Следующая</string>
+    <string name="next_button">Далее</string>
+    <string name="entrance_button">Войти</string>
+    <string name="сreate_an_account">Создать учетную запись</string>
+    <string name="order_button">Сделать заказ</string>
+    <string name="address_completed_button">Подтвердить адрес</string>
+    <string name="arrange_subscription_button">Оформить подписку</string>
+    <string name="save_button">Сохранить</string>
+    <string name="payment_subscription_button">Оплатить подпписку</string>
+    <string name="cancel_button">Отменить</string>
+    <string name="yes_button">Да</string>
+    <string name="ok_button">ОК</string>
+
+    // BottomBar
+    <string name="main_bottom_bar">Главная</string>
+    <string name="order_bottom_bar">Заказы</string>
+    <string name="profile_bottom_bar">Профиль</string>
+
+    // Other
+    <string name="pass_text_field_label">Номер пропуска</string>
+    <string name="error_pass">Номер пропуска неверен!</string>
+
+    <string name="entering_a_password">пароль</string>
+    <string name="error_entering_a_password">Неправильный пароль!</string>
+    <string name="come_up_with_a_password_text_field_label">Придумайте пароль</string>
+    <string name="error_come_up_with_a_password">Пароль не надежен!</string>
+
+    <string name="repeat_password_text_field_label">Повторите пароль</string>
+    <string name="error_repeat_password">Пароли не совпадают!</string>
+
+    <string name="email_text_field_label">Email</string>
+    <string name="error_email">Неверная почта!</string>
+
+    <string name="name_text_field_label">Имя</string>
+    <string name="number_phone_text_field_label">Номер телефона</string>
+    <string name="error_name_and_number_phone">Заполните поле!</string>
+
+    // Main
+    <string name="discount_main">Будет скидка 30%</string>
+    <string name="time_main">10:00 -22:00</string>
+    <string name="on_weekdays">По будням</string>
+    <string name="next_news">Следующая новость</string>
+    <string name="news">Новости</string>
+    <string name="questions">Остались вопросы?</string>
+    <string name="technical_support">Нажмите  здесь для связи с ТЕХ.ПОДДЕРЖКОЙ</string>
+    <string name="payment_on_ears_trash">Если оплатите  на год вынос мусора   </string>
+    <string name="garbage_collection_from_residential_buildings">Вывезим мусор из жилых помещений за вас</string>
+    <string name="order_main">мы принимаем заказы</string>
+
 </resources>

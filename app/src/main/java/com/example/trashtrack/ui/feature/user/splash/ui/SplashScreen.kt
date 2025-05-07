@@ -35,10 +35,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.trashtrack.R
 import com.example.trashtrack.ui.approuts.AppRoutes
 import com.example.trashtrack.ui.feature.user.splash.ui.components.Frame
 import com.example.trashtrack.ui.feature.user.splash.ui.components.TimerProgressBar
@@ -264,10 +266,10 @@ private fun Content(
             visible = trashTrackStep
         ) {
             AnimatedColorText(
-                text = "TrashTrack",
+                text = stringResource(R.string.app_name),
                 coloredParts = mapOf(
-                    "Trash" to MaterialTheme.colors.black,
-                    "Track" to MaterialTheme.colors.green700
+                    stringResource(R.string.trash_title) to MaterialTheme.colors.black,
+                    stringResource(R.string.track_title) to MaterialTheme.colors.green700
                 ),
                 letterDelay = 150
             )
@@ -291,13 +293,13 @@ private fun Content(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
-                    text = "При поддерже",
+                    text = stringResource(R.string.with_the_support_of),
                     style = TTTypography.titleLarge,
                     color = Color(0xFF525252)
                 )
                 Spacer(Modifier.height(15.dp))
                 Text(
-                    text = "ДАКАНТ",
+                    text = stringResource(R.string.dacant_title),
                     style = TTTypography.displayMedium,
                     color = Color(0xFF211600)
                 )

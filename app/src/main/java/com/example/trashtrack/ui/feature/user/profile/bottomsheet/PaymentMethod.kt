@@ -35,9 +35,7 @@ private fun PaymentMethodPreview() {
 }
 
 @Composable
-fun PaymentMethod(
-    modifier: Modifier = Modifier
-) {
+fun PaymentMethod() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -68,7 +66,6 @@ fun PaymentMethod(
 
 @Composable
 private fun IconAndTextItem(
-    modifier: Modifier = Modifier,
     text: String,
     tint: Color = MaterialTheme.colors.black,
     icon: Int,

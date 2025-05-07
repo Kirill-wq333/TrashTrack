@@ -19,14 +19,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.ui.shared.text.textfield.OutlinedTextFieldComponent
 import com.example.trashtrack.ui.shared.text.textfield.PhoneTextField
-import com.example.trashtrack.ui.shared.button.TTBottom
+import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.shared.button.back.BackButton
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
 @Composable
 fun DataScreen(
-    modifier: Modifier = Modifier,
     backButton: () -> Unit
 ) {
     var email by remember { mutableStateOf("") }
@@ -108,7 +107,7 @@ private fun Content(
         }
 
 
-        TTBottom(
+        TTButton(
             modifier = Modifier
                 .padding(horizontal = 25.dp),
             text = "Сохранить",
