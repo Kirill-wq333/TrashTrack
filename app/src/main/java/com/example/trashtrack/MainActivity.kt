@@ -1,6 +1,7 @@
 package com.example.trashtrack
 
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,6 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.trashtrack.ui.NavigationHost
 //import com.example.trashtrack.ui.preferences.SecurePrefsHelper
 import com.example.trashtrack.ui.theme.TrashTrackTheme
+import org.osmdroid.config.Configuration
 import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
@@ -19,6 +21,9 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this))
+//        Configuration.getInstance().userAgentValue = packageName
+
 //        securePrefs = SecurePrefsHelper(applicationContext)
 //
 //        if (!securePrefs.validateDataIntegrity()) {

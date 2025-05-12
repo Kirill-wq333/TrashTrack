@@ -39,6 +39,7 @@ import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.shared.button.back.BackButton
 import com.example.trashtrack.ui.shared.text.textfield.CommentTextField
 import com.example.trashtrack.ui.shared.text.textfield.OutlinedTextFieldComponent
+import com.example.trashtrack.ui.shared.text.transform.rememberMaskVisualTransformation
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
@@ -52,7 +53,6 @@ private fun SubscriptionNotPaidPreview() {
 
 @Composable
 fun SubscriptionNotPaid(
-    modifier: Modifier = Modifier,
     color: Color
 ) {
     var openDeleteBS by remember { mutableStateOf(false) }
@@ -87,6 +87,8 @@ fun SubscriptionNotPaid(
 private fun Content(
     openDeleteBS: () -> Unit
 ) {
+    var comment by remember { mutableStateOf("") }
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -100,7 +102,8 @@ private fun Content(
         HeadingAndStatusNotPaid()
         Spacer(modifier = Modifier.height(21.dp))
         OutlinedTextFieldComponent(
-            text = "12.11.2042",
+            visualTransformation = rememberMaskVisualTransformation("##.##.####"),
+            text = "12112042",
             nameTextField = "Дата начала подписки",
             padding = 22.dp,
             isErrorText = "",
@@ -108,9 +111,14 @@ private fun Content(
             onTextChange = {},
         )
         Spacer(modifier = Modifier.height(15.dp))
-        EjectionTimeRead()
+        EjectionTimeRead(
+            time = "12:00"
+        )
         Spacer(modifier = Modifier.height(26.dp))
-        CommentTextField()
+        CommentTextField(
+            readOnly = true,
+            comment = comment,
+        )
         Spacer(modifier = Modifier.height(26.dp))
         Column(
             modifier = Modifier

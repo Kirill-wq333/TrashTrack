@@ -81,7 +81,7 @@ fun TimerProgressBar(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text =  stringResource(R.string.progress_bar_title,(currentPercentage * 100).toInt()),
+                text =  stringResource(R.string.progress_bar_title,((currentPercentage * 100).toInt())),
                 color = progressTextColor,
                 style = TTTypography.headlineLarge,
                 modifier = Modifier.align(Alignment.Start)

@@ -15,9 +15,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.example.trashtrack.ui.shared.text.transform.rememberMaskVisualTransformation
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
@@ -41,6 +43,7 @@ fun OutlinedTextFieldComponent(
     padding: Dp = 16.dp,
     isErrorText: String,
     readOnly: Boolean = false,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
     text: String,
     placeholder: @Composable (() -> Unit)? = null,
     onTextChange: (String) -> Unit
@@ -67,6 +70,7 @@ fun OutlinedTextFieldComponent(
                 onTextChange(it)
                 isError = it.isEmpty()
             },
+            visualTransformation = visualTransformation,
             readOnly = readOnly,
             label = {
                 Text(
@@ -75,6 +79,7 @@ fun OutlinedTextFieldComponent(
                     style = TTTypography.titleLarge,
                 )
             },
+            singleLine = true,
             placeholder = placeholder,
             isError = isError,
             modifier = Modifier.fillMaxWidth()

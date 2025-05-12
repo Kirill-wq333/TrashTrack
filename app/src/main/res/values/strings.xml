@@ -8,7 +8,7 @@
     <string name="dacant_title">Дакант</string>
     <string name="with_the_support_of">при поддержке</string>
     <string name="a_little_more">Ещё немного…</string>
-    <string name="progress_bar_title">%1$s%</string>
+    <string name="progress_bar_title">%d%%</string>
 
 
     // Introduction
@@ -64,16 +64,42 @@
     <string name="number_phone_text_field_label">Номер телефона</string>
     <string name="error_name_and_number_phone">Заполните поле!</string>
 
+    <string name="address">Адрес</string>
+    <string name="error_address">Не указан номер дома!</string>
+
+    <string name="entrance_map">Подъезд*</string>
+    <string name="apartment_number">Номер квартиры*</string>
+    <string name="enter_address">Введите адрес</string>
+    <string name="floor">Этаж*</string>
+    <string name="intercom_system">Домофон</string>
+    <string name="field_not_filled">Поле не заполнено</string>
+    <string name="ruble">%1$s ₽</string>
+
     // Main
     <string name="discount_main">Будет скидка 30%</string>
     <string name="time_main">10:00 -22:00</string>
     <string name="on_weekdays">По будням</string>
     <string name="next_news">Следующая новость</string>
     <string name="news">Новости</string>
+    <string name="place_order">Заказ</string>
+    <string name="benefit">Выгода %1$s %</string>
+    <string name="benefit_before">Выгода до %1$s%</string>
     <string name="questions">Остались вопросы?</string>
     <string name="technical_support">Нажмите  здесь для связи с ТЕХ.ПОДДЕРЖКОЙ</string>
     <string name="payment_on_ears_trash">Если оплатите  на год вынос мусора   </string>
     <string name="garbage_collection_from_residential_buildings">Вывезим мусор из жилых помещений за вас</string>
     <string name="order_main">мы принимаем заказы</string>
+
+    // Map
+    <string name="enter_data">Введите подробные данные</string>
+    <string name="fill_address">Заполнить адрес</string>
+    <string name="not_call">Не звонить</string>
+    <string name="courier_call">Курьер позвонит только в случае крайней необходимости</string>
+    <string name="address_trash">Адрес, откуда заберем мусор</string>
+    <string name="details_subscription">Детали подписки</string>
+    <string name="package_map">От  пакета из супермаркета</string>
+    <string name="bags_map">до большого мусорного мешка</string>
+    <string name="kg">%1$s кг</string>
+    <string name="l">%1$s л</string>
 
 </resources>

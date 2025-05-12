@@ -79,7 +79,8 @@ fun NavigationBuilder(
                     navController.navigate("${AppRoutes.NEWS}/${newsItem.id}")
                 },
                 newsMain = mockNews,
-                color = colorFrame
+                color = colorFrame,
+                openSubscriptionScreen = { navController.navigate(AppRoutes.PROFILE_USER) }
             )
         }
 

@@ -13,8 +13,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.trashtrack.R
 import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
 import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.shared.text.textfield.OutlinedTextFieldComponent
@@ -43,7 +45,7 @@ fun SearchAddressOnMap(
             .padding(start = 17.dp, end = 17.dp, bottom = 47.dp)
     ) {
         Text(
-            text = "Адрес, откуда заберем мусор",
+            text = stringResource(R.string.address_trash),
             color = MaterialTheme.colors.neutral500,
             style = TTTypography.titleLarge
         )
@@ -56,12 +58,12 @@ fun SearchAddressOnMap(
             OutlinedTextFieldComponent(
                 text = address,
                 padding = 10.dp,
-                nameTextField = "Адрес",
-                isErrorText = "Не указан номер дома !",
+                nameTextField = stringResource(R.string.address),
+                isErrorText = stringResource(R.string.error_address),
                 onTextChange = { address = it },
                 placeholder = {
                     Text(
-                        text = "Введите адрес",
+                        text = stringResource(R.string.enter_address),
                         color = MaterialTheme.colors.neutral500,
                         style = TTTypography.titleLarge
                     )
@@ -70,7 +72,7 @@ fun SearchAddressOnMap(
             Spacer(modifier = Modifier.height(19.dp))
             TTButton(
                 modifier = Modifier.padding(start = 10.dp),
-                text = "Потвердить адрес",
+                text = stringResource(R.string.address_completed_button),
                 onClick = nextOpenData,
             )
         }

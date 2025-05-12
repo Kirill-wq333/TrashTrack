@@ -88,6 +88,7 @@ private fun YearItem(
     ) {
         Text(
             text = year.toString(),
+            color = MaterialTheme.colors.primary,
             style = TTTypography.titleLarge,
             modifier = Modifier
                 .padding(

@@ -29,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -88,6 +89,7 @@ fun DatePicker(
     ) {
         Text(
             text = "${localDate.dayOfMonth} $monthName, ${localDate.year}",
+            color = MaterialTheme.colors.primary,
             style = typography.headlineMedium
         )
         Row(
@@ -165,6 +167,7 @@ private fun CurrentMonth(
     ) {
         Text(
             text = "$month, $year",
+            color = MaterialTheme.colors.primary,
             style = typography.bodyLarge
         )
         Icon(
@@ -172,6 +175,7 @@ private fun CurrentMonth(
                 id = if (isExpanded) R.drawable.ic_chevron_top else R.drawable.ic_chevron_bottom
             ),
             contentDescription = null,
+            tint = MaterialTheme.colors.primary,
             modifier = Modifier.size(18.dp)
         )
     }
@@ -188,14 +192,14 @@ private fun ShiftMonthButtons(
     ) {
         IconButton(
             icon = ImageVector.vectorResource(id = R.drawable.ic_chevron_left),
-            tint = colorScheme.secondary,
+            tint = MaterialTheme.colors.primary,
             backgroundColor = Color.Transparent,
             borderColor = Color.Transparent,
             onClick = onClickLeft
         )
         IconButton(
             icon = ImageVector.vectorResource(id = R.drawable.ic_chevron_right),
-            tint = colorScheme.secondary,
+            tint = MaterialTheme.colors.primary,
             backgroundColor = Color.Transparent,
             borderColor = Color.Transparent,
             onClick = onClickRight
@@ -213,9 +217,9 @@ private fun PickerActionButtons(
     ) {
         Button(
             modifier = Modifier.weight(0.5f),
-            text = "Отмена",
-            borderColor = colorScheme.secondary.copy(alpha = 0.1f),
-            textColor = colorScheme.secondary,
+            text = stringResource(R.string.cancel_button),
+            borderColor = MaterialTheme.colors.neutral200,
+            textColor = MaterialTheme.colors.neutral900,
             onClick = onClickHide
         )
         Spacer(
@@ -224,7 +228,7 @@ private fun PickerActionButtons(
         )
         Button(
             modifier = Modifier.weight(0.5f),
-            text = "Сохранить",
+            text = stringResource(R.string.save_button),
             backgroundColor = MaterialTheme.colors.green600,
             textColor = MaterialTheme.colors.neutral950,
             onClick = onProceed

@@ -42,7 +42,7 @@ fun DateTextField(
     onDateChange: (String) -> Unit,
     readOnly: Boolean = false
 ) {
-    val isError by remember { mutableStateOf(false) }
+    val isError = remember(date) { date.isNotEmpty() && date.length != 8 }
     var openDatePicker by remember { mutableStateOf(false) }
 
     val dateTimestampMillis: Long = remember(date) {
@@ -73,8 +73,8 @@ fun DateTextField(
                 cursorColor = MaterialTheme.colors.green600
             ),
             onValueChange = { newDate ->
-                val digitsOnly = newDate.filter { it.isDigit() }.take(8)
-                onDateChange(digitsOnly)
+                val filtered = newDate.filter { it.isDigit() }.take(8)
+                onDateChange(filtered)
             },
             visualTransformation = rememberMaskVisualTransformation("##.##.####"),
             label = {
@@ -110,6 +110,21 @@ fun DateTextField(
         }
     }
     if (openDatePicker) {
+
+        val dateMillis = remember(date) {
+            if (date.length == 8) {
+                runCatching {
+                    LocalDate.of(
+                        date.substring(4, 8).toInt(),
+                        date.substring(2, 4).toInt(),
+                        date.substring(0, 2).toInt()
+                    ).atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli()
+                }.getOrDefault(System.currentTimeMillis())
+            } else {
+                System.currentTimeMillis()
+            }
+        }
+
         TTModalBottomSheet(onDismissRequest = { openDatePicker = false }) { hide ->
             Box(
                 modifier = Modifier.padding(
@@ -121,17 +136,13 @@ fun DateTextField(
                 contentAlignment = Alignment.Center
             ) {
                 DatePicker(
-                    dateToSet = dateTimestampMillis,
+                    dateToSet = dateMillis,
                     onConfirmDate = { millis ->
-                        val instant = Instant.ofEpochMilli(millis)
-                        val zoneId = ZoneId.systemDefault()
-                        val localDate = instant.atZone(zoneId).toLocalDate()
-
-                        val formatted = DateTimeFormatter
-                            .ofPattern(dateFormat)
-                            .format(localDate)
-
-                        onDateChange(formatted)
+                        val dateStr = Instant.ofEpochMilli(millis)
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDate()
+                            .format(DateTimeFormatter.ofPattern("ddMMyyyy"))
+                        onDateChange(dateStr)
                         hide()
                     },
                     onHide = { hide() }

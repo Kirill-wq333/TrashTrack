@@ -28,14 +28,16 @@ import com.example.trashtrack.ui.theme.colors
 @Composable
 fun CommentTextField(
     startPadding: Dp = 25.dp,
-    endPadding: Dp = 23.dp
+    comment: String,
+    onCommentChange: (String) -> Unit = {},
+    endPadding: Dp = 23.dp,
+    readOnly: Boolean = false
 ) {
-    var comment by remember { mutableStateOf("") }
     val focusManager = LocalFocusManager.current
 
     OutlinedTextField(
         value = comment,
-        onValueChange = { comment = it },
+        onValueChange = onCommentChange,
         label = { Text(
             text = "Комментарий курьеру",
             color = MaterialTheme.colors.neutral400,
@@ -47,6 +49,7 @@ fun CommentTextField(
             .heightIn(min = 56.dp, max = 180.dp),
         singleLine = false,
         maxLines = 5,
+        readOnly = readOnly,
         textStyle = LocalTextStyle.current.copy(
             lineHeight = 20.sp
         ),

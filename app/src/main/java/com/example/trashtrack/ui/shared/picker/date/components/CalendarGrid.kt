@@ -67,7 +67,7 @@ fun WeekdaysRow() {
             Text(
                 text = ruWeekdaysList[i],
                 style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.secondary.copy(0.4f)
+                color = MaterialTheme.colors.primary.copy(0.4f)
             )
         }
     }
@@ -85,7 +85,7 @@ private fun DayItem(
         if (isSelected && isActive) MaterialTheme.colors.green600 else Color.Transparent
 
     val numberColor =
-        if (isSelected && isActive) MaterialTheme.colors.black else MaterialTheme.colorScheme.secondary
+        if (isSelected && isActive) MaterialTheme.colors.black else MaterialTheme.colors.primary
 
     Box(
         modifier = Modifier
@@ -103,7 +103,7 @@ private fun DayItem(
         Text(
             text = number.toString(),
             style = TTTypography.titleLarge,
-            color = numberColor.copy(alpha = if (isActive) 1.0f else .25f),
+            color = numberColor.copy(alpha = if (isActive) 1.0f else 0.25f),
             modifier = Modifier.padding(
                 vertical = 6.dp,
                 horizontal = 9.dp

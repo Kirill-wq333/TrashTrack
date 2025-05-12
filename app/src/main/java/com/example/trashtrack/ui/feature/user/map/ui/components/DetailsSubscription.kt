@@ -1,5 +1,6 @@
 package com.example.trashtrack.ui.feature.user.map.ui.components
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -23,13 +24,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
@@ -38,6 +39,8 @@ import androidx.compose.ui.unit.dp
 import com.example.trashtrack.R
 import com.example.trashtrack.mock.DataClasses
 import com.example.trashtrack.mock.Mock
+import com.example.trashtrack.ui.feature.user.main.ui.SubscriptionData
+import com.example.trashtrack.ui.feature.user.main.ui.SubscriptionDetails
 import com.example.trashtrack.ui.feature.user.map.ui.bottomsheets.EjectionTimeBS
 import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
 import com.example.trashtrack.ui.shared.button.TTButton
@@ -46,6 +49,7 @@ import com.example.trashtrack.ui.shared.text.textfield.CommentTextField
 import com.example.trashtrack.ui.shared.text.textfield.DateTextField
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
+import org.w3c.dom.Comment
 
 @Preview(device = "spec:width=411dp,height=891dp")
 @Preview(device = "spec:width=673dp,height=841dp")
@@ -53,13 +57,29 @@ import com.example.trashtrack.ui.theme.colors
 @Composable
 private fun DetailsSubscriptionPreview() {
     DetailsSubscription(
-        color = MaterialTheme.colors.white
+        color = MaterialTheme.colors.white,
+        backButton = {},
+        openSubscriptionCompleted = {},
+        subscription = SubscriptionData(
+            benefit = "",
+            heading = "",
+            underHeading = "",
+            money = 0,
+            price = 0,
+            visible = false,
+            background = Color.White,
+            border = Color.White,
+            text = MaterialTheme.colors.black
+        )
     )
 }
 
 @Composable
 fun DetailsSubscription(
     color: Color,
+    subscription: SubscriptionData?,
+    openSubscriptionCompleted: (SubscriptionDetails) -> Unit,
+    backButton: () -> Unit
 ) {
 
     val textList = listOf(
@@ -80,16 +100,25 @@ fun DetailsSubscription(
     var openElectionTimeBS by remember { mutableStateOf(false) }
     var date by remember { mutableStateOf("") }
     var time by remember { mutableStateOf("") }
-    val currentIndex by remember { mutableIntStateOf(0) }
+    var comment by remember { mutableStateOf("") }
+    var currentIndex by remember { mutableStateOf(0) }
 
     DetailsSubscriptionContent(
+        kgAndL = Mock.demoKgAndL,
+        subscription = subscription,
         color = color,
         date = date,
         time = time,
+        comment = comment,
+        currentIndex = currentIndex,
+        onCommentChange = { comment = it },
         openElectionTimeBS = { openElectionTimeBS = true },
         onDateChange = { date = it },
-        kgAndL = Mock.demoKgAndL,
-        currentIndex = currentIndex,
+        onIndexChange = { newIndex -> currentIndex = newIndex },
+        openSubscriptionCompleted = {
+            openSubscriptionCompleted(SubscriptionDetails(date, time, comment, subscription))
+        },
+        backButton = backButton,
     )
 
     if (openElectionTimeBS){
@@ -110,14 +139,24 @@ fun DetailsSubscription(
 
 @Composable
 private fun DetailsSubscriptionContent(
+    kgAndL: List<DataClasses.KgAndL>,
+    subscription: SubscriptionData?,
     color: Color,
     date: String,
     time: String,
-    onDateChange: (String) -> Unit,
-    openElectionTimeBS: () -> Unit,
-    kgAndL: List<DataClasses.KgAndL>,
+    comment: String,
     currentIndex: Int,
+    onDateChange: (String) -> Unit,
+    onCommentChange: (String) -> Unit,
+    openElectionTimeBS: () -> Unit,
+    onIndexChange: (Int) -> Unit,
+    openSubscriptionCompleted: () -> Unit,
+    backButton: () -> Unit
 ) {
+    val price = subscription?.price ?: 0
+    val money = subscription?.money ?: 0
+    val benefit = subscription?.benefit ?: ""
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -125,13 +164,14 @@ private fun DetailsSubscriptionContent(
             .background(color = color),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        HeadingAndBackButton(backButton = {})
+        HeadingAndBackButton(backButton = backButton)
         Spacer(modifier = Modifier.height(32.dp))
         PackageAndBags()
         Spacer(modifier = Modifier.height(25.dp))
         SliderBags(
             kgAndL = kgAndL,
-            currentIndex = currentIndex
+            currentIndex = currentIndex,
+            onIndexChange = onIndexChange
         )
         Spacer(modifier = Modifier.height(22.dp))
         DateTextField(
@@ -146,9 +186,17 @@ private fun DetailsSubscriptionContent(
             time = time
         )
         Spacer(modifier = Modifier.height(8.dp))
-        CommentTextField()
+        CommentTextField(
+            comment = comment,
+            onCommentChange = onCommentChange
+        )
         Spacer(modifier = Modifier.height(42.dp))
-        SummaryAndBottom()
+        SummaryAndBottom(
+            price = price,
+            money = money,
+            benefit = benefit,
+            openSubscriptionCompleted = openSubscriptionCompleted
+        )
         
     }
 }
@@ -171,7 +219,7 @@ private fun HeadingAndBackButton(
             color = MaterialTheme.colors.neutral200
         )
         Text(
-            text = "Детали подписки",
+            text = stringResource(R.string.details_subscription),
             color = MaterialTheme.colors.black,
             style = TTTypography.headlineLarge
         )
@@ -184,14 +232,14 @@ private fun PackageAndBags() {
           horizontalAlignment = Alignment.CenterHorizontally
       ) {
           Text(
-              text = "От пакета из супермаркета",
+              text = stringResource(R.string.package_map),
               color = MaterialTheme.colors.neutral500,
               style = TTTypography.bodyLarge,
               textAlign = TextAlign.Center
           )
           Spacer(modifier = Modifier.height(4.dp))
           Text(
-              text = "до большого мусорного мешка",
+              text = stringResource(R.string.bags_map),
               color = MaterialTheme.colors.black,
               style = TTTypography.titleLarge,
               textAlign = TextAlign.Center
@@ -202,8 +250,12 @@ private fun PackageAndBags() {
 @Composable
 fun SliderBags(
     kgAndL: List<DataClasses.KgAndL>,
-    currentIndex: Int
+    currentIndex: Int,
+    onIndexChange: (Int) -> Unit
 ) {
+    val isFirstIndex = currentIndex == 0
+    val isLastIndex = currentIndex == kgAndL.size - 1
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -219,12 +271,17 @@ fun SliderBags(
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = LocalIndication.current,
-                    onClick = { (currentIndex - 1).mod(kgAndL.size) }
+                    enabled = !isFirstIndex,
+                    onClick = {
+                        val newIndex = (currentIndex - 1).mod(kgAndL.size)
+                        onIndexChange(newIndex)
+                    }
                 )
         )
         Box(
             modifier = Modifier
-                .size(128.dp),
+                .size(128.dp)
+                .animateContentSize(),
             contentAlignment = Alignment.BottomCenter
         ) {
             Icon(
@@ -241,12 +298,12 @@ fun SliderBags(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = "${i.kg} кг",
+                        text = stringResource(R.string.kg, i.kg),
                         color = MaterialTheme.colors.white,
                         style = TTTypography.headlineLarge
                     )
                     Text(
-                        text = "${i.l} л",
+                        text = stringResource(R.string.l, i.l),
                         color = MaterialTheme.colors.white,
                         style = TTTypography.titleMedium
                     )
@@ -261,7 +318,11 @@ fun SliderBags(
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = LocalIndication.current,
-                    onClick = { (currentIndex + 1) % kgAndL.size }
+                    enabled = !isLastIndex,
+                    onClick = {
+                        val newIndex = (currentIndex + 1) % kgAndL.size
+                        onIndexChange(newIndex)
+                    }
                 )
         )
     }
@@ -315,7 +376,12 @@ fun EjectionTime(
 }
 
 @Composable
-fun SummaryAndBottom() {
+fun SummaryAndBottom(
+    price: Int,
+    money: Int,
+    benefit: String,
+    openSubscriptionCompleted: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -341,22 +407,24 @@ fun SummaryAndBottom() {
                 horizontalAlignment = Alignment.End
             ) {
                 Text(
-                    text = "Выгода 80%",
+                    text = benefit,
                     color = MaterialTheme.colors.green600,
                     style = TTTypography.headlineSmall
                 )
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = "1500 ₽",
-                        color = MaterialTheme.colors.neutral400,
-                        style = TTTypography.titleMedium,
-                        textDecoration = TextDecoration.LineThrough
-                    )
+                    if(price > 0) {
+                        Text(
+                            text = stringResource(R.string.ruble, price),
+                            color = MaterialTheme.colors.neutral400,
+                            style = TTTypography.titleMedium,
+                            textDecoration = TextDecoration.LineThrough
+                        )
+                    }
                     Spacer(modifier = Modifier.width(2.dp))
                     Text(
-                        text = "200 ₽",
+                        text = stringResource(R.string.ruble, money),
                         color = MaterialTheme.colors.black,
                         style = TTTypography.headlineLarge
                     )
@@ -365,7 +433,7 @@ fun SummaryAndBottom() {
         }
         Spacer(modifier = Modifier.height(19.dp))
         TTButton(
-            onClick = {},
+            onClick = openSubscriptionCompleted,
             text = "Перейти к оплате",
         )
     }

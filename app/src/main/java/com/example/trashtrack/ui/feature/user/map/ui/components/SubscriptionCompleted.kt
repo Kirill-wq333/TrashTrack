@@ -28,32 +28,32 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.R
+import com.example.trashtrack.ui.feature.user.main.ui.SubscriptionDetails
 import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.shared.text.textfield.CommentTextField
 import com.example.trashtrack.ui.shared.text.textfield.OutlinedTextFieldComponent
+import com.example.trashtrack.ui.shared.text.transform.rememberMaskVisualTransformation
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
 
-@Preview
-@Composable
-private fun SubscriptionCompletedPreview() {
-        SubscriptionCompleted(
-            color = MaterialTheme.colors.white
-        )
-}
-
 @Composable
 fun SubscriptionCompleted(
-    color: Color
+    color: Color,
+    openSubscriptionScreen: () -> Unit,
+    subscriptionDetails: SubscriptionDetails
 ) {
     Content(
-        color = color
+        color = color,
+        openSubscriptionScreen = openSubscriptionScreen,
+        subscriptionDetails = subscriptionDetails
     )
 }
 
 @Composable
 private fun Content(
-    color: Color
+    color: Color,
+    openSubscriptionScreen: () -> Unit,
+    subscriptionDetails: SubscriptionDetails,
 ) {
     Column(
         modifier = Modifier
@@ -70,7 +70,8 @@ private fun Content(
             Header()
             Spacer(modifier = Modifier.height(40.dp))
             OutlinedTextFieldComponent(
-                text = "12.11.2042",
+                visualTransformation = rememberMaskVisualTransformation("##.##.####"),
+                text = subscriptionDetails.date,
                 nameTextField = "Дата начала подписки",
                 padding = 22.dp,
                 isErrorText = "",
@@ -78,11 +79,13 @@ private fun Content(
                 onTextChange = {},
             )
             Spacer(modifier = Modifier.height(15.dp))
-            EjectionTimeRead()
+            EjectionTimeRead(time = subscriptionDetails.time)
             Spacer(modifier = Modifier.height(26.dp))
             CommentTextField(
+                readOnly = true,
                 startPadding = 19.dp,
-                endPadding = 29.dp
+                endPadding = 29.dp,
+                comment = subscriptionDetails.comment,
             )
             Spacer(modifier = Modifier.height(26.dp))
             Column(
@@ -106,7 +109,7 @@ private fun Content(
         }
         TTButton(
             text = "Мои подписки",
-            onClick = {},
+            onClick = openSubscriptionScreen,
             modifier = Modifier
                 .padding(
                     start = 23.dp,
@@ -165,20 +168,22 @@ private fun Header() {
 }
 
 @Composable
-fun EjectionTimeRead() {
+fun EjectionTimeRead(
+    time: String
+) {
     Column(
         modifier = Modifier
             .padding(start = 27.dp),
         horizontalAlignment = Alignment.Start
     ) {
         Text(
-            text = "Желаемое воемя выноса",
+            text = "Желаемое время выноса",
             color = MaterialTheme.colors.neutral400,
             style = TTTypography.titleLarge
         )
         Spacer(modifier = Modifier.height(15.dp))
         Text(
-            text = "12:00",
+            text = time,
             color = MaterialTheme.colors.black,
             style = TTTypography.titleMedium
         )

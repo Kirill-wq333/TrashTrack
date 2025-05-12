@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
+    kotlin("kapt")
 }
 
 android {
@@ -13,8 +14,8 @@ android {
         applicationId = "com.example.trashtrack"
         minSdk = 28
         targetSdk = 34
-        versionCode = 100
-        versionName = "1.01"
+        versionCode = 102
+        versionName = "1.02"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -28,6 +29,12 @@ android {
             )
         }
     }
+
+    packagingOptions {
+        exclude ("com/j256/ormlite/core/README.txt")
+        pickFirst ("com/j256/ormlite/dao/BaseDaoImpl.class")
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -77,7 +84,6 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -85,6 +91,11 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+
+    implementation(libs.osmdroid.android)
 
     implementation(libs.androidx.security.crypto)
     // Для хеширования паролей:

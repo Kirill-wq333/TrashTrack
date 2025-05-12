@@ -32,9 +32,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.trashtrack.R
 import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.shared.button.back.BackButton
 import com.example.trashtrack.ui.shared.text.textfield.OutlinedTextFieldComponent
@@ -48,14 +50,31 @@ import kotlinx.coroutines.delay
 @Preview
 @Composable
 private fun DetailedInformationPreview() {
+    DetailsInformation(
+        color = MaterialTheme.colors.white,
+        openDetailsSubscription = {},
+        backButton = {}
+    )
+}
+
+@Composable
+fun DetailsInformation(
+    color: Color,
+    backButton: () -> Unit,
+    openDetailsSubscription: () -> Unit
+) {
     Content(
-        color = MaterialTheme.colors.white
+        color = color,
+        backButton = backButton,
+        openDetailsSubscription = openDetailsSubscription
     )
 }
 
 @Composable
 private fun Content(
-    color: Color
+    color: Color,
+    backButton: () -> Unit,
+    openDetailsSubscription: () -> Unit
 ) {
     var address by remember { mutableStateOf("") }
     var numberRoom by remember { mutableStateOf("") }
@@ -72,12 +91,13 @@ private fun Content(
         entrance = entrance,
         intercomSystem = intercomSystem,
         onAddressChange = { address =it },
-        onNumberRoomChange = { numberRoom = it },
+        onNumberApartmentChange = { numberRoom = it },
         onFloorChange = { floor =it },
         onEntranceChange = { entrance =it },
         onIntercomSystemChange = { intercomSystem = it },
         onClickSwitch = { isEnabled = !isEnabled },
-        backButton = {}
+        backButton = backButton,
+        openDetailsSubscription = openDetailsSubscription
     )
 }
 
@@ -89,13 +109,14 @@ fun DetailedInformationContent(
     floor: String,
     entrance: String,
     intercomSystem: String,
-    onNumberRoomChange: (String) -> Unit,
+    onNumberApartmentChange: (String) -> Unit,
     onFloorChange: (String) -> Unit,
     onEntranceChange: (String) -> Unit,
     onIntercomSystemChange: (String) -> Unit,
     onAddressChange: (String) -> Unit,
     onClickSwitch: () -> Unit,
-    backButton: () -> Unit
+    backButton: () -> Unit,
+    openDetailsSubscription: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -117,8 +138,8 @@ fun DetailedInformationContent(
             OutlinedTextFieldComponent(
                 text = address,
                 padding = 0.dp,
-                nameTextField = "Введите адрес",
-                isErrorText = "Поле не заполнено",
+                nameTextField = stringResource(R.string.enter_address),
+                isErrorText = stringResource(R.string.field_not_filled),
                 onTextChange = onAddressChange,
             )
             Spacer(modifier = Modifier.height(24.dp))
@@ -127,7 +148,7 @@ fun DetailedInformationContent(
                 floor = floor,
                 entrance = entrance,
                 intercomSystem = intercomSystem,
-                onNumberRoomChange = onNumberRoomChange,
+                onNumberApartmentChange = onNumberApartmentChange,
                 onFloorChange = onFloorChange,
                 onEntranceChange = onEntranceChange,
                 onIntercomSystemChange = onIntercomSystemChange
@@ -138,9 +159,9 @@ fun DetailedInformationContent(
         Switchers(onClickSwitch = onClickSwitch)
         Spacer(modifier = Modifier.height(44.dp))
         TTButton(
-            onClick = {},
+            onClick = openDetailsSubscription,
             paddingHorizontal = 26.dp,
-            text = "Оформить подписку"
+            text = stringResource(R.string.arrange_subscription_button)
         )
     }
 }
@@ -156,7 +177,7 @@ private fun HeadingAndBackButton(backButton: () -> Unit) {
     )
     Spacer(modifier = Modifier.height(16.dp))
     Text(
-        text = "Введите подробные данные",
+        text = stringResource(R.string.enter_data),
         color = MaterialTheme.colors.black,
         style = TTTypography.headlineLarge,
         textAlign = TextAlign.Start,
@@ -171,7 +192,7 @@ private fun ColumnOutlinedTextField(
     floor: String,
     entrance: String,
     intercomSystem: String,
-    onNumberRoomChange: (String) -> Unit,
+    onNumberApartmentChange: (String) -> Unit,
     onFloorChange: (String) -> Unit,
     onEntranceChange: (String) -> Unit,
     onIntercomSystemChange: (String) -> Unit
@@ -188,9 +209,9 @@ private fun ColumnOutlinedTextField(
             OutlinedTextFieldComponent(
                 text = numberRoom,
                 padding = 0.dp,
-                nameTextField = "Номер квартиры*",
-                isErrorText = "Поле не заполнено",
-                onTextChange = onNumberRoomChange,
+                nameTextField = stringResource(R.string.apartment_number),
+                isErrorText = stringResource(R.string.error_name_and_number_phone),
+                onTextChange = onNumberApartmentChange,
                 modifier = Modifier
                     .weight(1f)
             )
@@ -198,8 +219,8 @@ private fun ColumnOutlinedTextField(
             OutlinedTextFieldComponent(
                 text = floor,
                 padding = 0.dp,
-                nameTextField = "Этаж*",
-                isErrorText = "Поле не заполнено",
+                nameTextField = stringResource(R.string.floor),
+                isErrorText = stringResource(R.string.field_not_filled),
                 onTextChange = onFloorChange,
                 modifier = Modifier
                     .weight(1f)
@@ -212,8 +233,8 @@ private fun ColumnOutlinedTextField(
             OutlinedTextFieldComponent(
                 text = entrance,
                 padding = 0.dp,
-                nameTextField = "Подьезд*",
-                isErrorText = "Поле не заполнено",
+                nameTextField = stringResource(R.string.entrance_map),
+                isErrorText = stringResource(R.string.field_not_filled),
                 onTextChange = onEntranceChange,
                 modifier = Modifier
                     .weight(1f)
@@ -222,8 +243,8 @@ private fun ColumnOutlinedTextField(
             OutlinedTextFieldComponent(
                 text = intercomSystem,
                 padding = 0.dp,
-                nameTextField = "Домофон",
-                isErrorText = "Поле не заполнено",
+                nameTextField = stringResource(R.string.intercom_system),
+                isErrorText = stringResource(R.string.field_not_filled),
                 onTextChange = onIntercomSystemChange,
                 modifier = Modifier
                     .weight(1f)
@@ -247,13 +268,13 @@ private fun SwitchPreview() {
 fun CustomSwitch(
     onClickSwitch: () -> Unit
 ) {
-    var switchState by remember { mutableStateOf(SwitchState.ACTIVE) }
+    var switchState by remember { mutableStateOf(SwitchState.NOT_ACTIVE) }
     var alignment by remember { mutableStateOf(Alignment.CenterStart) }
 
     val onClick = {
         switchState = when(switchState) {
-            SwitchState.ACTIVE -> SwitchState.NOT_ACTIVE
             SwitchState.NOT_ACTIVE -> SwitchState.ACTIVE
+            SwitchState.ACTIVE -> SwitchState.NOT_ACTIVE
         }
         onClickSwitch()
     }
@@ -261,36 +282,36 @@ fun CustomSwitch(
     LaunchedEffect(switchState) {
         when(switchState) {
             SwitchState.ACTIVE -> {
-                delay(400)
-                alignment = Alignment.CenterStart
+                delay(250)
+                alignment = Alignment.CenterEnd
             }
             SwitchState.NOT_ACTIVE -> {
-                delay(400)
-                alignment = Alignment.CenterEnd
+                delay(250)
+                alignment = Alignment.CenterStart
             }
         }
     }
 
     val colorBorder = animateColorAsState(
         targetValue = when (switchState) {
-            SwitchState.ACTIVE -> MaterialTheme.colors.neutral400
-            SwitchState.NOT_ACTIVE -> MaterialTheme.colors.green600
+            SwitchState.ACTIVE -> MaterialTheme.colors.green600
+            SwitchState.NOT_ACTIVE -> MaterialTheme.colors.neutral400
         },
         animationSpec = tween(durationMillis = 1500)
     )
 
     val backgroundColor = animateColorAsState(
         targetValue = when (switchState) {
-            SwitchState.ACTIVE -> MaterialTheme.colors.white
-            SwitchState.NOT_ACTIVE -> MaterialTheme.colors.green600
+            SwitchState.ACTIVE -> MaterialTheme.colors.green600
+            SwitchState.NOT_ACTIVE -> MaterialTheme.colors.white
         },
         animationSpec = tween(durationMillis = 1500)
     )
 
     val circleColor = animateColorAsState(
         targetValue = when (switchState) {
-            SwitchState.ACTIVE -> MaterialTheme.colors.neutral400
-            SwitchState.NOT_ACTIVE -> MaterialTheme.colors.neutral50
+            SwitchState.ACTIVE -> MaterialTheme.colors.neutral50
+            SwitchState.NOT_ACTIVE -> MaterialTheme.colors.neutral400
         },
         animationSpec = tween(durationMillis = 1500)
     )
@@ -334,7 +355,7 @@ fun Switchers(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = "Курьер позвонит только в случае крайней необходимости",
+                text = stringResource(R.string.courier_call),
                 color = MaterialTheme.colors.neutral400,
                 style = TTTypography.bodyMedium,
                 modifier = Modifier
@@ -352,7 +373,7 @@ fun Switchers(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = "Заполнить адрес",
+                text = stringResource(R.string.fill_address),
                 color = MaterialTheme.colors.black,
                 style = TTTypography.titleLarge
             )
