@@ -1,4 +1,5 @@
 [versions]
+accompanistPermissions = "0.34.0"
 agp = "8.9.2"
 androidxComposeBom = "2025.05.00"
 androidxJunit = "1.2.1"
@@ -11,16 +12,13 @@ coreKtx = "1.16.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-kotlinxSerializationJsonVersion = "1.6.3"
+kotlinxSerializationJsonVersion = "1.7.3"
 lifecycleRuntimeKtx = "2.9.0"
 activityCompose = "1.10.1"
 composeBom = "2025.05.00"
 composeNavigation = "2.9.0"
 material = "1.8.1"
-osmdroidAndroid = "6.1.20"
-osmdroidMapsforge = "6.1.16"
-osmdroidGeopackage = "6.1.16"
-osmdroidWms = "6.1.16"
+osmdroidAndroid = "6.1.16"
 roomCompiler = "2.7.1"
 roomRuntime = "2.7.1"
 runtimeLivedata = "1.8.1"
@@ -31,6 +29,7 @@ uiTooling = "1.8.1"
 uiToolingPreview = "1.8.1"
 
 [libraries]
+accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
 androidx-animation = { module = "androidx.compose.animation:animation", version.ref = "animation" }
 androidx-compose-ui-ui = { module = "androidx.compose.ui:ui" }
 androidx-compose-ui-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }

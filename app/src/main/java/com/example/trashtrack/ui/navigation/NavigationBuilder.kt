@@ -80,7 +80,9 @@ fun NavigationBuilder(
                 },
                 newsMain = mockNews,
                 color = colorFrame,
-                openSubscriptionScreen = { navController.navigate(AppRoutes.PROFILE_USER) }
+                openSubscriptionScreen = { navController.navigate(AppRoutes.PROFILE_USER) },
+                visibleBottomBar = { setVisibleBottomBarUser(false) },
+                visibleProfileBottomBar = { setVisibleBottomBarUser(true) }
             )
         }
 

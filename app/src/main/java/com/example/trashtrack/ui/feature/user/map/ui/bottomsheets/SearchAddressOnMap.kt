@@ -26,23 +26,21 @@ import com.example.trashtrack.ui.theme.colors
 @Preview
 @Composable
 private fun SearchAddressOnMapPreview() {
-    TTModalBottomSheet(
-        onDismissRequest = {}
-    ) {
-        SearchAddressOnMap {  }
-    }
+    SearchAddressOnMap { }
 }
+
 
 @Composable
 fun SearchAddressOnMap(
+    modifier: Modifier = Modifier,
     nextOpenData: () -> Unit
 ) {
     var address by remember { mutableStateOf("") }
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .padding(start = 17.dp, end = 17.dp, bottom = 47.dp)
+            .padding(start = 17.dp, end = 17.dp, bottom = 47.dp, top = 27.dp)
     ) {
         Text(
             text = stringResource(R.string.address_trash),

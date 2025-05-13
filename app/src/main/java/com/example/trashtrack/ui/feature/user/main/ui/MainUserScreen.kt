@@ -60,8 +60,11 @@ fun MainUserScreen(
     onNewsClick: (DataClasses.NewsMain) -> Unit,
     newsMain: List<DataClasses.NewsMain>,
     color: Color,
-    openSubscriptionScreen: () -> Unit
+    openSubscriptionScreen: () -> Unit,
+    visibleBottomBar: (Boolean) -> Unit,
+    visibleProfileBottomBar: (Boolean) -> Unit
 ) {
+
     val subscriptions = remember {
         val white = Color(0xFFFFFFFF)
         val neutral950 = Color(0xFF0A0A0A)
@@ -144,6 +147,8 @@ fun MainUserScreen(
                     onSubscriptionClick = { index ->
                         selectedSubscriptionIndex = index
                         currentScreenType = MainType.MapAddress
+                        println("currentScreenType set to: $currentScreenType")
+                        visibleBottomBar(false)
                     }
                 )
             }
@@ -178,7 +183,10 @@ fun MainUserScreen(
                     SubscriptionCompleted(
                         color = color,
                         subscriptionDetails = details,
-                        openSubscriptionScreen = openSubscriptionScreen
+                        openSubscriptionScreen = {
+                            openSubscriptionScreen()
+                            visibleProfileBottomBar(true)
+                        }
                     )
                 } ?: run {
                     BackHandler { currentScreenType = MainType.DetailsSubscription }

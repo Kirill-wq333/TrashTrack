@@ -49,7 +49,6 @@ import com.example.trashtrack.ui.shared.text.textfield.CommentTextField
 import com.example.trashtrack.ui.shared.text.textfield.DateTextField
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
-import org.w3c.dom.Comment
 
 @Preview(device = "spec:width=411dp,height=891dp")
 @Preview(device = "spec:width=673dp,height=841dp")
