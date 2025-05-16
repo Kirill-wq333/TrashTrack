@@ -255,7 +255,7 @@ object Mock {
             benefit = "",
             heading = "Разовый взнос 150 ₽",
             underHeading = "",
-            money = 0,
+            money = 150,
             price = 0,
             visible = false,
             background = white,

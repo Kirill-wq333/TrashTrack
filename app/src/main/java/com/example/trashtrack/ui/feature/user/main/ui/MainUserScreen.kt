@@ -14,6 +14,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -76,7 +77,7 @@ private fun MainUserContent(
     newsMain: List<DataClasses.NewsMain>,
     subscriptions: List<DataClasses.SubscriptionData>
 ) {
-    var selectedSubscriptionIndex by remember { mutableStateOf(-1) }
+    var selectedSubscriptionIndex by remember { mutableIntStateOf(-1) }
     val visibleBottomBar by remember { mutableStateOf(false) }
 
     var currentScreenType by remember { mutableStateOf<MainType>(MainType.MainScreen) }

@@ -38,7 +38,9 @@
     <string name="payment_subscription_button">Оплатить подпписку</string>
     <string name="cancel_button">Отменить</string>
     <string name="yes_button">Да</string>
+    <string name="proceed_to_payment">Перейти к оплате</string>
     <string name="ok_button">ОК</string>
+    <string name="my_subscription">Мои подписки</string>
 
     // BottomBar
     <string name="main_bottom_bar">Главная</string>
@@ -101,5 +103,12 @@
     <string name="bags_map">до большого мусорного мешка</string>
     <string name="kg">%1$s кг</string>
     <string name="l">%1$s л</string>
+    <string name="ejection_time">Желаемое время выноса</string>
+    <string name="date_subscription">Дата начала подписки</string>
+    <string name="cost">Стоимость</string>
+    <string name="comment_courier">Комментарий курьеру</string>
+    <string name="everyday">Каждый день</string>
+    <string name="courier_picks_up_trash">Курьер будет забирать мусор</string>
+    <string name="subscription_completed">Подписка оформлена</string>
 
 </resources>

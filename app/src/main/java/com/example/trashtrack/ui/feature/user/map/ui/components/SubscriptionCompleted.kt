@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -71,7 +72,7 @@ private fun Content(
             OutlinedTextFieldComponent(
                 visualTransformation = rememberMaskVisualTransformation("##.##.####"),
                 text = subscriptionDetails.date,
-                nameTextField = "Дата начала подписки",
+                nameTextField = stringResource(R.string.date_subscription),
                 padding = 22.dp,
                 isErrorText = "",
                 readOnly = true,
@@ -92,7 +93,7 @@ private fun Content(
                     .padding(start = 17.dp)
             ) {
                 Text(
-                    text = "Курьер будет забирать мусор",
+                    text = stringResource(R.string.courier_picks_up_trash),
                     color = MaterialTheme.colors.neutral400,
                     style = TTTypography.titleLarge,
                     modifier = Modifier
@@ -100,14 +101,14 @@ private fun Content(
                 )
                 Spacer(modifier = Modifier.height(17.dp))
                 Text(
-                    text = "Каждый день",
+                    text = stringResource(R.string.everyday),
                     color = MaterialTheme.colors.black,
                     style = TTTypography.titleMedium
                 )
             }
         }
         TTButton(
-            text = "Мои подписки",
+            text = stringResource(R.string.my_subscription),
             onClick = openSubscriptionScreen,
             modifier = Modifier
                 .padding(
@@ -157,7 +158,7 @@ private fun Header() {
         Spacer(modifier = Modifier.width(21.dp))
 
         Text(
-            text = "Подписка оформлена",
+            text = stringResource(R.string.subscription_completed),
             color = MaterialTheme.colors.black,
             style = TTTypography.headlineLarge,
             textAlign = TextAlign.Start
@@ -176,7 +177,7 @@ fun EjectionTimeRead(
         horizontalAlignment = Alignment.Start
     ) {
         Text(
-            text = "Желаемое время выноса",
+            text = stringResource(R.string.ejection_time),
             color = MaterialTheme.colors.neutral400,
             style = TTTypography.titleLarge
         )

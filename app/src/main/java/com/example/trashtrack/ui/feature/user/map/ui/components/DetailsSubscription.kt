@@ -351,7 +351,7 @@ fun EjectionTime(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = "Желаемое время выноса",
+                text = stringResource(R.string.ejection_time),
                 color = MaterialTheme.colors.neutral400,
                 style = TTTypography.titleLarge
             )
@@ -403,7 +403,7 @@ fun SummaryAndBottom(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = "Стоимость",
+                text = stringResource(R.string.cost),
                 color = MaterialTheme.colors.black,
                 style = TTTypography.titleLarge
             )
@@ -438,7 +438,7 @@ fun SummaryAndBottom(
         Spacer(modifier = Modifier.height(19.dp))
         TTButton(
             onClick = openSubscriptionCompleted,
-            text = "Перейти к оплате",
+            text =  if(price <= 0 && benefit == "") stringResource(R.string.proceed_to_payment) else stringResource(R.string.next_button),
         )
     }
 }
