@@ -1,4 +1,4 @@
-package com.example.trashtrack.ui.feature.user.profile
+package com.example.trashtrack.ui.feature.user.profile.ui
 
 import android.app.Activity
 import androidx.compose.foundation.background
@@ -31,9 +31,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.trashtrack.R
 import com.example.trashtrack.ui.approuts.AppRoutes
-import com.example.trashtrack.ui.feature.user.profile.bottomsheet.DeleteAccount
-import com.example.trashtrack.ui.feature.user.profile.screens.DataScreen
-import com.example.trashtrack.ui.feature.user.profile.screens.SubscriptionScreen
+import com.example.trashtrack.ui.feature.user.profile.ui.bottomsheet.DeleteAccount
+import com.example.trashtrack.ui.feature.user.profile.ui.screens.DataScreen
+import com.example.trashtrack.ui.feature.user.profile.ui.screens.SubscriptionScreen
 import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors

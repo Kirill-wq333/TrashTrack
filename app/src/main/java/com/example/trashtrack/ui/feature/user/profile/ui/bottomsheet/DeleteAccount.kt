@@ -1,4 +1,4 @@
-package com.example.trashtrack.ui.feature.user.profile.bottomsheet
+package com.example.trashtrack.ui.feature.user.profile.ui.bottomsheet
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

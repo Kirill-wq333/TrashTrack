@@ -1,5 +1,6 @@
 package com.example.trashtrack.mock
 
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 
 
@@ -22,8 +23,27 @@ object DataClasses {
         val descriptionNews: String
     )
 
-    class KgAndL(
+    data class KgAndL(
         val kg: Int,
         val l: Int
+    )
+
+    data class SubscriptionData(
+        val benefit: String,
+        val heading: String,
+        val underHeading: String,
+        val money: Int,
+        val price: Int,
+        val visible: Boolean,
+        val background: Color,
+        val border: Color,
+        val text: Color
+    )
+
+    data class SubscriptionDetails(
+        val date: String,
+        val time: String,
+        val comment: String,
+        val subscriptionData: SubscriptionData?
     )
 }

@@ -39,8 +39,6 @@ import androidx.compose.ui.unit.dp
 import com.example.trashtrack.R
 import com.example.trashtrack.mock.DataClasses
 import com.example.trashtrack.mock.Mock
-import com.example.trashtrack.ui.feature.user.main.ui.SubscriptionData
-import com.example.trashtrack.ui.feature.user.main.ui.SubscriptionDetails
 import com.example.trashtrack.ui.feature.user.map.ui.bottomsheets.EjectionTimeBS
 import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
 import com.example.trashtrack.ui.shared.button.TTButton
@@ -59,7 +57,7 @@ private fun DetailsSubscriptionPreview() {
         color = MaterialTheme.colors.white,
         backButton = {},
         openSubscriptionCompleted = {},
-        subscription = SubscriptionData(
+        subscription = DataClasses.SubscriptionData(
             benefit = "",
             heading = "",
             underHeading = "",
@@ -76,8 +74,8 @@ private fun DetailsSubscriptionPreview() {
 @Composable
 fun DetailsSubscription(
     color: Color,
-    subscription: SubscriptionData?,
-    openSubscriptionCompleted: (SubscriptionDetails) -> Unit,
+    subscription: DataClasses.SubscriptionData?,
+    openSubscriptionCompleted: (DataClasses.SubscriptionDetails) -> Unit,
     backButton: () -> Unit
 ) {
 
@@ -115,7 +113,14 @@ fun DetailsSubscription(
         onDateChange = { date = it },
         onIndexChange = { newIndex -> currentIndex = newIndex },
         openSubscriptionCompleted = {
-            openSubscriptionCompleted(SubscriptionDetails(date, time, comment, subscription))
+            openSubscriptionCompleted(
+                DataClasses.SubscriptionDetails(
+                    date,
+                    time,
+                    comment,
+                    subscription
+                )
+            )
         },
         backButton = backButton,
     )
@@ -139,7 +144,7 @@ fun DetailsSubscription(
 @Composable
 private fun DetailsSubscriptionContent(
     kgAndL: List<DataClasses.KgAndL>,
-    subscription: SubscriptionData?,
+    subscription: DataClasses.SubscriptionData?,
     color: Color,
     date: String,
     time: String,

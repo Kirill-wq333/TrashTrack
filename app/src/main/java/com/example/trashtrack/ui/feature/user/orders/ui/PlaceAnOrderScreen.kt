@@ -1,4 +1,4 @@
-package com.example.trashtrack.ui.feature.user.orders
+package com.example.trashtrack.ui.feature.user.orders.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,8 +16,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.R
-import com.example.trashtrack.ui.feature.user.main.ui.SubscriptionData
-import com.example.trashtrack.ui.feature.user.orders.components.Subscription
+import com.example.trashtrack.mock.DataClasses
+import com.example.trashtrack.ui.feature.user.orders.ui.components.Subscription
 import com.example.trashtrack.ui.shared.button.back.BackButton
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
@@ -37,7 +37,7 @@ private fun OrdersPreview() {
 
 @Composable
 fun PlaceAnOrderScreen(
-    subscription: List<SubscriptionData>,
+    subscription: List<DataClasses.SubscriptionData>,
     backButton: () -> Unit,
     onSubscriptionClick: (Int) -> Unit
 ) {

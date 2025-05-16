@@ -1,4 +1,4 @@
-package com.example.trashtrack.ui.feature.user.profile.screens
+package com.example.trashtrack.ui.feature.user.profile.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -33,7 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.R
 import com.example.trashtrack.ui.feature.user.map.ui.components.EjectionTimeRead
-import com.example.trashtrack.ui.feature.user.profile.bottomsheet.DeleteSubscriptionBS
+import com.example.trashtrack.ui.feature.user.profile.ui.bottomsheet.DeleteSubscriptionBS
 import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
 import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.shared.button.back.BackButton

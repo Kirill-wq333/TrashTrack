@@ -1,4 +1,4 @@
-package com.example.trashtrack.ui.feature.user.orders
+package com.example.trashtrack.ui.feature.user.orders.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

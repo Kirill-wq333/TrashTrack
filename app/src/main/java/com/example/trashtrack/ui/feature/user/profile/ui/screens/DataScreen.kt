@@ -1,4 +1,4 @@
-package com.example.trashtrack.ui.feature.user.profile.screens
+package com.example.trashtrack.ui.feature.user.profile.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

@@ -241,4 +241,59 @@ object Mock {
         )
     )
 
+
+    val white = Color(0xFFFFFFFF)
+    val neutral950 = Color(0xFF0A0A0A)
+    val neutral500 = Color(0xFF737373)
+    val green600 = Color(0xFF16A34A)
+    val green500 = Color(0xFF22C55E)
+
+    val demoSubscriptionData = listOf<DataClasses.SubscriptionData>(
+
+
+        DataClasses.SubscriptionData(
+            benefit = "",
+            heading = "Разовый взнос 150 ₽",
+            underHeading = "",
+            money = 0,
+            price = 0,
+            visible = false,
+            background = white,
+            border = neutral500,
+            text = neutral950,
+        ),
+        DataClasses.SubscriptionData(
+            benefit = "Выгода 80%",
+            heading = "Первая подписка",
+            underHeading = "1 месяц вывез мусора, каждый понедельник",
+            money = 200,
+            price = 1500,
+            visible = true,
+            background = green600,
+            border = green500,
+            text = white,
+        ),
+        DataClasses.SubscriptionData(
+            benefit = "Выгода до 40%",
+            heading = "Подписка на 6 месяцев",
+            underHeading = "Оплата на 6 месяцев по выгодной цене, и регулярный вывез мусора, либо по вашему графику",
+            price = 0,
+            money = 7000,
+            visible = true,
+            background = white,
+            border = neutral500,
+            text = neutral950,
+        ),
+        DataClasses.SubscriptionData(
+            benefit = "Выгода до 35%",
+            heading = "Подписка на 1 год",
+            underHeading = "Оплата на год по выгодной цене, и регулярный вывез мусора, либо по вашему графику",
+            price = 0,
+            money = 7000,
+            visible = true,
+            background = white,
+            border = neutral500,
+            text = neutral950,
+        ),
+    )
 }

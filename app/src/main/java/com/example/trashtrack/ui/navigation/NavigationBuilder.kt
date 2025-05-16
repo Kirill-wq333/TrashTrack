@@ -20,8 +20,8 @@ import com.example.trashtrack.ui.feature.user.alittlemore.ui.ALittleMoreScreen
 import com.example.trashtrack.ui.feature.user.introduction.ui.IntroductionScreen
 import com.example.trashtrack.ui.feature.user.main.ui.MainUserScreen
 import com.example.trashtrack.ui.feature.user.news.ui.NewsScreen
-import com.example.trashtrack.ui.feature.user.orders.OrdersScreen
-import com.example.trashtrack.ui.feature.user.profile.ProfileScreen
+import com.example.trashtrack.ui.feature.user.orders.ui.OrdersScreen
+import com.example.trashtrack.ui.feature.user.profile.ui.ProfileScreen
 import com.example.trashtrack.ui.feature.user.splash.ui.DualAxisAnimationScreen
 import com.example.trashtrack.ui.theme.colors
 
@@ -75,14 +75,18 @@ fun NavigationBuilder(
 
         composable(route = AppRoutes.USER) {
             MainUserScreen(
+                newsMain = mockNews,
+                color = colorFrame,
+                openSubscriptionScreen = {
+                    navController.navigate(AppRoutes.PROFILE_USER)
+                    setVisibleBottomBarUser(true)
+                },
                 onNewsClick = { newsItem ->
                     navController.navigate("${AppRoutes.NEWS}/${newsItem.id}")
                 },
-                newsMain = mockNews,
-                color = colorFrame,
-                openSubscriptionScreen = { navController.navigate(AppRoutes.PROFILE_USER) },
-                visibleBottomBar = { setVisibleBottomBarUser(false) },
-                visibleProfileBottomBar = { setVisibleBottomBarUser(true) }
+                onSubscriptionClick = {
+                    setVisibleBottomBarUser(false)
+                }
             )
         }
 

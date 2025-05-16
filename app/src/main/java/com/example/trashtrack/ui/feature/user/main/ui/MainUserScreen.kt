@@ -11,11 +11,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -24,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.mock.DataClasses
+import com.example.trashtrack.mock.Mock
 import com.example.trashtrack.ui.feature.user.main.ui.components.Cupon
 import com.example.trashtrack.ui.feature.user.main.ui.components.NewsMain
 import com.example.trashtrack.ui.feature.user.main.ui.components.PlaceAnOrder
@@ -33,97 +32,55 @@ import com.example.trashtrack.ui.feature.user.map.ui.MapScreen
 import com.example.trashtrack.ui.feature.user.map.ui.components.DetailsInformation
 import com.example.trashtrack.ui.feature.user.map.ui.components.DetailsSubscription
 import com.example.trashtrack.ui.feature.user.map.ui.components.SubscriptionCompleted
-import com.example.trashtrack.ui.feature.user.orders.PlaceAnOrderScreen
-import com.example.trashtrack.ui.theme.colors
+import com.example.trashtrack.ui.feature.user.orders.ui.PlaceAnOrderScreen
 
-data class SubscriptionData(
-    val benefit: String,
-    val heading: String,
-    val underHeading: String,
-    val money: Int,
-    val price: Int,
-    val visible: Boolean,
-    val background: Color,
-    val border: Color,
-    val text: Color
-)
-
-data class SubscriptionDetails(
-    val date: String,
-    val time: String,
-    val comment: String,
-    val subscriptionData: SubscriptionData?
-)
+private interface MainCallback{
+    fun openSubscriptionScreen(visibleBottomBar: Boolean)
+    fun onNewsClick(news: DataClasses.NewsMain)
+    fun onSubscriptionClick(visibleBottomBar: Boolean)
+}
 
 @Composable
 fun MainUserScreen(
     onNewsClick: (DataClasses.NewsMain) -> Unit,
     newsMain: List<DataClasses.NewsMain>,
     color: Color,
-    openSubscriptionScreen: () -> Unit,
-    visibleBottomBar: (Boolean) -> Unit,
-    visibleProfileBottomBar: (Boolean) -> Unit
+    openSubscriptionScreen: (Boolean) -> Unit,
+    onSubscriptionClick: (Boolean) -> Unit
 ) {
 
-    val subscriptions = remember {
-        val white = Color(0xFFFFFFFF)
-        val neutral950 = Color(0xFF0A0A0A)
-        val neutral500 = Color(0xFF737373)
-        val green600 = Color(0xFF16A34A)
-        val green500 = Color(0xFF22C55E)
+    val subscriptions = Mock.demoSubscriptionData
 
-        mutableStateListOf(
-            SubscriptionData(
-                benefit = "",
-                heading = "Разовый взнос 150 ₽",
-                underHeading = "",
-                money = 0,
-                price = 0,
-                visible = false,
-                background = white,
-                border = neutral500,
-                text = neutral950,
-            ),
-            SubscriptionData(
-                benefit = "Выгода 80%",
-                heading = "Первая подписка",
-                underHeading = "1 месяц вывез мусора, каждый понедельник",
-                money = 200,
-                price = 1500,
-                visible = true,
-                background = green600,
-                border = green500,
-                text = white,
-            ),
-            SubscriptionData(
-                benefit = "Выгода до 40%",
-                heading = "Подписка на 6 месяцев",
-                underHeading = "Оплата на 6 месяцев по выгодной цене, и регулярный вывез мусора, либо по вашему графику",
-                price = 0,
-                money = 7000,
-                visible = true,
-                background = white,
-                border = neutral500,
-                text = neutral950,
-            ),
-            SubscriptionData(
-                benefit = "Выгода до 35%",
-                heading = "Подписка на 1 год",
-                underHeading = "Оплата на год по выгодной цене, и регулярный вывез мусора, либо по вашему графику",
-                price = 0,
-                money = 7000,
-                visible = true,
-                background = white,
-                border = neutral500,
-                text = neutral950,
-            ),
-        )
-    }
+    val callback =
+        object: MainCallback {
+            override fun openSubscriptionScreen(visibleBottomBar: Boolean) = openSubscriptionScreen(visibleBottomBar)
 
+            override fun onNewsClick(news: DataClasses.NewsMain) = onNewsClick(news)
+
+            override fun onSubscriptionClick(visibleBottomBar: Boolean) = onSubscriptionClick(visibleBottomBar)
+        }
+
+
+    MainUserContent(
+        callback = callback,
+        color = color,
+        newsMain = newsMain,
+        subscriptions = subscriptions
+    )
+}
+
+@Composable
+private fun MainUserContent(
+    callback: MainCallback,
+    color: Color,
+    newsMain: List<DataClasses.NewsMain>,
+    subscriptions: List<DataClasses.SubscriptionData>
+) {
     var selectedSubscriptionIndex by remember { mutableStateOf(-1) }
+    val visibleBottomBar by remember { mutableStateOf(false) }
 
     var currentScreenType by remember { mutableStateOf<MainType>(MainType.MainScreen) }
-    var subscriptionDetails by remember { mutableStateOf<SubscriptionDetails?>(null) }
+    var subscriptionDetails by remember { mutableStateOf<DataClasses.SubscriptionDetails?>(null) }
 
     Box(
         modifier = Modifier
@@ -134,7 +91,7 @@ fun MainUserScreen(
         when (currentScreenType) {
             MainType.MainScreen -> {
                 MainUserContent(
-                    onNewsClick = onNewsClick,
+                    onNewsClick = callback::onNewsClick,
                     newsMain = newsMain,
                     openPlaceAnOrder = { currentScreenType = MainType.PlaceAnOrder }
                 )
@@ -147,8 +104,7 @@ fun MainUserScreen(
                     onSubscriptionClick = { index ->
                         selectedSubscriptionIndex = index
                         currentScreenType = MainType.MapAddress
-                        println("currentScreenType set to: $currentScreenType")
-                        visibleBottomBar(false)
+                        callback.onSubscriptionClick(visibleBottomBar)
                     }
                 )
             }
@@ -184,8 +140,7 @@ fun MainUserScreen(
                         color = color,
                         subscriptionDetails = details,
                         openSubscriptionScreen = {
-                            openSubscriptionScreen()
-                            visibleProfileBottomBar(true)
+                            callback.openSubscriptionScreen(visibleBottomBar)
                         }
                     )
                 } ?: run {
@@ -198,7 +153,7 @@ fun MainUserScreen(
 }
 
 @Composable
-fun MainUserContent(
+private fun MainUserContent(
     onNewsClick: (DataClasses.NewsMain) -> Unit,
     newsMain: List<DataClasses.NewsMain>,
     openPlaceAnOrder: () -> Unit

@@ -25,10 +25,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.R
-import com.example.trashtrack.ui.feature.user.main.ui.SubscriptionDetails
+import com.example.trashtrack.mock.DataClasses
 import com.example.trashtrack.ui.shared.button.TTButton
 import com.example.trashtrack.ui.shared.text.textfield.CommentTextField
 import com.example.trashtrack.ui.shared.text.textfield.OutlinedTextFieldComponent
@@ -40,7 +39,7 @@ import com.example.trashtrack.ui.theme.colors
 fun SubscriptionCompleted(
     color: Color,
     openSubscriptionScreen: () -> Unit,
-    subscriptionDetails: SubscriptionDetails
+    subscriptionDetails: DataClasses.SubscriptionDetails
 ) {
     Content(
         color = color,
@@ -53,7 +52,7 @@ fun SubscriptionCompleted(
 private fun Content(
     color: Color,
     openSubscriptionScreen: () -> Unit,
-    subscriptionDetails: SubscriptionDetails,
+    subscriptionDetails: DataClasses.SubscriptionDetails,
 ) {
     Column(
         modifier = Modifier
