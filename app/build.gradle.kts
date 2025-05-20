@@ -14,8 +14,8 @@ android {
         applicationId = "com.example.trashtrack"
         minSdk = 28
         targetSdk = 34
-        versionCode = 102
-        versionName = "1.02"
+        versionCode = 104
+        versionName = "1.03"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
