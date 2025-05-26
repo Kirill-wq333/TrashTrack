@@ -18,6 +18,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,8 +32,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.trashtrack.R
+import com.example.trashtrack.ui.feature.user.introduction.ui.IntroductionScreenCallback
 import com.example.trashtrack.ui.feature.user.introduction.ui.components.ConfirmPasswordTextField
+import com.example.trashtrack.ui.feature.user.introduction.viewmodel.IntroductionContract
+import com.example.trashtrack.ui.feature.user.introduction.viewmodel.IntroductionViewModel
 import com.example.trashtrack.ui.shared.text.textfield.OutlinedTextFieldComponent
 import com.example.trashtrack.ui.shared.text.textfield.PasswordTextField
 import com.example.trashtrack.ui.shared.text.textfield.PhoneTextField
@@ -49,28 +54,33 @@ private fun RegistrationPreview() {
     Surface {
         RegistrationContent(
             openEntranceScreen = {},
-            openRegisterEmployeeScreen = {}
+            openRegisterEmployeeScreen = {},
+            callback = object : IntroductionScreenCallback {
+                override fun saveUserData(
+                    email: String,
+                    password: String,
+                    name: String,
+                    phone: String
+                ) {}
+            }
         )
     }
 }
 
 @Composable
 fun RegistrationContent(
+    vm: IntroductionViewModel = viewModel(),
     openEntranceScreen: () -> Unit,
     openRegisterEmployeeScreen: () -> Unit,
-    content: @Composable () -> Unit = {}
+    content: @Composable () -> Unit = {},
+    callback: IntroductionScreenCallback
 ) {
+    val uiState by vm.uiState.collectAsState()
+    val registrationState = uiState.registration
 
-    var password by remember { mutableStateOf("") }
-    var name by remember { mutableStateOf("") }
-    var phone by remember { mutableStateOf("7") }
-    var email by remember { mutableStateOf("") }
-    var confirmPassword by remember { mutableStateOf("") }
-    val passwordsMatch = remember(password, confirmPassword) { password == confirmPassword }
     var isPasswordVisible by remember { mutableStateOf(false) }
     val isChecked = remember { mutableStateOf(false) }
 
-//    val securePrefsHelper = remember { SecurePrefsHelper.getInstance(context) }
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -79,19 +89,19 @@ fun RegistrationContent(
         )
         Spacer(modifier = Modifier.height(10.dp))
         ColumnsTextField(
-            password = password,
-            phone = phone,
-            name = name,
-            email = email,
-            onPhoneChange = { phone = it.take(11) },
-            onEmailChange = { email = it },
-            onNameChange = { name = it },
-            confirmPassword = confirmPassword,
-            onPasswordChange = { password = it },
+            password = registrationState.password,
+            phone = registrationState.phone,
+            name = registrationState.name,
+            email = registrationState.email,
+            onPhoneChange = { vm.setEvent(IntroductionContract.Event.PhoneChanged(it.take(11)))},
+            onEmailChange = { vm.setEvent(IntroductionContract.Event.EmailChanged(it)) },
+            onNameChange = { vm.setEvent(IntroductionContract.Event.NameChanged(it))},
+            confirmPassword = registrationState.confirmPassword,
+            onPasswordChange = { vm.setEvent(IntroductionContract.Event.PasswordChanged(it)) },
             onVisibilityChange = { isPasswordVisible = !isPasswordVisible },
-            onConfirmPasswordChange = { confirmPassword = it },
+            onConfirmPasswordChange = { vm.setEvent(IntroductionContract.Event.ConfirmPasswordChanged(it)) },
             isPasswordVisible = isPasswordVisible,
-            passwordsMatch = passwordsMatch,
+            passwordsMatch = registrationState.passwordsMatch,
             content = content
         )
 
@@ -114,16 +124,13 @@ fun RegistrationContent(
                 modifier =Modifier
                     .padding(horizontal = 36.dp),
                 openEntranceScreen = openEntranceScreen,
-                enable = passwordsMatch && password.isNotEmpty() && confirmPassword.isNotEmpty(),
+                enable = registrationState.passwordsMatch && registrationState.password.isNotEmpty() && registrationState.confirmPassword.isNotEmpty(),
                 onClickNext = {
-//                    if (isChecked.value) {
-//                        val success = securePrefsHelper.saveUserData(
-//                            email = email,
-//                            password = password,
-//                            name = name,
-//                            phone = phone
-//                        )
-//                    }
+                    callback.saveUserData(
+                        registrationState.email,
+                        registrationState.password,
+                        registrationState.name,
+                        registrationState.phone)
                 }
             )
             Spacer(modifier = Modifier.height(11.dp))

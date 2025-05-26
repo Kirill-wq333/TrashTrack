@@ -144,13 +144,11 @@ private fun MainUserContent(
                             callback.openSubscriptionScreen(visibleBottomBar)
                         }
                     )
-                } ?: run {
-                    BackHandler { currentScreenType = MainType.DetailsSubscription }
-                    Text("Ошибка: данные подписки не найдены")
                 }
             }
         }
     }
+
 }
 
 @Composable

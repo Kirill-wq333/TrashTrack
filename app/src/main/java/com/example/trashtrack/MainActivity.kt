@@ -10,25 +10,20 @@ import androidx.navigation.compose.rememberNavController
 import com.example.trashtrack.ui.NavigationHost
 //import com.example.trashtrack.ui.preferences.SecurePrefsHelper
 import com.example.trashtrack.ui.theme.TrashTrackTheme
+import dagger.hilt.android.AndroidEntryPoint
 import org.osmdroid.config.Configuration
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-//    @Inject lateinit var securePrefs: SecurePrefsHelper
     private var navController: NavHostController? = null
 
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       Configuration.getInstance().load(this, getSharedPreferences("osmdroid", MODE_PRIVATE))
-      Configuration.getInstance().userAgentValue = packageName
+        Configuration.getInstance().load(this, getSharedPreferences("osmdroid", MODE_PRIVATE))
+        Configuration.getInstance().userAgentValue = packageName
 
-//        securePrefs = SecurePrefsHelper(applicationContext)
-
-//        if (!securePrefs.validateDataIntegrity()) {
-//            Toast.makeText(this, "Ошибка безопасности. Данные будут сброшены.", Toast.LENGTH_LONG).show()
-//            securePrefs.resetAllSecurityData()
-//        }
         enableEdgeToEdge()
         setContent {
 

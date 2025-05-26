@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -18,6 +19,7 @@ import com.example.trashtrack.mock.Mock
 import com.example.trashtrack.ui.approuts.AppRoutes
 import com.example.trashtrack.ui.feature.user.alittlemore.ui.ALittleMoreScreen
 import com.example.trashtrack.ui.feature.user.introduction.ui.IntroductionScreen
+import com.example.trashtrack.ui.feature.user.introduction.viewmodel.IntroductionViewModel
 import com.example.trashtrack.ui.feature.user.main.ui.MainUserScreen
 import com.example.trashtrack.ui.feature.user.news.ui.NewsScreen
 import com.example.trashtrack.ui.feature.user.orders.ui.OrdersScreen
@@ -63,7 +65,10 @@ fun NavigationBuilder(
         }
 
         composable(route = AppRoutes.INTRODUCTION) {
+            val vmIntroduction = hiltViewModel<IntroductionViewModel>()
+
             IntroductionScreen(
+                vm = vmIntroduction,
                 introduction = Mock.demoIntroduction,
                 openMainScreen = {
                     navController.navigate(AppRoutes.USER)

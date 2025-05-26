@@ -24,6 +24,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -40,6 +41,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.trashtrack.R
 import com.example.trashtrack.mock.DataClasses
 import com.example.trashtrack.mock.Mock
@@ -48,6 +50,8 @@ import com.example.trashtrack.ui.feature.user.introduction.ui.bottomsheet.entran
 import com.example.trashtrack.ui.feature.employee.introduction.bottomsheet.EntranceEmployee
 import com.example.trashtrack.ui.feature.user.introduction.ui.bottomsheet.registration.RegistrationContent
 import com.example.trashtrack.ui.feature.employee.introduction.bottomsheet.RegistrationEmployeeScreen
+import com.example.trashtrack.ui.feature.user.introduction.viewmodel.IntroductionContract
+import com.example.trashtrack.ui.feature.user.introduction.viewmodel.IntroductionViewModel
 import com.example.trashtrack.ui.shared.bottomsheet.TTModalBottomSheet
 import com.example.trashtrack.ui.theme.TTTypography
 import com.example.trashtrack.ui.theme.colors
@@ -67,12 +71,37 @@ private fun IntroductionPreview() {
     )
 }
 
+data class IntroductionUiState(
+    val registration: IntroductionViewModel.RegistrationState = IntroductionViewModel.RegistrationState(),
+    val login: IntroductionViewModel.LoginState = IntroductionViewModel.LoginState(),
+    val isLoading: Boolean = false,
+    val error: String? = null
+)
+
+interface IntroductionScreenCallback{
+    fun saveUserData(email: String, password: String, name: String, phone: String)
+}
+
 @Composable
 fun IntroductionScreen(
+    vm: IntroductionViewModel = viewModel(),
     introduction: List<DataClasses.Introduction>,
     openMainScreen: () -> Unit,
     color: Color
 ) {
+    val userData = vm.userData.collectAsState()
+    val authToken = vm.authToken.collectAsState()
+    val isAccountLocked = vm.isAccountLocked.collectAsState()
+
+    val callback =
+        object: IntroductionScreenCallback{
+
+            override fun saveUserData(email: String, password: String, name: String, phone: String) {
+                vm.handleEvent(IntroductionContract.Event.SaveUserData(email, password, name, phone))
+            }
+
+        }
+
     var openEntrance by remember { mutableStateOf(false) }
     var openRegistration by remember { mutableStateOf(false) }
     var openRegisterEmployeeScreen by remember { mutableStateOf(false) }
@@ -87,7 +116,7 @@ fun IntroductionScreen(
     if (openEntrance) {
         TTModalBottomSheet(
             onDismissRequest = { openEntrance = false },
-        ) {hide ->
+        ) { hide ->
             EntranceContent(
                 openEntranceScreen = { openEntranceEmployeeScreen = true; hide() },
                 openRegistrationScreen = { openRegistration = true; hide() },
@@ -100,10 +129,12 @@ fun IntroductionScreen(
     if (openRegistration){
         TTModalBottomSheet(
             onDismissRequest = { openRegistration = false },
-        ) {hide ->
+        ) { hide ->
             RegistrationContent(
                 openEntranceScreen = { openEntrance = true; hide() },
-                openRegisterEmployeeScreen = { openRegisterEmployeeScreen = true; hide() }
+                openRegisterEmployeeScreen = { openRegisterEmployeeScreen = true; hide() },
+                callback = callback,
+                vm = vm
             )
         }
     }
@@ -111,10 +142,10 @@ fun IntroductionScreen(
     if (openEntranceEmployeeScreen){
         TTModalBottomSheet(
             onDismissRequest = { openEntranceEmployeeScreen = false }
-        ) {hide ->
+        ) { hide ->
             EntranceEmployee(
                 openRegistrationEmployeeScreen = { openRegisterEmployeeScreen = true; hide() },
-                backButton = { hide() }
+                backButton = hide
             )
         }
     }
@@ -122,11 +153,11 @@ fun IntroductionScreen(
     if (openRegisterEmployeeScreen){
         TTModalBottomSheet(
             onDismissRequest = { openRegisterEmployeeScreen = false }
-        ) {hide ->
+        ) { hide ->
             RegistrationEmployeeScreen(
                 openEntranceScreen = { openEntrance = true; hide() },
                 openEntranceEmployeeScreen = { openEntranceEmployeeScreen = true; hide() },
-                backButton = { hide() }
+                backButton = hide
             )
         }
     }
