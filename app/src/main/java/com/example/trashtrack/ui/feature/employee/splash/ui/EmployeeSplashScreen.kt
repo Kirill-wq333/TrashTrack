@@ -57,7 +57,10 @@ private fun EmployeeSplashContent(
             Box {
                 Icon(
                     painter = painterResource(R.drawable.ic_logo),
-                    contentDescription = null
+                    contentDescription = null,
+                    tint = Color.Unspecified,
+                    modifier = Modifier
+                        .size(188.dp, 173.dp)
                 )
             }
             Spacer(modifier = Modifier.height(15.dp))

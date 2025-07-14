@@ -24,6 +24,8 @@ object Color {
 
     val red600 = Color(0xFFDC2626)
 
+    val stone50 = Color(0xFFFAFAF9)
+
     val white = Color.White
     val black = Color.Black
 }
