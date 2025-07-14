@@ -30,9 +30,7 @@ private fun EmployeeSplashScreenPreview() {
 }
 
 @Composable
-fun EmployeeSplashScreen(
-    modifier: Modifier = Modifier
-) {
+fun EmployeeSplashScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -44,9 +42,7 @@ fun EmployeeSplashScreen(
 }
 
 @Composable
-private fun EmployeeSplashContent(
-    modifier: Modifier = Modifier
-) {
+private fun EmployeeSplashContent() {
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
