@@ -69,7 +69,7 @@ ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "uiTooli
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
 
 [plugins]
-android-application = { id = "com.android.application", version = "8.9.3" }
+android-application = { id = "com.android.application", version = "8.10.0" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version = "2.0.0" }
 hilt-android = { id = "com.google.dagger.hilt.android", version = "2.46.1" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
