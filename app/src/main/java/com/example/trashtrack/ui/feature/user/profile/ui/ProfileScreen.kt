@@ -30,6 +30,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.trashtrack.R
+import com.example.trashtrack.mock.DataClasses
 import com.example.trashtrack.ui.approuts.AppRoutes
 import com.example.trashtrack.ui.feature.user.profile.ui.bottomsheet.DeleteAccount
 import com.example.trashtrack.ui.feature.user.profile.ui.screens.DataScreen
@@ -52,6 +53,7 @@ data class ProfileTextAndIconItem(
 fun ProfileScreen(
     navController: NavHostController,
     color: Color,
+    subscription: DataClasses.SubscriptionData? = null
 ) {
     var currentScreenType by remember { mutableStateOf<ProfileType>(ProfileType.MainProfile) }
 
@@ -74,6 +76,7 @@ fun ProfileScreen(
         }
         ProfileType.SubscriptionProfile ->{
             SubscriptionScreen(
+                subscription = subscription,
                 backButton = {
                     currentScreenType = ProfileType.MainProfile
                 }

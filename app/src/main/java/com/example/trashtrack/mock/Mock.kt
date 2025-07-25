@@ -252,6 +252,7 @@ object Mock {
 
 
         DataClasses.SubscriptionData(
+            id = 0,
             benefit = "",
             heading = "Разовый взнос 150 ₽",
             underHeading = "",
@@ -263,6 +264,7 @@ object Mock {
             text = neutral950,
         ),
         DataClasses.SubscriptionData(
+            id = 1,
             benefit = "Выгода 80%",
             heading = "Первая подписка",
             underHeading = "1 месяц вывез мусора, каждый понедельник",
@@ -274,6 +276,7 @@ object Mock {
             text = white,
         ),
         DataClasses.SubscriptionData(
+            id = 3,
             benefit = "Выгода до 40%",
             heading = "Подписка на 6 месяцев",
             underHeading = "Оплата на 6 месяцев по выгодной цене, и регулярный вывез мусора, либо по вашему графику",
@@ -285,6 +288,7 @@ object Mock {
             text = neutral950,
         ),
         DataClasses.SubscriptionData(
+            id = 5,
             benefit = "Выгода до 35%",
             heading = "Подписка на 1 год",
             underHeading = "Оплата на год по выгодной цене, и регулярный вывез мусора, либо по вашему графику",

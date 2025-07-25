@@ -15,6 +15,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.trashtrack.mock.DataClasses
 import com.example.trashtrack.mock.Mock
 import com.example.trashtrack.ui.approuts.AppRoutes
 import com.example.trashtrack.ui.feature.user.alittlemore.ui.ALittleMoreScreen
@@ -82,7 +83,12 @@ fun NavigationBuilder(
             MainUserScreen(
                 newsMain = mockNews,
                 color = colorFrame,
-                openSubscriptionScreen = {
+                openSubscriptionScreen = { _, subscriptionId ->
+                    val subscription = Mock.demoSubscriptionData.firstOrNull { it.id == subscriptionId }
+                    navController.currentBackStackEntry?.savedStateHandle?.set(
+                        "subscription",
+                        subscription
+                    )
                     navController.navigate(AppRoutes.PROFILE_USER)
                     setVisibleBottomBarUser(true)
                 },
@@ -112,9 +118,12 @@ fun NavigationBuilder(
             )
         }
         composable(route = AppRoutes.PROFILE_USER) {
+            val subscription = it.savedStateHandle.get<DataClasses.SubscriptionData>("subscription")
+
             ProfileScreen(
                 navController = navController,
-                color = colorFrame
+                color = colorFrame,
+                subscription = subscription
             )
         }
 
