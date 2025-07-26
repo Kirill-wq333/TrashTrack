@@ -36,7 +36,7 @@ import com.example.trashtrack.ui.feature.user.map.ui.components.SubscriptionComp
 import com.example.trashtrack.ui.feature.user.orders.ui.PlaceAnOrderScreen
 
 private interface MainCallback{
-    fun openSubscriptionScreen(visibleBottomBar: Boolean)
+    fun openSubscriptionScreen(visibleBottomBar: Boolean, id: Int)
     fun onNewsClick(news: DataClasses.NewsMain)
     fun onSubscriptionClick(visibleBottomBar: Boolean)
 }
@@ -46,7 +46,7 @@ fun MainUserScreen(
     onNewsClick: (DataClasses.NewsMain) -> Unit,
     newsMain: List<DataClasses.NewsMain>,
     color: Color,
-    openSubscriptionScreen: (Boolean) -> Unit,
+    openSubscriptionScreen: (Boolean, Int) -> Unit,
     onSubscriptionClick: (Boolean) -> Unit
 ) {
 
@@ -54,7 +54,7 @@ fun MainUserScreen(
 
     val callback =
         object: MainCallback {
-            override fun openSubscriptionScreen(visibleBottomBar: Boolean) = openSubscriptionScreen(visibleBottomBar)
+            override fun openSubscriptionScreen(visibleBottomBar: Boolean, id: Int ) = openSubscriptionScreen(visibleBottomBar, id)
 
             override fun onNewsClick(news: DataClasses.NewsMain) = onNewsClick(news)
 
@@ -141,7 +141,10 @@ private fun MainUserContent(
                         color = color,
                         subscriptionDetails = details,
                         openSubscriptionScreen = {
-                            callback.openSubscriptionScreen(visibleBottomBar)
+                            val subscriptionId = subscriptions
+                                .getOrNull(selectedSubscriptionIndex)
+                                ?.id ?: return@SubscriptionCompleted
+                            callback.openSubscriptionScreen(visibleBottomBar,subscriptionId)
                         }
                     )
                 }

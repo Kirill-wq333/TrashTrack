@@ -29,6 +29,7 @@ object DataClasses {
     )
 
     data class SubscriptionData(
+        val id: Int = -1,
         val benefit: String,
         val heading: String,
         val underHeading: String,
