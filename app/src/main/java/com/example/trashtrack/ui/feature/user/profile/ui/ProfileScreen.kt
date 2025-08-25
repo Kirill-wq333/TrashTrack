@@ -53,7 +53,8 @@ data class ProfileTextAndIconItem(
 fun ProfileScreen(
     navController: NavHostController,
     color: Color,
-    subscription: DataClasses.SubscriptionData? = null
+    subId: Int?,
+    subscription: List<DataClasses.SubscriptionData?>
 ) {
     var currentScreenType by remember { mutableStateOf<ProfileType>(ProfileType.MainProfile) }
 
@@ -77,6 +78,7 @@ fun ProfileScreen(
         ProfileType.SubscriptionProfile ->{
             SubscriptionScreen(
                 subscription = subscription,
+                subId = subId,
                 backButton = {
                     currentScreenType = ProfileType.MainProfile
                 }

@@ -281,7 +281,7 @@ object Mock {
             heading = "Подписка на 6 месяцев",
             underHeading = "Оплата на 6 месяцев по выгодной цене, и регулярный вывез мусора, либо по вашему графику",
             price = 0,
-            money = 7000,
+            money = 4000,
             visible = true,
             background = white,
             border = neutral500,

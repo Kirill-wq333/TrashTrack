@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.trashtrack.mock.DataClasses
@@ -18,20 +19,26 @@ import com.example.trashtrack.ui.theme.colors
 @Composable
 fun SubscriptionScreen(
     backButton: () -> Unit,
-    subscription: DataClasses.SubscriptionData? = null
+    subId: Int?,
+    subscription: List<DataClasses.SubscriptionData>
 ) {
-
-        Subscriptions(
-            backButton = backButton,
-            subscription = subscription
-        )
+    Subscriptions(
+        backButton = backButton,
+        subscription = subscription,
+        subId = subId
+    )
 }
 
 @Composable
 private fun Subscriptions(
     backButton: () -> Unit,
-    subscription: DataClasses.SubscriptionData? = null
+    subscription: List<DataClasses.SubscriptionData>,
+    subId: Int?
 ) {
+
+    val subscriptionId = remember(subId) {
+        subscription.firstOrNull { it.id == subId }
+    }
 
     Column(
         modifier = Modifier
@@ -54,27 +61,35 @@ private fun Subscriptions(
                 .padding(start = 9.dp)
         )
         Spacer(modifier = Modifier.height(17.dp))
-        SubscriptionContent(
-            subscription = subscription
-        )
+
+        subscriptionId?.let {
+            SubscriptionContent(
+                subscription = it,
+                openSubscriptionNotPaid = {}
+            )
+        }
     }
+
 }
 
 @Composable
 fun SubscriptionContent(
-    subscription: DataClasses.SubscriptionData? = null
+    subscription: DataClasses.SubscriptionData,
+    openSubscriptionNotPaid: () -> Unit
 ) {
-    subscription?.let {
-        Subscription(
-            backgroundColor = MaterialTheme.colors.red600,
-            borderColor = MaterialTheme.colors.green500,
-            price = it.price,
-            benefit = it.benefit,
-            heading = it.heading,
-            underHeading = it.underHeading,
-            money = it.money,
-            visibleMoneyAndPrice = it.visible,
-            openMapScreen = {},
-        )
-    }
+    val validLength = setOf(17, 21)
+
+    Subscription(
+        backgroundColor = if (subscription.heading.length in validLength) MaterialTheme.colors.white else MaterialTheme.colors.red600,
+        borderColor = if (subscription.heading.length in validLength) MaterialTheme.colors.red600 else MaterialTheme.colors.green500,
+        price = subscription.price,
+        colorHeading = if (subscription.heading.length in validLength) MaterialTheme.colors.neutral950 else MaterialTheme.colors.white,
+        colorUnHeading = if (subscription.heading.length in validLength) MaterialTheme.colors.neutral950 else MaterialTheme.colors.white,
+        benefit = subscription.benefit,
+        heading = subscription.heading,
+        underHeading = subscription.underHeading,
+        money = subscription.money,
+        visibleMoneyAndPrice = subscription.visible,
+        openMapScreen = openSubscriptionNotPaid,
+    )
 }

@@ -83,12 +83,8 @@ fun NavigationBuilder(
             MainUserScreen(
                 newsMain = mockNews,
                 color = colorFrame,
-                openSubscriptionScreen = { _, subscriptionId ->
-                    val subscription = Mock.demoSubscriptionData.firstOrNull { it.id == subscriptionId }
-                    navController.currentBackStackEntry?.savedStateHandle?.set(
-                        "subscription",
-                        subscription
-                    )
+                navController = navController,
+                openSubscriptionScreen = {
                     navController.navigate(AppRoutes.PROFILE_USER)
                     setVisibleBottomBarUser(true)
                 },
@@ -118,12 +114,13 @@ fun NavigationBuilder(
             )
         }
         composable(route = AppRoutes.PROFILE_USER) {
-            val subscription = it.savedStateHandle.get<DataClasses.SubscriptionData>("subscription")
+            val subId = it.savedStateHandle.get<Int>("selectedSubId")
 
             ProfileScreen(
                 navController = navController,
                 color = colorFrame,
-                subscription = subscription
+                subscription = Mock.demoSubscriptionData,
+                subId = subId
             )
         }
 

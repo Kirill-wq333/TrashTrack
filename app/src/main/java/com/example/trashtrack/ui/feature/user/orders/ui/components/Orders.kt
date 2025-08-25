@@ -81,6 +81,8 @@ fun Subscription(
     backgroundColor: Color = Color.Transparent,
     borderColor: Color = MaterialTheme.colors.neutral500,
     colorText: Color = MaterialTheme.colors.white,
+    colorHeading: Color = MaterialTheme.colors.white,
+    colorUnHeading: Color = MaterialTheme.colors.white,
     benefit: String,
     heading: String,
     underHeading: String,
@@ -109,6 +111,8 @@ fun Subscription(
             money = money,
             price = price,
             colorText = colorText,
+            colorHeading = colorHeading,
+            colorUnHeading = colorUnHeading,
             visibleMoneyAndPrice = visibleMoneyAndPrice
         )
     }
@@ -121,6 +125,8 @@ fun ComponentsSubscription(
     money: Int,
     underHeading: String,
     price: Int,
+    colorHeading: Color,
+    colorUnHeading: Color,
     colorText: Color,
     visibleMoneyAndPrice: Boolean
 ) {
@@ -135,14 +141,14 @@ fun ComponentsSubscription(
     ) {
         Text(
             text = heading,
-            color = colorText,
+            color = colorHeading,
             style = TTTypography.displaySmall
         )
         if (visibleMoneyAndPrice) {
         Spacer(modifier = Modifier.height(4.dp))
         Text(
             text = underHeading,
-            color = colorText,
+            color = colorUnHeading,
             style = TTTypography.bodyMedium
         )
             Spacer(modifier = Modifier.height(36.dp))

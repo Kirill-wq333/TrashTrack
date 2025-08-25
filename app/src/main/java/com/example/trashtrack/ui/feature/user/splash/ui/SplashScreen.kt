@@ -42,6 +42,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.trashtrack.R
 import com.example.trashtrack.ui.approuts.AppRoutes
+import com.example.trashtrack.ui.feature.user.alittlemore.ui.ALittleMoreScreen
+import com.example.trashtrack.ui.feature.user.main.ui.MainType
 import com.example.trashtrack.ui.feature.user.splash.ui.components.Frame
 import com.example.trashtrack.ui.feature.user.splash.ui.components.TimerProgressBar
 import com.example.trashtrack.ui.theme.TTTypography
@@ -57,6 +59,28 @@ private fun DualAxisAnimationPreview() {
             navController = rememberNavController(),
             color = MaterialTheme.colors.white
         )
+}
+
+@Composable
+fun StartsScreen(
+    navController: NavHostController,
+    color: Color
+){
+    var currentScreenType by remember { mutableStateOf<SplashType>(SplashType.SplashScreen) }
+
+    when(currentScreenType){
+        SplashType.SplashScreen -> {
+            DualAxisAnimationScreen(
+                navController = navController,
+                color = color
+            )
+        }
+        SplashType.ALittleMoreScreen -> {
+            ALittleMoreScreen(
+                navController = navController
+            )
+        }
+    }
 }
 
 @Composable
@@ -113,7 +137,7 @@ fun DualAxisAnimationScreen(
 
     LaunchedEffect(allAnimationsFinished) {
         if (allAnimationsFinished) {
-            navController.navigate(AppRoutes.A_LITTLE_MORE) {
+            navController.navigate(AppRoutes.A_LITTLE_MORE ) {
                 popUpTo(navController.graph.startDestinationId)
                 launchSingleTop = true
             }

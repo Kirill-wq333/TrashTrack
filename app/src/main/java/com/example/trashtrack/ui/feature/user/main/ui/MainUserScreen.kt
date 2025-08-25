@@ -1,6 +1,5 @@
 package com.example.trashtrack.ui.feature.user.main.ui
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,7 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -22,8 +20,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.trashtrack.mock.DataClasses
 import com.example.trashtrack.mock.Mock
+import com.example.trashtrack.ui.approuts.AppRoutes
 import com.example.trashtrack.ui.feature.user.main.ui.components.Cupon
 import com.example.trashtrack.ui.feature.user.main.ui.components.NewsMain
 import com.example.trashtrack.ui.feature.user.main.ui.components.PlaceAnOrder
@@ -36,7 +36,7 @@ import com.example.trashtrack.ui.feature.user.map.ui.components.SubscriptionComp
 import com.example.trashtrack.ui.feature.user.orders.ui.PlaceAnOrderScreen
 
 private interface MainCallback{
-    fun openSubscriptionScreen(visibleBottomBar: Boolean, id: Int)
+    fun openSubscriptionScreen(visibleBottomBar: Boolean, subId: Int)
     fun onNewsClick(news: DataClasses.NewsMain)
     fun onSubscriptionClick(visibleBottomBar: Boolean)
 }
@@ -44,21 +44,29 @@ private interface MainCallback{
 @Composable
 fun MainUserScreen(
     onNewsClick: (DataClasses.NewsMain) -> Unit,
+    navController: NavHostController,
     newsMain: List<DataClasses.NewsMain>,
     color: Color,
-    openSubscriptionScreen: (Boolean, Int) -> Unit,
+    openSubscriptionScreen: (Boolean) -> Unit,
     onSubscriptionClick: (Boolean) -> Unit
 ) {
 
     val subscriptions = Mock.demoSubscriptionData
 
     val callback =
-        object: MainCallback {
-            override fun openSubscriptionScreen(visibleBottomBar: Boolean, id: Int ) = openSubscriptionScreen(visibleBottomBar, id)
+        object : MainCallback {
+            override fun openSubscriptionScreen(visibleBottomBar: Boolean, subId: Int) {
+                navController.currentBackStackEntry?.savedStateHandle?.set(
+                    "selectedSubId",
+                    subId
+                )
+                openSubscriptionScreen(visibleBottomBar)
+            }
 
             override fun onNewsClick(news: DataClasses.NewsMain) = onNewsClick(news)
 
-            override fun onSubscriptionClick(visibleBottomBar: Boolean) = onSubscriptionClick(visibleBottomBar)
+            override fun onSubscriptionClick(visibleBottomBar: Boolean) =
+                onSubscriptionClick(visibleBottomBar)
         }
 
 
@@ -141,10 +149,12 @@ private fun MainUserContent(
                         color = color,
                         subscriptionDetails = details,
                         openSubscriptionScreen = {
-                            val subscriptionId = subscriptions
+
+                            val subId = subscriptions
                                 .getOrNull(selectedSubscriptionIndex)
                                 ?.id ?: return@SubscriptionCompleted
-                            callback.openSubscriptionScreen(visibleBottomBar,subscriptionId)
+
+                            callback.openSubscriptionScreen(visibleBottomBar, subId)
                         }
                     )
                 }
