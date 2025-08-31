@@ -42,6 +42,7 @@ private fun ColumnPreview() {
                 underHeading = "",
                 money = 0,
                 price = 0,
+                colorHeading = MaterialTheme.colors.neutral950,
                 openMapScreen = {},
                 visibleMoneyAndPrice = false
             )
@@ -60,6 +61,8 @@ private fun ColumnPreview() {
                 underHeading = "Оплати на 6 месяцев  по выгодной цене ,  и регулярный вывез мусора , либо по важему графику",
                 money = 4000,
                 price = 0,
+                colorHeading = MaterialTheme.colors.neutral950,
+                colorUnHeading = MaterialTheme.colors.primary600,
                 openMapScreen = {},
                 visibleMoneyAndPrice = true
             )
@@ -69,6 +72,8 @@ private fun ColumnPreview() {
                 underHeading = "Оплати на год  по выгодной цене , будет регулярный вывез мусора , либо по важему графику",
                 money = 7000,
                 price = 0,
+                colorHeading = MaterialTheme.colors.neutral950,
+                colorUnHeading = MaterialTheme.colors.primary600,
                 openMapScreen = {},
                 visibleMoneyAndPrice = true
             )

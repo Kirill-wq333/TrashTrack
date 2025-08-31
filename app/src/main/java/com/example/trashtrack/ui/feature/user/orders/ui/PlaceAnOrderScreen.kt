@@ -71,6 +71,8 @@ fun PlaceAnOrderScreen(
             subscription.forEachIndexed { index, subscriptionData ->
                 Subscription(
                     benefit = subscriptionData.benefit,
+                    colorHeading = if (subscriptionData.heading.length == 15) MaterialTheme.colors.white else MaterialTheme.colors.neutral950,
+                    colorUnHeading = if (subscriptionData.heading.length == 15) MaterialTheme.colors.white else MaterialTheme.colors.primary600,
                     backgroundColor = subscriptionData.background,
                     borderColor = subscriptionData.border,
                     colorText = subscriptionData.text,

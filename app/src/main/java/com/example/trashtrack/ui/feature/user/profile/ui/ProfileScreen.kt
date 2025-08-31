@@ -54,7 +54,7 @@ fun ProfileScreen(
     navController: NavHostController,
     color: Color,
     subId: Int?,
-    subscription: List<DataClasses.SubscriptionData?>
+    subscription: List<DataClasses.SubscriptionData>
 ) {
     var currentScreenType by remember { mutableStateOf<ProfileType>(ProfileType.MainProfile) }
 

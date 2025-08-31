@@ -73,6 +73,7 @@ fun MainUserScreen(
     MainUserContent(
         callback = callback,
         color = color,
+        navController = navController,
         newsMain = newsMain,
         subscriptions = subscriptions
     )
@@ -82,6 +83,7 @@ fun MainUserScreen(
 private fun MainUserContent(
     callback: MainCallback,
     color: Color,
+    navController: NavHostController,
     newsMain: List<DataClasses.NewsMain>,
     subscriptions: List<DataClasses.SubscriptionData>
 ) {
@@ -153,6 +155,11 @@ private fun MainUserContent(
                             val subId = subscriptions
                                 .getOrNull(selectedSubscriptionIndex)
                                 ?.id ?: return@SubscriptionCompleted
+
+                            navController.currentBackStackEntry?.savedStateHandle?.set(
+                                "selectedSubId",
+                                subId
+                            )
 
                             callback.openSubscriptionScreen(visibleBottomBar, subId)
                         }

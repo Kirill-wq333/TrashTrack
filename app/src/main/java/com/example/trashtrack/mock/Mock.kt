@@ -276,7 +276,7 @@ object Mock {
             text = white,
         ),
         DataClasses.SubscriptionData(
-            id = 3,
+            id = 2,
             benefit = "Выгода до 40%",
             heading = "Подписка на 6 месяцев",
             underHeading = "Оплата на 6 месяцев по выгодной цене, и регулярный вывез мусора, либо по вашему графику",
@@ -288,7 +288,7 @@ object Mock {
             text = neutral950,
         ),
         DataClasses.SubscriptionData(
-            id = 5,
+            id = 3,
             benefit = "Выгода до 35%",
             heading = "Подписка на 1 год",
             underHeading = "Оплата на год по выгодной цене, и регулярный вывез мусора, либо по вашему графику",
